@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { formatRating } from '../../utils';
 
@@ -12,19 +13,12 @@ function PremiumMark() {
 
 function PlaceCard(props) {
   const {
-    // eslint-disable-next-line react/prop-types
     title,
-    // eslint-disable-next-line react/prop-types
     type,
-    // eslint-disable-next-line react/prop-types
     price,
-    // eslint-disable-next-line react/prop-types
     rating,
-    // eslint-disable-next-line react/prop-types
     previewImage,
-    // eslint-disable-next-line react/prop-types
     isFavorite,
-    // eslint-disable-next-line react/prop-types
     isPremium,
   } = props;
 
@@ -69,5 +63,15 @@ function PlaceCard(props) {
     </article>
   );
 }
+
+PlaceCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  rating: PropTypes.string.isRequired,
+  previewImage: PropTypes.string.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
+  isPremium: PropTypes.bool.isRequired,
+};
 
 export { PlaceCard };

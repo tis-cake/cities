@@ -1,9 +1,8 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { PlaceCard } from '../place-card/place-card';
 
 function ScreenMain(props) {
-  // eslint-disable-next-line react/prop-types
   const { placesList } = props;
 
   return (
@@ -95,7 +94,6 @@ function ScreenMain(props) {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {/*eslint-disable-next-line react/prop-types*/}
                 {placesList.map((place) => (
                   <PlaceCard
                     key={place.id}
@@ -119,5 +117,19 @@ function ScreenMain(props) {
     </div>
   );
 }
+
+ScreenMain.propTypes = {
+  placesList: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      rating: PropTypes.string.isRequired,
+      previewImage: PropTypes.string.isRequired,
+      isFavorite: PropTypes.bool.isRequired,
+      isPremium: PropTypes.bool.isRequired,
+    }),
+  ),
+};
 
 export { ScreenMain };
