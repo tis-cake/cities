@@ -56,9 +56,9 @@ function PageMain(props) {
                 </Link>
               </li>
               <li className="locations__item">
-                <Link className="locations__item-link tabs__item" to={AppRoute.PROPERTY}>
+                <a className="locations__item-link tabs__item" href="#">
                   <span>Brussels</span>
-                </Link>
+                </a>
               </li>
               <li className="locations__item">
                 <a className="locations__item-link tabs__item tabs__item--active">

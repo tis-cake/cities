@@ -1,6 +1,6 @@
 import React from 'react';
 
-function PageProperty() {
+function PageRoomDetail() {
   return (
     <div className="page">
       <header className="header">
@@ -334,4 +334,4 @@ function PageProperty() {
   );
 }
 
-export { PageProperty };
+export { PageRoomDetail };

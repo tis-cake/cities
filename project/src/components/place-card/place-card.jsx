@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// import { AppRoute } from '../../const';
+import { AppRoute } from '../../const';
 import { formatRating } from '../../utils';
 import { propTypesPlaceCard } from '../../types';
 
@@ -34,7 +34,7 @@ function PlaceCard(props) {
       {isPremium ? <PremiumMark isPremium={isPremium} /> : isPremium}
 
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={`/offer/${id}`}>
+        <Link to={`${AppRoute.ROOM_DETAIL}/${id}`}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place" />
         </Link>
       </div>
@@ -59,7 +59,9 @@ function PlaceCard(props) {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={`${AppRoute.ROOM_DETAIL}/${id}`}>
+            {title}
+          </Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
