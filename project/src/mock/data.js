@@ -1,6 +1,6 @@
-import { getHotelMockup } from './hotel';
-import { generateMockups } from './utils';
+import { getHotelMock } from './hotel';
+import { generateMocks } from './utils';
 
-const DATA_HOTELS = generateMockups(5, getHotelMockup);
+const DATA_HOTELS = generateMocks(5, getHotelMock);
 
 export { DATA_HOTELS };

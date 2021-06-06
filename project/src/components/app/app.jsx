@@ -9,6 +9,7 @@ import { PageLogin } from '../pages/page-login/page-login';
 import { PageNotFound } from '../pages/page-not-found/page-not-found';
 
 import { AppRoute } from '../../const';
+import { propTypesHotel } from '../../types';
 
 function App(props) {
   const { placesList } = props;
@@ -24,11 +25,14 @@ function App(props) {
         <Route exact path={AppRoute.FAVORITES}>
           <PageFavorites />
         </Route>
-        <Route exact path={AppRoute.PROPERTY}>
+        {/*<Route exact path={AppRoute.PROPERTY}>
           <PageProperty />
-        </Route>
+        </Route>*/}
         <Route exact path={AppRoute.LOGIN}>
           <PageLogin />
+        </Route>
+        <Route exact path="/offer/:id">
+          <PageProperty />
         </Route>
         <Route>
           <PageNotFound />
@@ -40,15 +44,7 @@ function App(props) {
 
 App.propTypes = {
   placesList: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
-      rating: PropTypes.string.isRequired,
-      previewImage: PropTypes.string.isRequired,
-      isFavorite: PropTypes.bool.isRequired,
-      isPremium: PropTypes.bool.isRequired,
-    }),
+    PropTypes.shape(propTypesHotel),
   ),
 };
 

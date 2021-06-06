@@ -1,7 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
+// import { AppRoute } from '../../const';
 import { formatRating } from '../../utils';
+import { propTypesPlaceCard } from '../../types';
 
 function PremiumMark() {
   return (
@@ -13,6 +15,7 @@ function PremiumMark() {
 
 function PlaceCard(props) {
   const {
+    id,
     title,
     type,
     price,
@@ -31,9 +34,9 @@ function PlaceCard(props) {
       {isPremium ? <PremiumMark isPremium={isPremium} /> : isPremium}
 
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={`/offer/${id}`}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place" />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -65,13 +68,7 @@ function PlaceCard(props) {
 }
 
 PlaceCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  rating: PropTypes.string.isRequired,
-  previewImage: PropTypes.string.isRequired,
-  isFavorite: PropTypes.bool.isRequired,
-  isPremium: PropTypes.bool.isRequired,
+  ...propTypesPlaceCard,
 };
 
 export { PlaceCard };

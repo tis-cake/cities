@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { PlaceCard } from '../../place-card/place-card';
 
 import { AppRoute } from '../../../const';
+import { propTypesHotel } from '../../../types';
 
 function PageMain(props) {
   const { placesList } = props;
@@ -101,6 +102,7 @@ function PageMain(props) {
                 {placesList.map((place) => (
                   <PlaceCard
                     key={place.id}
+                    id={place.id}
                     title={place.title}
                     type={place.type}
                     price={place.price}
@@ -124,15 +126,7 @@ function PageMain(props) {
 
 PageMain.propTypes = {
   placesList: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
-      rating: PropTypes.string.isRequired,
-      previewImage: PropTypes.string.isRequired,
-      isFavorite: PropTypes.bool.isRequired,
-      isPremium: PropTypes.bool.isRequired,
-    }),
+    PropTypes.shape(propTypesHotel),
   ),
 };
 
