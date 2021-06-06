@@ -1,4 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import { LogoHeander } from '../../shared/logo/logo';
+import { Footer } from '../../shared/footer/footer';
+
+import { AppRoute } from '../../../const';
 
 import './page-not-found.css';
 
@@ -9,9 +15,7 @@ function PageNotFound() {
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a className="header__logo-link" href="main.html">
-                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
-              </a>
+              <LogoHeander />
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
@@ -32,16 +36,14 @@ function PageNotFound() {
         <div className="container">
           <section className="not-found">
             <h1 className="not-found__title">404. Page not found</h1>
-            <a className="not-found__link" href="/">Вернуться на главную</a>
+            <Link className="not-found__link" to={AppRoute.ROOT}>
+              Вернуться на главную
+            </Link>
           </section>
         </div>
       </main>
 
-      <footer className="footer container">
-        <a className="footer__logo-link" href="main.html">
-          <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33" />
-        </a>
-      </footer>
+      <Footer />
     </div>
   );
 }
