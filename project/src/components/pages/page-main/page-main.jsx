@@ -1,8 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { PlaceCard } from '../place-card/place-card';
+import { Link } from 'react-router-dom';
 
-function ScreenMain(props) {
+import { LogoHeander } from '../../shared/logo/logo';
+import { PlaceCard } from '../../place-card/place-card';
+
+import { AppRoute } from '../../../const';
+import { propTypesHotel } from '../../../types';
+
+function PageMain(props) {
   const { placesList } = props;
 
   return (
@@ -11,9 +17,7 @@ function ScreenMain(props) {
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a className="header__logo-link header__logo-link--active">
-                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
-              </a>
+              <LogoHeander />
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
@@ -41,14 +45,14 @@ function ScreenMain(props) {
           <section className="locations container">
             <ul className="locations__list tabs__list">
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <Link className="locations__item-link tabs__item" to={AppRoute.LOGIN}>
                   <span>Paris</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <Link className="locations__item-link tabs__item" to={AppRoute.FAVORITES}>
                   <span>Cologne</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
                 <a className="locations__item-link tabs__item" href="#">
@@ -79,7 +83,7 @@ function ScreenMain(props) {
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">312 places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
+                <span className="places__sorting-caption">Sort by </span>
                 <span className="places__sorting-type" tabIndex="0">
                   Popular
                   <svg className="places__sorting-arrow" width="7" height="4">
@@ -97,6 +101,7 @@ function ScreenMain(props) {
                 {placesList.map((place) => (
                   <PlaceCard
                     key={place.id}
+                    id={place.id}
                     title={place.title}
                     type={place.type}
                     price={place.price}
@@ -118,18 +123,10 @@ function ScreenMain(props) {
   );
 }
 
-ScreenMain.propTypes = {
+PageMain.propTypes = {
   placesList: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
-      rating: PropTypes.string.isRequired,
-      previewImage: PropTypes.string.isRequired,
-      isFavorite: PropTypes.bool.isRequired,
-      isPremium: PropTypes.bool.isRequired,
-    }),
+    PropTypes.shape(propTypesHotel),
   ),
 };
 
-export { ScreenMain };
+export { PageMain };

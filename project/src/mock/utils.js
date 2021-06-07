@@ -21,7 +21,7 @@ const getRandomArrayItemRandomQuantity = (array) => {
 const getRandomBooleanValue = () => (Math.random() > 0.5);
 
 // eslint-disable-next-line arrow-body-style
-const generateMockups = (count, getMockupCallback) => {
+const generateMocks = (count, getMockupCallback) => {
   return new Array(count)
     .fill('')
     .map(getMockupCallback);
@@ -33,5 +33,5 @@ export {
   getRandomArrayItemRandomQuantity,
   getRandomBooleanValue,
 
-  generateMockups
+  generateMocks
 };

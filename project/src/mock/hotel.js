@@ -19,7 +19,7 @@ import {
   getRandomBooleanValue
 } from './utils';
 
-const getHotelMockup = () => ({
+const getHotelMock = () => ({
   'bedrooms': getRandomIntInclusive(1, 6),
   'city': {
     'location': {
@@ -54,4 +54,4 @@ const getHotelMockup = () => ({
   'type': getRandomArrayItem(HOTEL_TYPES),
 });
 
-export { getHotelMockup };
+export { getHotelMock };
