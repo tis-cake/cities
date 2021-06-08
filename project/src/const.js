@@ -5,4 +5,11 @@ const AppRoute = {
   FAVORITES: '/favorites',
 };
 
-export { AppRoute };
+const UserData = {
+  isAuthorized: true,
+  // mail: '',
+  mail: 'giorno@yare-yare.daze', // !NB
+  avatar: '',
+};
+
+export { AppRoute, UserData };
