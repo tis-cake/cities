@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { AppRoute } from '../../const';
@@ -13,7 +14,7 @@ function PremiumMark() {
   );
 }
 
-function PlaceCard(props) {
+function PlaceCard({placeData, onMouseActive}) {
   const {
     id,
     title,
@@ -23,14 +24,14 @@ function PlaceCard(props) {
     previewImage,
     isFavorite,
     isPremium,
-  } = props;
+  } = placeData;
 
   const bookmarkButtonActiveClass = isFavorite
     ? 'place-card__bookmark-button--active'
     : '';
 
   return (
-    <article className="cities__place-card place-card">
+    <article className="cities__place-card place-card" onMouseEnter={() => onMouseActive(placeData)}>
       {isPremium ? <PremiumMark isPremium={isPremium} /> : isPremium}
 
       <div className="cities__image-wrapper place-card__image-wrapper">
@@ -70,7 +71,8 @@ function PlaceCard(props) {
 }
 
 PlaceCard.propTypes = {
-  ...propTypesPlaceCard,
+  placeData: PropTypes.shape(propTypesPlaceCard),
+  onMouseActive: PropTypes.func.isRequired,
 };
 
 export { PlaceCard };
