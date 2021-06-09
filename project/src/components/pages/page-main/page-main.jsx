@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 import { Header } from '../../shared/header/header';
 import { PlaceCard } from '../../place-card/place-card';
 
-import { AppRoute } from '../../../const';
 import { propTypesHotel } from '../../../types';
 
 function PageMain(props) {
@@ -21,14 +19,14 @@ function PageMain(props) {
           <section className="locations container">
             <ul className="locations__list tabs__list">
               <li className="locations__item">
-                <Link className="locations__item-link tabs__item" to={AppRoute.LOGIN}>
+                <a className="locations__item-link tabs__item" href="#">
                   <span>Paris</span>
-                </Link>
+                </a>
               </li>
               <li className="locations__item">
-                <Link className="locations__item-link tabs__item" to={AppRoute.FAVORITES}>
+                <a className="locations__item-link tabs__item" href="#">
                   <span>Cologne</span>
-                </Link>
+                </a>
               </li>
               <li className="locations__item">
                 <a className="locations__item-link tabs__item" href="#">

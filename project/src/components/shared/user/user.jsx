@@ -2,12 +2,17 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { AppRoute } from '../../../const';
 import { UserContext } from '../../../context';
+import { AppRoute, DefaultUserData } from '../../../const';
 
 
 function UserAuthorized (props) {
-  const { mail } = props;
+  const { email, setUserDataContext } = props;
+
+  function handleSignOutClick(evt) {
+    evt.preventDefault();
+    setUserDataContext(DefaultUserData);
+  }
 
   return (
     <React.Fragment>
@@ -15,11 +20,11 @@ function UserAuthorized (props) {
         <Link className="header__nav-link header__nav-link--profile" to={AppRoute.FAVORITES}>
           <div className="header__avatar-wrapper user__avatar-wrapper">
           </div>
-          <span className="header__user-name user__name">{mail}</span>
+          <span className="header__user-name user__name">{email}</span>
         </Link>
       </li>
       <li className="header__nav-item">
-        <a className="header__nav-link" href="#">
+        <a className="header__nav-link" href="#" onClick={handleSignOutClick}>
           <span className="header__signout">Sign out</span>
         </a>
       </li>
@@ -40,15 +45,17 @@ function UserNotAuthorized () {
 }
 
 function User() {
-  const { isAuthorized, mail } = useContext(UserContext);
+  const [ userDataContext, setUserDataContext ] = useContext(UserContext);
+  const { isAuthorized, email } = userDataContext;
 
   return (
-    isAuthorized ? <UserAuthorized mail={mail} /> : <UserNotAuthorized />
+    isAuthorized ? <UserAuthorized email={email} setUserDataContext={setUserDataContext} /> : <UserNotAuthorized />
   );
 }
 
 UserAuthorized.propTypes = {
-  mail: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  setUserDataContext: PropTypes.func.isRequired,
 };
 
 export { User };
