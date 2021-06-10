@@ -26,7 +26,9 @@ function App(props) {
             />
           </Route>
           <Route exact path={AppRoute.FAVORITES}>
-            <PageFavorites />
+            <PageFavorites
+              placesList={placesList}
+            />
           </Route>
           <Route exact path={AppRoute.LOGIN}>
             <PageLogin
@@ -35,7 +37,9 @@ function App(props) {
             />
           </Route>
           <Route exact path={`${AppRoute.ROOM_DETAIL}/:id`}>
-            <PageRoomDetail />
+            <PageRoomDetail
+              placesList={placesList}
+            />
           </Route>
           <Route>
             <PageNotFound />

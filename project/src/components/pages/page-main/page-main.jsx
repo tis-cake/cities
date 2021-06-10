@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Header } from '../../shared/header/header';
-import { PlaceCardList } from '../../place-card/place-card-list';
+import { PlaceCardListСities } from '../../place-card/place-card-list/place-card-list-cities/place-card-list-cities';
 
 import { propTypesHotel } from '../../../types';
 
@@ -72,7 +72,7 @@ function PageMain(props) {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <PlaceCardList placesList={placesList} />
+                <PlaceCardListСities placesList={placesList}/>
               </div>
             </section>
             <div className="cities__right-section">

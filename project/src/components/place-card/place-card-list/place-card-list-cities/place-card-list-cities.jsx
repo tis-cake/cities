@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { PlaceCard } from './place-card';
+import { PlaceCardItem } from '../../place-card-item/place-card-item';
 
-import { propTypesHotel } from '../../types';
+import { propTypesHotel } from '../../../../types';
 
-function PlaceCardList(props) {
+const { PlaceCardСities } = PlaceCardItem;
+
+function PlaceCardListСities(props) {
   // eslint-disable-next-line no-unused-vars
   const [ activePlaceCardState, setActivePlaceCardState ] = useState({});
 
@@ -21,7 +23,7 @@ function PlaceCardList(props) {
   return (
     <React.Fragment>
       {placesList.map((place) => (
-        <PlaceCard
+        <PlaceCardСities
           key={place.id}
           placeData={place}
           onMouseActive={handlePlaceCardMouseActive}
@@ -31,10 +33,10 @@ function PlaceCardList(props) {
   );
 }
 
-PlaceCardList.propTypes = {
+PlaceCardListСities.propTypes = {
   placesList: PropTypes.arrayOf(
     PropTypes.shape(propTypesHotel),
   ),
 };
 
-export { PlaceCardList };
+export { PlaceCardListСities };
