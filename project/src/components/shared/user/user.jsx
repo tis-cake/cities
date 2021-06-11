@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { UserContext } from '../../../context';
 import { AppRoute, DefaultUserData } from '../../../const';
 
-
 function UserAuthorized (props) {
   const { email, setUserDataContext } = props;
 

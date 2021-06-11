@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { LogoHeander } from '../logo/logo';
+import { LogoHeander } from '../logo/logo-header/logo-header';
 import { Navigation } from '../navigation/navigation';
 
 function Header() {
