@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 
 import { Header } from '../../shared/header/header';
 import { Footer } from '../../shared/footer/footer';
-import { PlaceCardListFavorites } from '../../place-card/place-card-list/place-card-list-favorites/place-card-list-favorites';
+import { PlaceCardList } from '../../place-card/place-card-list/place-card-list';
 
 import { propTypesHotel } from '../../../types';
+
+const { PlaceCardListFavorites } = PlaceCardList;
 
 function PageFavorites(props) {
   const { placesList } = props;

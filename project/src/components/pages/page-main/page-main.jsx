@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Header } from '../../shared/header/header';
-import { PlaceCardListСities } from '../../place-card/place-card-list/place-card-list-cities/place-card-list-cities';
+import { PlaceCardList } from '../../place-card/place-card-list/place-card-list';
 
 import { propTypesHotel } from '../../../types';
+
+const { PlaceCardListСities } = PlaceCardList;
 
 function PageMain(props) {
   const { placesList } = props;

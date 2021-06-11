@@ -31,10 +31,7 @@ function App(props) {
             />
           </Route>
           <Route exact path={AppRoute.LOGIN}>
-            <PageLogin
-              userDataContext={userDataContext}
-              setUserDataContext={setUserDataContext}
-            />
+            <PageLogin />
           </Route>
           <Route exact path={`${AppRoute.ROOM_DETAIL}/:id`}>
             <PageRoomDetail
