@@ -5,4 +5,12 @@ const AppRoute = {
   FAVORITES: '/favorites',
 };
 
-export { AppRoute };
+const DefaultUserData = {
+  isAuthorized: false,
+  email: '',
+};
+
+export {
+  AppRoute,
+  DefaultUserData
+};

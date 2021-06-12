@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 
@@ -9,33 +9,41 @@ import { PageLogin } from '../pages/page-login/page-login';
 import { PageNotFound } from '../pages/page-not-found/page-not-found';
 
 import { AppRoute } from '../../const';
-import { propTypesHotel } from '../../types';
+import { UserContext } from '../../context';
+import { propTypesHotel, propTypesUser } from '../../types';
 
 function App(props) {
-  const { placesList } = props;
+  const { placesList, userData } = props;
+  const [userDataContext, setUserDataContext] = useState(userData);
 
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path={AppRoute.ROOT}>
-          <PageMain
-            placesList={placesList}
-          />
-        </Route>
-        <Route exact path={AppRoute.FAVORITES}>
-          <PageFavorites />
-        </Route>
-        <Route exact path={AppRoute.LOGIN}>
-          <PageLogin />
-        </Route>
-        <Route exact path={`${AppRoute.ROOM_DETAIL}/:id`}>
-          <PageRoomDetail />
-        </Route>
-        <Route>
-          <PageNotFound />
-        </Route>
-      </Switch>
-    </BrowserRouter>
+    <UserContext.Provider value={[userDataContext, setUserDataContext]}>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path={AppRoute.ROOT}>
+            <PageMain
+              placesList={placesList}
+            />
+          </Route>
+          <Route exact path={AppRoute.FAVORITES}>
+            <PageFavorites
+              placesList={placesList}
+            />
+          </Route>
+          <Route exact path={AppRoute.LOGIN}>
+            <PageLogin />
+          </Route>
+          <Route exact path={`${AppRoute.ROOM_DETAIL}/:id`}>
+            <PageRoomDetail
+              placesList={placesList}
+            />
+          </Route>
+          <Route>
+            <PageNotFound />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </UserContext.Provider>
   );
 }
 
@@ -43,6 +51,7 @@ App.propTypes = {
   placesList: PropTypes.arrayOf(
     PropTypes.shape(propTypesHotel),
   ),
+  userData: PropTypes.shape(propTypesUser),
 };
 
 export { App };

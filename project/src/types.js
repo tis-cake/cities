@@ -40,7 +40,13 @@ const propTypesHotel = {
   }),
 };
 
+const propTypesUser = {
+  isAuthorized: PropTypes.bool.isRequired,
+  email: PropTypes.string.isRequired,
+};
+
 export {
   propTypesPlaceCard,
-  propTypesHotel
+  propTypesHotel,
+  propTypesUser
 };

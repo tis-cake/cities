@@ -1,8 +1,10 @@
 const HOTEL_CITIES = [
-  'Lappeenranta',
-  'Amsterdam',
-  'Moscow',
   'Paris',
+  'Cologne',
+  'Brussels',
+  'Amsterdam',
+  'Hamburg',
+  'Dusseldorf',
 ];
 
 const HOTEL_HOST_NAMES = [
