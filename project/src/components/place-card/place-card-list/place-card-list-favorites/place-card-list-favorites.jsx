@@ -8,13 +8,11 @@ import { propTypesHotel } from '../../../../types';
 const { PlaceCardFavorites } = PlaceCardItem;
 
 function PlaceCardListFavorites(props) {
-  const { placesList, cityName } = props;
-
-  const filtredPlacesList = placesList.filter((place) => (place.isFavorite && place.city.name === cityName));
+  const { placesList } = props;
 
   return (
     <React.Fragment>
-      {filtredPlacesList.map((place) => (
+      {placesList.map((place) => (
         <PlaceCardFavorites
           key={place.id}
           placeData={place}
@@ -28,7 +26,6 @@ PlaceCardListFavorites.propTypes = {
   placesList: PropTypes.arrayOf(
     PropTypes.shape(propTypesHotel),
   ),
-  cityName: PropTypes.string.isRequired,
 };
 
 export { PlaceCardListFavorites };

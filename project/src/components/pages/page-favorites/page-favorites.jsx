@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 
 import { Header } from '../../shared/header/header';
 import { Footer } from '../../shared/footer/footer';
-import { PlaceCardList } from '../../place-card/place-card-list/place-card-list';
+import { FavoritesList } from '../../favorites/favorites-list/favorites-list';
 
 import { propTypesHotel } from '../../../types';
-
-const { PlaceCardListFavorites } = PlaceCardList;
 
 function PageFavorites(props) {
   const { placesList } = props;
@@ -20,39 +18,11 @@ function PageFavorites(props) {
         <div className="page__favorites-container container">
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
-            <ul className="favorites__list">
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="#">
-                      <span>Amsterdam</span>
-                    </a>
-                  </div>
-                </div>
-                <div className="favorites__places">
-                  <PlaceCardListFavorites
-                    placesList={placesList}
-                    cityName={'Amsterdam'}
-                  />
-                </div>
-              </li>
 
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="#">
-                      <span>Cologne</span>
-                    </a>
-                  </div>
-                </div>
-                <div className="favorites__places">
-                  <PlaceCardListFavorites
-                    placesList={placesList}
-                    cityName={'Cologne'}
-                  />
-                </div>
-              </li>
-            </ul>
+            <FavoritesList
+              placesList={placesList}
+              currentCity={'Amsterdam'}
+            />
           </section>
         </div>
       </main>
