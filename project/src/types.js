@@ -11,6 +11,13 @@ const propTypesPlaceCard = {
   isPremium: PropTypes.bool.isRequired,
 };
 
+const propTypesPerson = {
+  avatarUrl: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  isPro: PropTypes.bool.isRequired,
+  name: PropTypes.string.isRequired,
+};
+
 const propTypesHotel = {
   ...propTypesPlaceCard,
 
@@ -28,15 +35,22 @@ const propTypesHotel = {
     }),
   }),
   host: PropTypes.shape({
-    avatarUrl: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    isPro: PropTypes.bool.isRequired,
-    name: PropTypes.string.isRequired,
+    ...propTypesPerson,
   }),
   location: PropTypes.shape({
     latitude: PropTypes.string.isRequired,
     longitude: PropTypes.string.isRequired,
     zoom: PropTypes.number.isRequired,
+  }),
+};
+
+const propTypesReview = {
+  'comment': PropTypes.string.isRequired,
+  'date': PropTypes.instanceOf(Date),
+  'id': PropTypes.string.isRequired,
+  'rating': PropTypes.string.isRequired,
+  'user': PropTypes.shape({
+    ...propTypesPerson,
   }),
 };
 
@@ -48,5 +62,6 @@ const propTypesUser = {
 export {
   propTypesPlaceCard,
   propTypesHotel,
+  propTypesReview,
   propTypesUser
 };
