@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Map } from '../../map/map';
 import { Header } from '../../shared/header/header';
 import { PlaceCardList } from '../../place-card/place-card-list/place-card-list';
 
@@ -78,7 +79,12 @@ function PageMain(props) {
               </div>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <section className="cities__map map">
+                <Map
+                  placesList={placesList}
+                  currentCity={'Amsterdam'}
+                />
+              </section>
             </div>
           </div>
         </div>

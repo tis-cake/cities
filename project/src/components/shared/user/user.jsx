@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { UserContext } from '../../../context';
-import { AppRoute, DefaultUserData } from '../../../const';
+import { AppRoute, defaultUserData } from '../../../const';
 
 function UserAuthorized (props) {
   const { email, setUserDataContext } = props;
 
   function handleSignOutClick(evt) {
     evt.preventDefault();
-    setUserDataContext(DefaultUserData);
+    setUserDataContext(defaultUserData);
   }
 
   return (
