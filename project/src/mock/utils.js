@@ -27,11 +27,30 @@ const generateMocks = (count, getMockupCallback) => {
     .map(getMockupCallback);
 };
 
+const generateRandomDate = () => {
+  const targetDate = new Date();
+
+  const yearBorderLower = 2019;
+  const yearBorderUpper = targetDate.getFullYear();
+  const yearBorder = yearBorderUpper - yearBorderLower;
+
+  const diffValYear = -1 * getRandomIntInclusive(0, yearBorder);
+  const diffValMonth = -1 * getRandomIntInclusive(0, 12);
+  const diffValDate = -1 * getRandomIntInclusive(0, 7);
+
+  targetDate.setFullYear(targetDate.getFullYear() + diffValYear);
+  targetDate.setMonth(targetDate.getMonth() + diffValMonth);
+  targetDate.setDate(targetDate.getDate() + diffValDate);
+
+  return targetDate;
+};
+
 export {
   getRandomIntInclusive,
   getRandomArrayItem,
   getRandomArrayItemRandomQuantity,
   getRandomBooleanValue,
 
-  generateMocks
+  generateMocks,
+  generateRandomDate
 };

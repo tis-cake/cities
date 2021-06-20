@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { PlaceCardMark } from './place-card-mark';
-import { PlaceCardInfo } from './place-card-info';
-import { PlaceCardImage } from './place-card-image';
+import { PlaceCardMark } from './place-card-mark/place-card-mark';
+import { PlaceCardInfo } from './place-card-info/place-card-info';
+import { PlaceCardImage } from './place-card-image/place-card-image';
 
 import { propTypesPlaceCard } from '../../../types';
 
@@ -14,7 +14,7 @@ function PlaceCardСities({ placeData, onMouseActive }) {
 
   return (
     <article className="cities__place-card place-card" onMouseEnter={() => onMouseActive(placeData)}>
-      {isPremium ? <PlaceCardMark /> : isPremium}
+      {isPremium && <PlaceCardMark />}
 
       <div className="cities__image-wrapper place-card__image-wrapper">
         <PlaceCardImageNormal placeData={placeData}/>
@@ -31,7 +31,7 @@ function PlaceCardNearPlaces({ placeData }) {
 
   return (
     <article className="near-places__card place-card">
-      {isPremium ? <PlaceCardMark /> : isPremium}
+      {isPremium && <PlaceCardMark />}
 
       <div className="near-places__image-wrapper place-card__image-wrapper">
         <PlaceCardImageNormal placeData={placeData}/>
@@ -48,7 +48,7 @@ function PlaceCardFavorites({ placeData }) {
 
   return (
     <article className="favorites__card place-card">
-      {isPremium ? <PlaceCardMark /> : isPremium}
+      {isPremium && <PlaceCardMark />}
 
       <div className="favorites__image-wrapper place-card__image-wrapper">
         <PlaceCardImageSmall placeData={placeData}/>

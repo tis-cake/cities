@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import { AppRoute } from '../../../const';
-import { propTypesPlaceCard } from '../../../types';
+import { AppRoute } from '../../../../const';
+import { propTypesPlaceCard } from '../../../../types';
 
 function PlaceCardImageNormal({ placeData }) {
   const { id, previewImage } = placeData;

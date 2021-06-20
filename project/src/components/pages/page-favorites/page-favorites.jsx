@@ -7,9 +7,7 @@ import { FavoritesList } from '../../favorites/favorites-list/favorites-list';
 
 import { propTypesHotel } from '../../../types';
 
-function PageFavorites(props) {
-  const { placesList } = props;
-
+function PageFavorites({ placesList }) {
   return (
     <div className="page">
       <Header />

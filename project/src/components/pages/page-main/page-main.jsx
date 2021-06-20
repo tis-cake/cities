@@ -9,9 +9,7 @@ import { propTypesHotel } from '../../../types';
 
 const { PlaceCardListСities } = PlaceCardList;
 
-function PageMain(props) {
-  const { placesList } = props;
-
+function PageMain({ placesList }) {
   return (
     <div className="page page--gray page--main">
       <Header />

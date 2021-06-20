@@ -50,7 +50,7 @@ const getHotelMock = () => ({
   'maxAdults': getRandomIntInclusive(1, 10),
   'previewImage': getRandomArrayItem(HOTEL_IMAGES_PREVIEW),
   'price': getRandomIntInclusive(80, 200),
-  'rating': `${getRandomIntInclusive(0, 9)}.${getRandomIntInclusive(0, 9)}`,
+  'rating': `${getRandomIntInclusive(0, 5)}.${getRandomIntInclusive(0, 9)}`,
   'title': getRandomArrayItem(HOTEL_TITLES),
   'type': getRandomArrayItem(HOTEL_TYPES),
 });
