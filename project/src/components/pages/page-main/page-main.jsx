@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import { ActionCreator } from '../../../store/actions';
 
 import { Map } from '../../map/map';
 import { Header } from '../../shared/header/header';
 import { PlaceCardList } from '../../place-card/place-card-list/place-card-list';
 
-import { propTypesHotel } from '../../../types';
+import { castPlacesFormat } from '../../../utils/format';
+import { propTypesFilteredOffers } from '../../../types';
+import { DATA_HOTELS } from '../../../mock/data';
 
 const { PlaceCardListСities } = PlaceCardList;
 
-function PageMain({ placesList }) {
+function PageMainBase(props) {
+  const { cityName, filteredOffers, setOffers } = props;
+  const { length: offersCount } = filteredOffers;
+
+  useEffect(() => {
+    setOffers(DATA_HOTELS);
+  }, []);
+
   return (
     <div className="page page--gray page--main">
       <Header />
@@ -56,7 +68,7 @@ function PageMain({ placesList }) {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">312 places to stay in Amsterdam</b>
+              <b className="places__found">{offersCount} {castPlacesFormat(offersCount)} to stay in {cityName}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by </span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -73,14 +85,14 @@ function PageMain({ placesList }) {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <PlaceCardListСities placesList={placesList}/>
+                <PlaceCardListСities offers={filteredOffers}/>
               </div>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
                 <Map
-                  placesList={placesList}
-                  currentCity={'Amsterdam'}
+                  offers={filteredOffers}
+                  cityName={cityName}
                 />
               </section>
             </div>
@@ -91,10 +103,23 @@ function PageMain({ placesList }) {
   );
 }
 
-PageMain.propTypes = {
-  placesList: PropTypes.arrayOf(
-    PropTypes.shape(propTypesHotel),
-  ),
+const mapStateToProps = (state) => ({
+  cityName: state.cityName,
+  filteredOffers: state.filteredOffers,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setOffers(offers) {
+    dispatch(ActionCreator.setOffers(offers));
+  },
+});
+
+const PageMain = connect(mapStateToProps, mapDispatchToProps)(PageMainBase);
+
+PageMainBase.propTypes = {
+  cityName: PropTypes.string.isRequired,
+  filteredOffers: propTypesFilteredOffers,
+  setOffers: PropTypes.func.isRequired,
 };
 
-export { PageMain };
+export { PageMainBase, PageMain };

@@ -1,21 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { PlaceCardItem } from '../../place-card-item/place-card-item';
 
-import { propTypesHotel } from '../../../../types';
+import { propTypesFilteredOffers } from '../../../../types';
 
 const { PlaceCardNearPlaces } = PlaceCardItem;
 
-function PlaceCardListNearPlaces(props) {
-  const { placesList } = props;
-
+function PlaceCardListNearPlaces({ offers }) {
   // временно ограничиваем до 3 элементов
-  const slicedPlacesList = placesList.slice(0, 3);
+  const offersSliced = offers.slice(0, 3);
 
   return (
     <React.Fragment>
-      {slicedPlacesList.map((place) => (
+      {offersSliced.map((place) => (
         <PlaceCardNearPlaces
           key={place.id}
           placeData={place}
@@ -26,9 +23,7 @@ function PlaceCardListNearPlaces(props) {
 }
 
 PlaceCardListNearPlaces.propTypes = {
-  placesList: PropTypes.arrayOf(
-    PropTypes.shape(propTypesHotel),
-  ),
+  offers: propTypesFilteredOffers,
 };
 
 export { PlaceCardListNearPlaces };

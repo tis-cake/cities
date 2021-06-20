@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 import { PlaceCardList } from '../../place-card/place-card-list/place-card-list';
 
-import { propTypesHotel } from '../../../types';
+import { propTypesOffer } from '../../../types';
 
 const { PlaceCardListFavorites } = PlaceCardList;
 
 function FavoritesItem(props) {
-  const { placesList, nameCity, currentCity } = props;
+  const { offers, cityCurrent, city } = props;
 
-  const locationsCurrentClass = (nameCity === currentCity)
+  const locationsCurrentClass = (city === cityCurrent)
     ? 'locations--current'
     : '';
 
@@ -19,23 +19,23 @@ function FavoritesItem(props) {
       <div className={`favorites__locations locations ${locationsCurrentClass}`}>
         <div className="locations__item">
           <a className="locations__item-link" href="#">
-            <span>{nameCity}</span>
+            <span>{city}</span>
           </a>
         </div>
       </div>
       <div className="favorites__places">
-        <PlaceCardListFavorites placesList={placesList}/>
+        <PlaceCardListFavorites offers={offers}/>
       </div>
     </li>
   );
 }
 
 FavoritesItem.propTypes = {
-  placesList: PropTypes.arrayOf(
-    PropTypes.shape(propTypesHotel),
+  offers: PropTypes.arrayOf(
+    PropTypes.shape(propTypesOffer),
   ),
-  nameCity: PropTypes.string.isRequired,
-  currentCity: PropTypes.string.isRequired,
+  cityCurrent: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
 };
 
 export { FavoritesItem };

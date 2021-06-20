@@ -10,10 +10,10 @@ import { PageNotFound } from '../pages/page-not-found/page-not-found';
 
 import { AppRoute } from '../../const';
 import { UserContext } from '../../context';
-import { propTypesHotel, propTypesUser } from '../../types';
+import { propTypesUser } from '../../types';
 
 function App(props) {
-  const { placesList, userData } = props;
+  const { userData } = props;
   const [userDataContext, setUserDataContext] = useState(userData);
 
   return (
@@ -21,22 +21,16 @@ function App(props) {
       <BrowserRouter>
         <Switch>
           <Route exact path={AppRoute.ROOT}>
-            <PageMain
-              placesList={placesList}
-            />
+            <PageMain />
           </Route>
           <Route exact path={AppRoute.FAVORITES}>
-            <PageFavorites
-              placesList={placesList}
-            />
+            <PageFavorites />
           </Route>
           <Route exact path={AppRoute.LOGIN}>
             <PageLogin />
           </Route>
           <Route exact path={`${AppRoute.ROOM_DETAIL}/:id`}>
-            <PageRoomDetail
-              placesList={placesList}
-            />
+            <PageRoomDetail />
           </Route>
           <Route>
             <PageNotFound />
@@ -48,9 +42,6 @@ function App(props) {
 }
 
 App.propTypes = {
-  placesList: PropTypes.arrayOf(
-    PropTypes.shape(propTypesHotel),
-  ),
   userData: PropTypes.shape(propTypesUser),
 };
 

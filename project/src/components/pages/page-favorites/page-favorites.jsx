@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import { Header } from '../../shared/header/header';
 import { Footer } from '../../shared/footer/footer';
 import { FavoritesList } from '../../favorites/favorites-list/favorites-list';
 
-import { propTypesHotel } from '../../../types';
+import { propTypesOffers } from '../../../types';
 
-function PageFavorites({ placesList }) {
+function PageFavoritesBase(props) {
+  const { cityName, offers } = props;
+
   return (
     <div className="page">
       <Header />
@@ -18,8 +21,8 @@ function PageFavorites({ placesList }) {
             <h1 className="favorites__title">Saved listing</h1>
 
             <FavoritesList
-              placesList={placesList}
-              currentCity={'Amsterdam'}
+              offers={offers}
+              cityName={cityName}
             />
           </section>
         </div>
@@ -30,10 +33,16 @@ function PageFavorites({ placesList }) {
   );
 }
 
-PageFavorites.propTypes = {
-  placesList: PropTypes.arrayOf(
-    PropTypes.shape(propTypesHotel),
-  ),
+const mapStateToProps = (state) => ({
+  cityName: state.cityName,
+  offers: state.offers,
+});
+
+const PageFavorites = connect(mapStateToProps)(PageFavoritesBase);
+
+PageFavoritesBase.propTypes = {
+  cityName: PropTypes.string.isRequired,
+  offers: propTypesOffers,
 };
 
-export { PageFavorites };
+export { PageFavorites, PageFavoritesBase };

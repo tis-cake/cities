@@ -1,15 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+
+import { store } from './store/store';
 import { App } from './components/app/app';
 
-import { DATA_HOTELS, userData } from './mock/data';
+import { userData } from './mock/data';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App
-      placesList={DATA_HOTELS}
-      userData={userData}
-    />
+    <Provider store={store}>
+      <App
+        // placesList={DATA_HOTELS}
+        userData={userData}
+      />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

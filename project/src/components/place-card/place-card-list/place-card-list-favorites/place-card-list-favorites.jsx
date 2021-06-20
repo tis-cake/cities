@@ -1,18 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { PlaceCardItem } from '../../place-card-item/place-card-item';
 
-import { propTypesHotel } from '../../../../types';
+import { propTypesFilteredOffers } from '../../../../types';
 
 const { PlaceCardFavorites } = PlaceCardItem;
 
-function PlaceCardListFavorites(props) {
-  const { placesList } = props;
-
+function PlaceCardListFavorites({ offers }) {
   return (
     <React.Fragment>
-      {placesList.map((place) => (
+      {offers.map((place) => (
         <PlaceCardFavorites
           key={place.id}
           placeData={place}
@@ -23,9 +20,7 @@ function PlaceCardListFavorites(props) {
 }
 
 PlaceCardListFavorites.propTypes = {
-  placesList: PropTypes.arrayOf(
-    PropTypes.shape(propTypesHotel),
-  ),
+  offers: propTypesFilteredOffers,
 };
 
 export { PlaceCardListFavorites };

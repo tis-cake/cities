@@ -1,27 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import { Header } from '../../shared/header/header';
 import { Property } from '../../property/property';
 import { PlaceCardList } from '../../place-card/place-card-list/place-card-list';
 
-import { propTypesHotel } from '../../../types';
+import { propTypesOffers, propTypesFilteredOffers } from '../../../types';
 
 const { PlaceCardListNearPlaces } = PlaceCardList;
 
-function PageRoomDetail({ placesList }) {
+function PageRoomDetailBase(props) {
+  const { cityName, offers, filteredOffers } = props;
+
   return (
     <div className="page">
       <Header />
 
       <main className="page__main page__main--property">
-        <Property placesList={placesList}/>
+        <Property
+          cityName={cityName}
+          offers={offers}
+          filteredOffers={filteredOffers}
+        />
 
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <PlaceCardListNearPlaces placesList={placesList}/>
+              <PlaceCardListNearPlaces offers={filteredOffers}/>
             </div>
           </section>
         </div>
@@ -30,10 +37,18 @@ function PageRoomDetail({ placesList }) {
   );
 }
 
-PageRoomDetail.propTypes = {
-  placesList: PropTypes.arrayOf(
-    PropTypes.shape(propTypesHotel),
-  ),
+const mapStateToProps = (state) => ({
+  cityName: state.cityName,
+  offers: state.offers,
+  filteredOffers: state.filteredOffers,
+});
+
+const PageRoomDetail = connect(mapStateToProps)(PageRoomDetailBase);
+
+PageRoomDetailBase.propTypes = {
+  cityName: PropTypes.string.isRequired,
+  offers: propTypesOffers,
+  filteredOffers: propTypesFilteredOffers,
 };
 
-export { PageRoomDetail };
+export { PageRoomDetailBase, PageRoomDetail };

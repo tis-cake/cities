@@ -4,17 +4,17 @@ import PropTypes from 'prop-types';
 
 import { FavoritesItem } from '../favorites-item/favorites-item';
 
-import { propTypesHotel } from '../../../types';
+import { propTypesOffers } from '../../../types';
 
-const getFavoritesListFilteredCity = (placesList) => {
+const getFilteredOffersFavoritesOnCities = (offers) => {
   const result = {};
 
-  for (const place of placesList) {
-    if (place.isFavorite) {
-      if (result[place.city.name]) {
-        result[place.city.name].push(place);
+  for (const offer of Object.values(offers)) {
+    if (offer.isFavorite) {
+      if (result[offer.city.name]) {
+        result[offer.city.name].push(offer);
       } else {
-        result[place.city.name] = [place];
+        result[offer.city.name] = [offer];
       }
     }
   }
@@ -22,19 +22,17 @@ const getFavoritesListFilteredCity = (placesList) => {
   return result;
 };
 
-function FavoritesList(props) {
-  const { placesList, currentCity } = props;
-
-  const favoritesList = getFavoritesListFilteredCity(placesList);
+function FavoritesList({ cityName, offers }) {
+  const favoritesList = getFilteredOffersFavoritesOnCities(offers);
 
   return (
     <ul className="favorites__list">
-      {Object.entries(favoritesList).map(([city, places]) => (
+      {Object.entries(favoritesList).map(([city, offersFavorites]) => (
         <FavoritesItem
           key={nanoid()}
-          placesList={places}
-          nameCity={city}
-          currentCity={currentCity}
+          offers={offersFavorites}
+          cityCurrent={cityName}
+          city={city}
         />
       ))}
     </ul>
@@ -42,10 +40,8 @@ function FavoritesList(props) {
 }
 
 FavoritesList.propTypes = {
-  placesList: PropTypes.arrayOf(
-    PropTypes.shape(propTypesHotel),
-  ),
-  currentCity: PropTypes.string.isRequired,
+  cityName: PropTypes.string.isRequired,
+  offers: propTypesOffers,
 };
 
 export { FavoritesList };
