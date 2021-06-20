@@ -13,9 +13,29 @@ const MONTHS = [
   'December',
 ];
 
-const castBedroomsFormat = (bedrooms) => (bedrooms  < 2) ? 'Bedroom' : 'Bedrooms';
+const PluralSingular = {
+  BEDROOM: {
+    SINGULAR: 'Bedroom',
+    PLURAL: 'Bedrooms',
+  },
+  ADULT: {
+    SINGULAR: 'adult',
+    PLURAL: 'adults',
+  },
+  PLACE: {
+    SINGULAR: 'place',
+    PLURAL: 'places',
+  },
+};
 
-const castAdultsFormat = (adults) => (adults  < 2) ? 'adult' : 'adults';
+const identifyPluralOrSingular = (data, count) => {
+  const result = (count  < 2) ? data.SINGULAR : data.PLURAL;
+  return result;
+};
+
+const castBedroomsFormat = (count) => identifyPluralOrSingular(PluralSingular.BEDROOM, count);
+const castAdultsFormat = (count) => identifyPluralOrSingular(PluralSingular.ADULT, count);
+const castPlacesFormat = (count) => identifyPluralOrSingular(PluralSingular.PLACE, count);
 
 const castNumberFormat = (value) => {
   const result = (value < 10) ? `0${value}` : String(value);
@@ -47,6 +67,7 @@ const formatDateReview = (date) => {
 export {
   castBedroomsFormat,
   castAdultsFormat,
+  castPlacesFormat,
 
   formatRating,
   formatDateTime,

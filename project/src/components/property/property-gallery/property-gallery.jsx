@@ -2,7 +2,7 @@ import React from 'react';
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 
-import { propTypesHotel } from '../../../types';
+import { propTypesOffer } from '../../../types';
 
 function PropertyGallery({ placeData }) {
   const { images } = placeData;
@@ -21,7 +21,7 @@ function PropertyGallery({ placeData }) {
 }
 
 PropertyGallery.propTypes = {
-  placeData: PropTypes.shape(propTypesHotel),
+  placeData: PropTypes.shape(propTypesOffer),
 };
 
 export { PropertyGallery };
