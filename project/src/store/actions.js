@@ -1,6 +1,7 @@
 const ActionType = {
   SET_OFFERS: 'main/setOffers',
   SET_CITY_NAME: 'main/setCityName',
+  SET_FILTERED_OFFERS: 'main/setFilteredOffers',
 };
 
 function setCityName(cityName) {
@@ -17,9 +18,16 @@ function setOffers(offers) {
   };
 }
 
+function setFilteredOffers() {
+  return {
+    type: ActionType.SET_FILTERED_OFFERS,
+  };
+}
+
 const ActionCreator = {
-  setCityName,
   setOffers,
+  setCityName,
+  setFilteredOffers,
 };
 
 export { ActionType, ActionCreator };

@@ -1,5 +1,4 @@
 import React from 'react';
-import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 
 import { FavoritesItem } from '../favorites-item/favorites-item';
@@ -27,7 +26,7 @@ function FavoritesList({ cityName, offers }) {
     <ul className="favorites__list">
       {Object.entries(favoritesList).map(([city, offersFavorites]) => (
         <FavoritesItem
-          key={nanoid()}
+          key={`favorites-item-${city}`}
           offers={offersFavorites}
           cityCurrent={cityName}
           city={city}

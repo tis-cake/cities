@@ -11,7 +11,7 @@ function PropertyGallery({ placeData }) {
     <div className="property__gallery-container container">
       <div className="property__gallery">
         {images.map((image) => (
-          <div key={nanoid()} className="property__image-wrapper">
+          <div key={`property-image-${nanoid()}`} className="property__image-wrapper">
             <img className="property__image" src={image} alt="Studio" />
           </div>
         ))}

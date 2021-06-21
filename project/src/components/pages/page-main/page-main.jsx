@@ -6,6 +6,7 @@ import { ActionCreator } from '../../../store/actions';
 
 import { Map } from '../../map/map';
 import { Header } from '../../shared/header/header';
+import { TabsLocations } from '../../tabs-locations/tabs-locations';
 import { PlaceCardList } from '../../place-card/place-card-list/place-card-list';
 
 import { castPlacesFormat } from '../../../utils/format';
@@ -15,7 +16,7 @@ import { DATA_HOTELS } from '../../../mock/data';
 const { PlaceCardListСities } = PlaceCardList;
 
 function PageMainBase(props) {
-  const { cityName, filteredOffers, setOffers } = props;
+  const { cityName, filteredOffers, setOffers, setCityName } = props;
   const { length: offersCount } = filteredOffers;
 
   useEffect(() => {
@@ -29,40 +30,10 @@ function PageMainBase(props) {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <section className="locations container">
-            <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
-            </ul>
-          </section>
+          <TabsLocations
+            cityCurrent={cityName}
+            setCityName={setCityName}
+          />
         </div>
         <div className="cities">
           <div className="cities__places-container container">
@@ -109,6 +80,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  setCityName(cityName) {
+    dispatch(ActionCreator.setCityName(cityName));
+    dispatch(ActionCreator.setFilteredOffers());
+  },
   setOffers(offers) {
     dispatch(ActionCreator.setOffers(offers));
   },
@@ -119,6 +94,7 @@ const PageMain = connect(mapStateToProps, mapDispatchToProps)(PageMainBase);
 PageMainBase.propTypes = {
   cityName: PropTypes.string.isRequired,
   filteredOffers: propTypesFilteredOffers,
+  setCityName: PropTypes.func.isRequired,
   setOffers: PropTypes.func.isRequired,
 };
 

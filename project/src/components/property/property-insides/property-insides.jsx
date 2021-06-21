@@ -13,7 +13,7 @@ function PropertyInsides({ placeData }) {
 
       <ul className="property__inside-list">
         {goods.map((good) => (
-          <li key={nanoid()} className="property__inside-item">
+          <li key={`property-inside-item-${nanoid()}`} className="property__inside-item">
             {good}
           </li>
         ))}
