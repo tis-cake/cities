@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import { Header } from '../../shared/header/header';
 import { Property } from '../../property/property';
@@ -13,6 +14,9 @@ const { PlaceCardListNearPlaces } = PlaceCardList;
 function PageRoomDetailBase(props) {
   const { cityName, offers, filteredOffers } = props;
 
+  const { id } = useParams();
+  const currentPlaceData = offers[id];
+
   return (
     <div className="page">
       <Header />
@@ -20,8 +24,8 @@ function PageRoomDetailBase(props) {
       <main className="page__main page__main--property">
         <Property
           cityName={cityName}
-          offers={offers}
           filteredOffers={filteredOffers}
+          currentPlaceData={currentPlaceData}
         />
 
         <div className="container">

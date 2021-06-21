@@ -9,7 +9,7 @@ import { FavoritesList } from '../../favorites/favorites-list/favorites-list';
 import { propTypesOffers } from '../../../types';
 
 function PageFavoritesBase(props) {
-  const { cityName, offers } = props;
+  const { cityName, favoritesOffers } = props;
 
   return (
     <div className="page">
@@ -21,7 +21,7 @@ function PageFavoritesBase(props) {
             <h1 className="favorites__title">Saved listing</h1>
 
             <FavoritesList
-              offers={offers}
+              offers={favoritesOffers}
               cityName={cityName}
             />
           </section>
@@ -35,14 +35,14 @@ function PageFavoritesBase(props) {
 
 const mapStateToProps = (state) => ({
   cityName: state.cityName,
-  offers: state.offers,
+  favoritesOffers: state.offers,
 });
 
 const PageFavorites = connect(mapStateToProps)(PageFavoritesBase);
 
 PageFavoritesBase.propTypes = {
   cityName: PropTypes.string.isRequired,
-  offers: propTypesOffers,
+  favoritesOffers: propTypesOffers,
 };
 
 export { PageFavorites, PageFavoritesBase };

@@ -10,12 +10,10 @@ const getFilteredOffersFavoritesOnCities = (offers) => {
   const result = {};
 
   for (const offer of Object.values(offers)) {
-    if (offer.isFavorite) {
-      if (result[offer.city.name]) {
-        result[offer.city.name].push(offer);
-      } else {
-        result[offer.city.name] = [offer];
-      }
+    if (result[offer.city.name]) {
+      result[offer.city.name].push(offer);
+    } else {
+      result[offer.city.name] = [offer];
     }
   }
 

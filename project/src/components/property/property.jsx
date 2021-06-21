@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useParams } from 'react-router-dom';
 
 import { Map } from '../map/map';
 import { Reviews } from '../reviews/reviews';
@@ -13,15 +12,12 @@ import { PropertyGallery } from './property-gallery/property-gallery';
 import { PropertyInsides } from './property-insides/property-insides';
 import { PropertyFeatures } from './property-features/property-features';
 
-import { propTypesOffers, propTypesFilteredOffers } from '../../types';
+import { propTypesOffer, propTypesFilteredOffers } from '../../types';
 import { DATA_REVIEWS } from '../../mock/data';
 
 const { BookmarkButtonBig } = BookmarkButton;
 
-function Property({ cityName, offers, filteredOffers }) {
-  const { id } = useParams();
-  const currentPlaceData = offers[id];
-
+function Property({ cityName, filteredOffers, currentPlaceData }) {
   const {
     title,
     isPremium,
@@ -77,8 +73,8 @@ function Property({ cityName, offers, filteredOffers }) {
 
 Property.propTypes = {
   cityName: PropTypes.string.isRequired,
-  offers: propTypesOffers,
   filteredOffers: propTypesFilteredOffers,
+  currentPlaceData: PropTypes.shape(propTypesOffer),
 };
 
 export { Property };
