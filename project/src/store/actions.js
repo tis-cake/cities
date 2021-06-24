@@ -1,8 +1,9 @@
 const ActionType = {
   SET_CITY_NAME: 'main/setCityName',
+  SET_SORT_TYPE: 'main/setSortType',
   SET_INIT_OFFERS: 'main/setOffers',
   SET_FILTERED_OFFERS: 'main/setFilteredOffers',
-  SET_PROPERTY_ACTIVE_ID: 'property/setPropertyActiveID',
+  SET_DETAIL_OFFER_ACTIVE_ID: 'detail/setDetailOfferActiveID',
 };
 
 function setCityName(cityName) {
@@ -12,9 +13,16 @@ function setCityName(cityName) {
   };
 }
 
-function setPropertyActiveID(id) {
+function setSortType(sortType) {
   return {
-    type: ActionType.SET_PROPERTY_ACTIVE_ID,
+    type: ActionType.SET_SORT_TYPE,
+    payload: sortType,
+  };
+}
+
+function setDetailOfferActiveID(id) {
+  return {
+    type: ActionType.SET_DETAIL_OFFER_ACTIVE_ID,
     payload: id,
   };
 }
@@ -34,9 +42,10 @@ function setFilteredOffers() {
 
 const ActionCreator = {
   setCityName,
+  setSortType,
   setInitOffers,
   setFilteredOffers,
-  setPropertyActiveID,
+  setDetailOfferActiveID,
 };
 
 export { ActionType, ActionCreator };

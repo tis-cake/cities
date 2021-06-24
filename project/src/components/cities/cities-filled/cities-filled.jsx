@@ -10,7 +10,7 @@ import { propTypesFilteredOffers } from '../../../types';
 
 const { PlaceCardListСities } = PlaceCardList;
 
-function CitiesFilled({ offers, cityName }) {
+function CitiesFilled({ offers, cityName, sortType, setSortType }) {
   const { length: offersCount } = offers;
 
   return (
@@ -19,7 +19,10 @@ function CitiesFilled({ offers, cityName }) {
         <h2 className="visually-hidden">Places</h2>
         <b className="places__found">{offersCount} {castPlacesFormat(offersCount)} to stay in {cityName}</b>
 
-        <Sort />
+        <Sort
+          sortType={sortType}
+          setSortType={setSortType}
+        />
 
         <div className="cities__places-list places__list tabs__content">
           <PlaceCardListСities offers={offers}/>
@@ -40,6 +43,8 @@ function CitiesFilled({ offers, cityName }) {
 CitiesFilled.propTypes = {
   offers: propTypesFilteredOffers,
   cityName: PropTypes.string.isRequired,
+  sortType: PropTypes.string.isRequired,
+  setSortType: PropTypes.func.isRequired,
 };
 
 export { CitiesFilled };

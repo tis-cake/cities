@@ -11,7 +11,14 @@ import { propTypesFilteredOffers } from '../../../types';
 import { DATA_HOTELS } from '../../../mock/data';
 
 function PageMainBase(props) {
-  const { cityName, setCityName, filteredOffers, setInitOffers } = props;
+  const {
+    cityName,
+    setCityName,
+    sortType,
+    setSortType,
+    filteredOffers,
+    setInitOffers,
+  } = props;
   const { length: offersCount } = filteredOffers;
 
   const mainElEmptyClass = (offersCount === 0)
@@ -38,6 +45,8 @@ function PageMainBase(props) {
         <Cities
           offers={filteredOffers}
           cityName={cityName}
+          sortType={sortType}
+          setSortType={setSortType}
         />
       </main>
     </div>
@@ -46,12 +55,17 @@ function PageMainBase(props) {
 
 const mapStateToProps = (state) => ({
   cityName: state.cityName,
+  sortType: state.sortType,
   filteredOffers: state.filteredOffers,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   setCityName(cityName) {
     dispatch(ActionCreator.setCityName(cityName));
+    dispatch(ActionCreator.setFilteredOffers());
+  },
+  setSortType(sortType) {
+    dispatch(ActionCreator.setSortType(sortType));
     dispatch(ActionCreator.setFilteredOffers());
   },
   setInitOffers(initOffers) {
@@ -64,6 +78,8 @@ const PageMain = connect(mapStateToProps, mapDispatchToProps)(PageMainBase);
 PageMainBase.propTypes = {
   cityName: PropTypes.string.isRequired,
   setCityName: PropTypes.func.isRequired,
+  sortType: PropTypes.string.isRequired,
+  setSortType: PropTypes.func.isRequired,
   filteredOffers: propTypesFilteredOffers,
   setInitOffers: PropTypes.func.isRequired,
 };

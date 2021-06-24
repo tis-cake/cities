@@ -15,21 +15,21 @@ function PageDetailOfferBase(props) {
     cityName,
     offers,
     filteredOffers,
-    propertyActiveID,
-    setPropertyActiveID,
+    detailOfferActiveID,
+    setDetailOfferActiveID,
   } = props;
 
   const { id } = useParams();
 
   useEffect(() => {
-    setPropertyActiveID(id);
+    setDetailOfferActiveID(id);
 
     window.scrollTo(0, 0);
   }, [id]);
 
-  const currentPlaceData = (id !== propertyActiveID)
+  const currentPlaceData = (id !== detailOfferActiveID)
     ? offers[id]
-    : offers[propertyActiveID];
+    : offers[detailOfferActiveID];
 
   return (
     <div className="page">
@@ -45,7 +45,7 @@ function PageDetailOfferBase(props) {
         <div className="container">
           <Nearby
             offers={filteredOffers}
-            currentID={propertyActiveID}
+            currentID={detailOfferActiveID}
           />
         </div>
       </main>
@@ -57,12 +57,12 @@ const mapStateToProps = (state) => ({
   cityName: state.cityName,
   offers: state.offers,
   filteredOffers: state.filteredOffers,
-  propertyActiveID: state.propertyActiveID,
+  detailOfferActiveID: state.detailOfferActiveID,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setPropertyActiveID(id) {
-    dispatch(ActionCreator.setPropertyActiveID(id));
+  setDetailOfferActiveID(id) {
+    dispatch(ActionCreator.setDetailOfferActiveID(id));
   },
 });
 
@@ -72,8 +72,8 @@ PageDetailOfferBase.propTypes = {
   cityName: PropTypes.string.isRequired,
   offers: propTypesOffers,
   filteredOffers: propTypesFilteredOffers,
-  propertyActiveID: PropTypes.string.isRequired,
-  setPropertyActiveID: PropTypes.func.isRequired,
+  detailOfferActiveID: PropTypes.string.isRequired,
+  setDetailOfferActiveID: PropTypes.func.isRequired,
 };
 
 export { PageDetailOfferBase, PageDetailOffer };
