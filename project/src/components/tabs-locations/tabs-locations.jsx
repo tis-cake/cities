@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 import { AppRoute, Cities } from '../../const';
-// className={`locations__item-link tabs__item ${(city === cityCurrent) ? 'tabs__item--active' : ''}`}
 
 function TabsLocations({ cityCurrent, setCityName }) {
   return (

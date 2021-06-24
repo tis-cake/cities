@@ -7,12 +7,9 @@ import { propTypesFilteredOffers } from '../../../../types';
 const { PlaceCardNearPlaces } = PlaceCardItem;
 
 function PlaceCardListNearPlaces({ offers }) {
-  // временно ограничиваем до 3 элементов
-  const offersSliced = offers.slice(0, 3);
-
   return (
     <React.Fragment>
-      {offersSliced.map((place) => (
+      {offers.map((place) => (
         <PlaceCardNearPlaces
           key={place.id}
           placeData={place}

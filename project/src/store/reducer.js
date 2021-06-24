@@ -5,6 +5,7 @@ import { prepareInitialData, getFilteredOffers } from '../utils/store';
 
 const initialState = {
   cityName: DEFAULT_CITY,
+  propertyActiveID: '',
 
   offers: {},
   filteredOffers: [],
@@ -17,6 +18,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         cityName: action.payload,
+      };
+    }
+
+    case ActionType.SET_PROPERTY_ACTIVE_ID: {
+      return {
+        ...state,
+        propertyActiveID: action.payload,
       };
     }
 

@@ -13,7 +13,10 @@ function PlaceCardСities({ placeData, onMouseActive }) {
   const { isPremium } = placeData;
 
   return (
-    <article className="cities__place-card place-card" onMouseEnter={() => onMouseActive(placeData)}>
+    <article
+      className="cities__place-card place-card"
+      onMouseEnter={() => onMouseActive(placeData)}
+    >
       {isPremium && <PlaceCardMark />}
 
       <div className="cities__image-wrapper place-card__image-wrapper">

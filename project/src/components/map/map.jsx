@@ -3,7 +3,7 @@ import leaflet from 'leaflet';
 import PropTypes from 'prop-types';
 
 import { СitiesLocation } from '../../const';
-import { propTypesOffer } from '../../types';
+import { propTypesFilteredOffers } from '../../types';
 
 import 'leaflet/dist/leaflet.css';
 
@@ -72,9 +72,7 @@ function Map(props) {
 }
 
 Map.propTypes = {
-  offers: PropTypes.arrayOf(
-    PropTypes.shape(propTypesOffer),
-  ),
+  offers: propTypesFilteredOffers,
   cityName: PropTypes.string.isRequired,
 };
 

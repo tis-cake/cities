@@ -4,7 +4,7 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom';
 
 import { PageMain } from '../pages/page-main/page-main';
 import { PageFavorites } from '../pages/page-favorites/page-favorites';
-import { PageRoomDetail } from '../pages/page-room-detail/page-room-detail';
+import { PageDetailOffer } from '../pages/page-detail-offer/page-detail-offer';
 import { PageLogin } from '../pages/page-login/page-login';
 import { PageNotFound } from '../pages/page-not-found/page-not-found';
 
@@ -29,8 +29,8 @@ function App(props) {
           <Route exact path={AppRoute.LOGIN}>
             <PageLogin />
           </Route>
-          <Route exact path={`${AppRoute.ROOM_DETAIL}/:id`}>
-            <PageRoomDetail />
+          <Route exact path={`${AppRoute.DETAIL_OFFER}/:id`}>
+            <PageDetailOffer />
           </Route>
           <Route>
             <PageNotFound />

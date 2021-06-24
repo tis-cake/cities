@@ -9,7 +9,7 @@ function PlaceCardImageNormal({ placeData }) {
   const { id, previewImage } = placeData;
 
   return (
-    <Link to={`${AppRoute.ROOM_DETAIL}/${id}`}>
+    <Link to={`${AppRoute.DETAIL_OFFER}/${id}`}>
       <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place" />
     </Link>
   );
@@ -19,7 +19,7 @@ function PlaceCardImageSmall({ placeData }) {
   const { id, previewImage } = placeData;
 
   return (
-    <Link to={`${AppRoute.ROOM_DETAIL}/${id}`}>
+    <Link to={`${AppRoute.DETAIL_OFFER}/${id}`}>
       <img className="place-card__image" src={previewImage} width="150" height="110" alt="Place" />
     </Link>
   );

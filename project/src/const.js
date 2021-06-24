@@ -12,7 +12,7 @@ const mapObjID = (items) => {
 const AppRoute = {
   ROOT: '/',
   LOGIN: '/login',
-  ROOM_DETAIL: '/offer',
+  DETAIL_OFFER: '/offer',
   FAVORITES: '/favorites',
 };
 
