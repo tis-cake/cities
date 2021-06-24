@@ -1,3 +1,5 @@
+// import { combineReducers } from 'redux';
+
 import { ActionType } from './actions';
 
 import { DEFAULT_CITY } from '../const';
@@ -31,11 +33,12 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_FILTERED_OFFERS: {
       return {
         ...state,
+
         filteredOffers: getFilteredOffers(state.offers, state.ID_OFFERS_ON_CITIES[state.cityName]),
       };
     }
 
-    case ActionType.SET_OFFERS: {
+    case ActionType.SET_INIT_OFFERS: {
       const { payload } = action;
       const { favoritesOffers, ID_OFFERS_ON_CITIES } = prepareInitialData(payload);
       const filteredOffers = getFilteredOffers(payload, ID_OFFERS_ON_CITIES[state.cityName]);

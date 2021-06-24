@@ -1,6 +1,6 @@
 const ActionType = {
-  SET_OFFERS: 'main/setOffers',
   SET_CITY_NAME: 'main/setCityName',
+  SET_INIT_OFFERS: 'main/setOffers',
   SET_FILTERED_OFFERS: 'main/setFilteredOffers',
   SET_PROPERTY_ACTIVE_ID: 'property/setPropertyActiveID',
 };
@@ -19,10 +19,10 @@ function setPropertyActiveID(id) {
   };
 }
 
-function setOffers(offers) {
+function setInitOffers(initOffers) {
   return {
-    type: ActionType.SET_OFFERS,
-    payload: offers,
+    type: ActionType.SET_INIT_OFFERS,
+    payload: initOffers,
   };
 }
 
@@ -33,8 +33,8 @@ function setFilteredOffers() {
 }
 
 const ActionCreator = {
-  setOffers,
   setCityName,
+  setInitOffers,
   setFilteredOffers,
   setPropertyActiveID,
 };

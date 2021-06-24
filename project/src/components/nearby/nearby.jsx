@@ -9,11 +9,7 @@ const { PlaceCardListNearPlaces } = PlaceCardList;
 
 const MAX_NEAR_PLACE = 3;
 
-function NearbyEmpty() {
-  return ('');
-}
-
-function NearbyFully({ offers }) {
+function NearbyFilled({ offers }) {
   return (
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>
@@ -29,11 +25,11 @@ function Nearby({ offers, currentID }) {
   const slicedOffers = filteredOffers.slice(0, MAX_NEAR_PLACE);
 
   return (
-    (slicedOffers.length > 0) ? <NearbyFully offers={slicedOffers}/> : <NearbyEmpty />
+    (slicedOffers.length > 0) && <NearbyFilled offers={slicedOffers}/>
   );
 }
 
-NearbyFully.propTypes = {
+NearbyFilled.propTypes = {
   offers: propTypesFilteredOffers,
 };
 

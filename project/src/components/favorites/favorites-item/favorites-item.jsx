@@ -9,14 +9,14 @@ import { propTypesOffer } from '../../../types';
 
 const { PlaceCardListFavorites } = PlaceCardList;
 
+function handleLocationLinkClick(city, cityCurrent, setCityName) {
+  if (city !== cityCurrent) {
+    setCityName(city);
+  }
+}
+
 function FavoritesItem(props) {
   const { offers, cityCurrent, city, setCityName } = props;
-
-  function handleLocationLinkClick() {
-    if (city !== cityCurrent) {
-      setCityName(city);
-    }
-  }
 
   const locationsCurrentClass = (city === cityCurrent)
     ? 'locations--current'
@@ -29,7 +29,7 @@ function FavoritesItem(props) {
           <Link
             className="locations__item-link"
             to={AppRoute.ROOT}
-            onClick={() => handleLocationLinkClick()}
+            onClick={() => handleLocationLinkClick(city, cityCurrent, setCityName)}
           >
             <span>{city}</span>
           </Link>

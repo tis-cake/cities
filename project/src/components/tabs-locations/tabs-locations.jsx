@@ -4,6 +4,12 @@ import { NavLink } from 'react-router-dom';
 
 import { AppRoute, Cities } from '../../const';
 
+function handleLocationLinkClick(city, cityCurrent, setCityName) {
+  if (city !== cityCurrent) {
+    setCityName(city);
+  }
+}
+
 function TabsLocations({ cityCurrent, setCityName }) {
   return (
     <section className="locations container">
@@ -16,7 +22,7 @@ function TabsLocations({ cityCurrent, setCityName }) {
               isActive={() => (city === cityCurrent)}
 
               to={AppRoute.ROOT}
-              onClick={() => setCityName(city)}
+              onClick={() => handleLocationLinkClick(city, cityCurrent, setCityName)}
             >
               <span>{city}</span>
             </NavLink>

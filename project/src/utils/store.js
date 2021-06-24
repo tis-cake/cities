@@ -1,3 +1,5 @@
+import { Cities } from '../const';
+
 const prepareInitialData = (offers) => {
   // eslint-disable-next-line no-console
   console.log('%c INIT', 'color: white; background: #212529; font-size: 32px');
@@ -5,16 +7,16 @@ const prepareInitialData = (offers) => {
   const favoritesOffers = {};
   const idOnCitiesOffers = {};
 
+  for (const city of Object.values(Cities)) {
+    idOnCitiesOffers[city] = [];
+  }
+
   for (const offer of Object.values(offers)) {
     if (offer.isFavorite) {
       favoritesOffers[offer.id] = offer;
     }
 
-    if (idOnCitiesOffers[offer.city.name]) {
-      idOnCitiesOffers[offer.city.name].push(offer.id);
-    } else {
-      idOnCitiesOffers[offer.city.name] = [offer.id];
-    }
+    idOnCitiesOffers[offer.city.name].push(offer.id);
   }
 
   return {
