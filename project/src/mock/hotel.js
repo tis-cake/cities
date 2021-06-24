@@ -28,7 +28,6 @@ const getHotelMock = () => ({
       'zoom': getRandomIntInclusive(8, 13),
     },
     'name': getRandomArrayItem(HOTEL_CITIES),
-    'popupName': getRandomArrayItem(HOTEL_TITLES), // кастомное поле
   },
   'description': getRandomArrayItem(HOTEL_DESCRIPTIONS),
   'goods': getRandomArrayItemRandomQuantity(HOTEL_GOODS),
@@ -43,8 +42,10 @@ const getHotelMock = () => ({
   'isFavorite': getRandomBooleanValue(),
   'isPremium': getRandomBooleanValue(),
   'location': {
-    'latitude': `${getRandomIntInclusive(0, 60)}.${getRandomIntInclusive(10000, 99990)}`,
-    'longitude': `${getRandomIntInclusive(0, 60)}.${getRandomIntInclusive(10000, 99990)}`,
+    // 'latitude': `${getRandomIntInclusive(0, 60)}.${getRandomIntInclusive(10000, 99990)}`,
+    // 'longitude': `${getRandomIntInclusive(0, 60)}.${getRandomIntInclusive(10000, 99990)}`,
+    'latitude': `52.3${getRandomIntInclusive(0, 999)}`,
+    'longitude': `4.9${getRandomIntInclusive(0, 999)}`,
     'zoom': getRandomIntInclusive(8, 13),
   },
   'maxAdults': getRandomIntInclusive(1, 10),

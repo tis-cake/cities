@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import { PlaceCardItem } from '../../place-card-item/place-card-item';
 
@@ -6,24 +7,14 @@ import { propTypesFilteredOffers } from '../../../../types';
 
 const { PlaceCardСities } = PlaceCardItem;
 
-function PlaceCardListСities({ offers }) {
-  // eslint-disable-next-line no-unused-vars
-  const [ activePlaceCardState, setActivePlaceCardState ] = useState({});
-
-  function handlePlaceCardMouseActive(activePlaceCard) {
-    // eslint-disable-next-line no-console
-    console.log(activePlaceCard);
-
-    setActivePlaceCardState(activePlaceCard);
-  }
-
+function PlaceCardListСities({ offers, setActiveOffer }) {
   return (
     <React.Fragment>
       {offers.map((place) => (
         <PlaceCardСities
           key={place.id}
           placeData={place}
-          onMouseActive={handlePlaceCardMouseActive}
+          setActiveOffer={setActiveOffer}
         />
       ))}
     </React.Fragment>
@@ -32,6 +23,7 @@ function PlaceCardListСities({ offers }) {
 
 PlaceCardListСities.propTypes = {
   offers: propTypesFilteredOffers,
+  setActiveOffer: PropTypes.func.isRequired,
 };
 
 export { PlaceCardListСities };

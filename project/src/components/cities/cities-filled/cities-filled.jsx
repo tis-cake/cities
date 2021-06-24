@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Map } from '../../map/map';
@@ -12,6 +12,7 @@ const { PlaceCardListСities } = PlaceCardList;
 
 function CitiesFilled({ offers, cityName, sortType, setSortType }) {
   const { length: offersCount } = offers;
+  const [ activeOffer, setActiveOffer ] = useState({});
 
   return (
     <div className="cities__places-container container">
@@ -25,7 +26,10 @@ function CitiesFilled({ offers, cityName, sortType, setSortType }) {
         />
 
         <div className="cities__places-list places__list tabs__content">
-          <PlaceCardListСities offers={offers}/>
+          <PlaceCardListСities
+            offers={offers}
+            setActiveOffer={setActiveOffer}
+          />
         </div>
       </section>
       <div className="cities__right-section">
@@ -33,6 +37,7 @@ function CitiesFilled({ offers, cityName, sortType, setSortType }) {
           <Map
             offers={offers}
             cityName={cityName}
+            activeOffer={activeOffer}
           />
         </section>
       </div>
