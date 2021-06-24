@@ -2,7 +2,7 @@ import React from 'react';
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 
-import { propTypesHotel } from '../../../types';
+import { propTypesOffer } from '../../../types';
 
 function PropertyInsides({ placeData }) {
   const { goods } = placeData;
@@ -13,7 +13,7 @@ function PropertyInsides({ placeData }) {
 
       <ul className="property__inside-list">
         {goods.map((good) => (
-          <li key={nanoid()} className="property__inside-item">
+          <li key={`property-inside-item-${nanoid()}`} className="property__inside-item">
             {good}
           </li>
         ))}
@@ -23,7 +23,7 @@ function PropertyInsides({ placeData }) {
 }
 
 PropertyInsides.propTypes = {
-  placeData: PropTypes.shape(propTypesHotel),
+  placeData: PropTypes.shape(propTypesOffer),
 };
 
 export { PropertyInsides };

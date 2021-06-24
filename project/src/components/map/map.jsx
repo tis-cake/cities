@@ -2,8 +2,8 @@ import React, { useRef, useEffect } from 'react';
 import leaflet from 'leaflet';
 import PropTypes from 'prop-types';
 
-import { citiesLocation } from '../../const';
-import { propTypesHotel } from '../../types';
+import { СitiesLocation } from '../../const';
+import { propTypesOffer } from '../../types';
 
 import 'leaflet/dist/leaflet.css';
 
@@ -25,33 +25,21 @@ const currentCustomIcon = leaflet.icon({
   iconAnchor: [13, 39],
 });
 
-const getPointsCurrentCity = (placesList, currentCity) => {
-  const result = [];
-
-  for (const place of placesList) {
-    if (place.city.name === currentCity) {
-      result.push(place.city);
-    }
-  }
-
-  return result;
-};
-
 function Map(props) {
+  const { offers, cityName } = props;
+
   const mapRef = useRef(null);
 
-  const { placesList, currentCity } = props;
-
-  const locationCurrentCity = citiesLocation[currentCity];
-  const pointsCurrentCity = getPointsCurrentCity(placesList, currentCity);
+  const locationCityCurrent = СitiesLocation[cityName];
+  const pointsCityCurrent = offers.map((offer) => offer.city);
 
   useEffect(() => {
     const map = leaflet.map(mapRef.current, {
       center: {
-        lat: locationCurrentCity.latitude,
-        lng: locationCurrentCity.longitude,
+        lat: locationCityCurrent.latitude,
+        lng: locationCityCurrent.longitude,
       },
-      zoom: locationCurrentCity.zoom,
+      zoom: locationCityCurrent.zoom,
       zoomControl: false,
       marker: true,
     });
@@ -60,7 +48,7 @@ function Map(props) {
       .tileLayer(tileLayerURL, tileLayerOptions)
       .addTo(map);
 
-    pointsCurrentCity.forEach((point) => {
+    pointsCityCurrent.forEach((point) => {
       leaflet.marker({
         lat: point.location.latitude,
         lng: point.location.longitude,
@@ -76,7 +64,7 @@ function Map(props) {
       map.off();
       map.remove();
     };
-  }, []);
+  }, [offers]);
 
   return (
     <div id="map" ref={mapRef} style={{height: '100%'}}/>
@@ -84,10 +72,10 @@ function Map(props) {
 }
 
 Map.propTypes = {
-  placesList: PropTypes.arrayOf(
-    PropTypes.shape(propTypesHotel),
+  offers: PropTypes.arrayOf(
+    PropTypes.shape(propTypesOffer),
   ),
-  currentCity: PropTypes.string.isRequired,
+  cityName: PropTypes.string.isRequired,
 };
 
 export { Map };

@@ -18,7 +18,7 @@ const propTypesPerson = {
   name: PropTypes.string.isRequired,
 };
 
-const propTypesHotel = {
+const propTypesOffer = {
   ...propTypesPlaceCard,
 
   bedrooms: PropTypes.number.isRequired,
@@ -45,11 +45,11 @@ const propTypesHotel = {
 };
 
 const propTypesReview = {
-  'comment': PropTypes.string.isRequired,
-  'date': PropTypes.instanceOf(Date),
-  'id': PropTypes.string.isRequired,
-  'rating': PropTypes.string.isRequired,
-  'user': PropTypes.shape({
+  comment: PropTypes.string.isRequired,
+  date: PropTypes.instanceOf(Date),
+  id: PropTypes.string.isRequired,
+  rating: PropTypes.string.isRequired,
+  user: PropTypes.shape({
     ...propTypesPerson,
   }),
 };
@@ -59,9 +59,25 @@ const propTypesUser = {
   email: PropTypes.string.isRequired,
 };
 
+const propTypesOffers = PropTypes.shape({
+  offer: PropTypes.shape(propTypesOffer),
+});
+
+const propTypesFilteredOffers = PropTypes.arrayOf(
+  PropTypes.shape(propTypesOffer),
+);
+
+// const propTypesIdOffersOnCities = PropTypes.shape({
+//   city: PropTypes.arrayOf(PropTypes.string.isRequired),
+// });
+
 export {
   propTypesPlaceCard,
-  propTypesHotel,
+  propTypesOffer,
   propTypesReview,
-  propTypesUser
+  propTypesUser,
+
+  propTypesOffers,
+  propTypesFilteredOffers
+  // propTypesIdOffersOnCities
 };

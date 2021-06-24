@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Rating } from '../../shared/rating/rating';
 
-import { propTypesHotel } from '../../../types';
+import { propTypesOffer } from '../../../types';
 
 function PropertyRating({ placeData }) {
   const { rating } = placeData;
@@ -16,7 +16,7 @@ function PropertyRating({ placeData }) {
 }
 
 PropertyRating.propTypes = {
-  placeData: PropTypes.shape(propTypesHotel),
+  placeData: PropTypes.shape(propTypesOffer),
 };
 
 export { PropertyRating };

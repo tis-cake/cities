@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { propTypesHotel } from '../../../types';
+import { propTypesOffer } from '../../../types';
 
 function PropertyPrice({ placeData }) {
   const { price } = placeData;
@@ -15,7 +15,7 @@ function PropertyPrice({ placeData }) {
 }
 
 PropertyPrice.propTypes = {
-  placeData: PropTypes.shape(propTypesHotel),
+  placeData: PropTypes.shape(propTypesOffer),
 };
 
 export { PropertyPrice };

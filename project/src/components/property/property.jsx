@@ -12,21 +12,22 @@ import { PropertyGallery } from './property-gallery/property-gallery';
 import { PropertyInsides } from './property-insides/property-insides';
 import { PropertyFeatures } from './property-features/property-features';
 
-import { propTypesHotel } from '../../types';
+import { propTypesOffer, propTypesFilteredOffers } from '../../types';
 import { DATA_REVIEWS } from '../../mock/data';
 
 const { BookmarkButtonBig } = BookmarkButton;
 
-function Property({ placesList }) {
-  const currentID = window.location.pathname.split('/').pop();
-  const currentPlaceData = placesList.find((place) => place.id === currentID);
-
+function Property({ cityName, filteredOffers, currentPlaceData }) {
   const {
     title,
     isPremium,
     isFavorite,
-    length,
+    goods: {
+      length: goodsCount,
+    },
   } = currentPlaceData;
+
+  const renderPropertyInsides = (goodsCount > 0) && <PropertyInsides placeData={currentPlaceData}/>;
 
   return (
     <section className="property">
@@ -51,7 +52,7 @@ function Property({ placesList }) {
           <PropertyFeatures placeData={currentPlaceData}/>
           <PropertyPrice placeData={currentPlaceData}/>
 
-          {(length > 0) && <PropertyInsides placeData={currentPlaceData}/>}
+          {renderPropertyInsides}
 
           <PropertyHost placeData={currentPlaceData}/>
 
@@ -62,8 +63,8 @@ function Property({ placesList }) {
       </div>
       <section className="property__map map">
         <Map
-          placesList={placesList}
-          currentCity={'Amsterdam'}
+          offers={filteredOffers}
+          cityName={cityName}
         />
       </section>
     </section>
@@ -71,9 +72,9 @@ function Property({ placesList }) {
 }
 
 Property.propTypes = {
-  placesList: PropTypes.arrayOf(
-    PropTypes.shape(propTypesHotel),
-  ),
+  cityName: PropTypes.string.isRequired,
+  filteredOffers: propTypesFilteredOffers,
+  currentPlaceData: PropTypes.shape(propTypesOffer),
 };
 
 export { Property };

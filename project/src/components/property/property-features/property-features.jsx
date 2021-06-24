@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { castBedroomsFormat, castAdultsFormat } from '../../../utils/format';
-import { propTypesHotel } from '../../../types';
+import { propTypesOffer } from '../../../types';
 
 function PropertyFeatures({ placeData }) {
   const { type, bedrooms, maxAdults } = placeData;
@@ -23,7 +23,7 @@ function PropertyFeatures({ placeData }) {
 }
 
 PropertyFeatures.propTypes = {
-  placeData: PropTypes.shape(propTypesHotel),
+  placeData: PropTypes.shape(propTypesOffer),
 };
 
 export { PropertyFeatures };

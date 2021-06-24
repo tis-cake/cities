@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { propTypesHotel } from '../../../types';
+import { propTypesOffer } from '../../../types';
 
 function PropertyHost({ placeData }) {
   const {
@@ -41,7 +41,7 @@ function PropertyHost({ placeData }) {
 }
 
 PropertyHost.propTypes = {
-  placeData: PropTypes.shape(propTypesHotel),
+  placeData: PropTypes.shape(propTypesOffer),
 };
 
 export { PropertyHost };
