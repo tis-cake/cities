@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -8,7 +8,6 @@ import { TabsLocations } from '../../tabs-locations/tabs-locations';
 
 import { ActionCreator } from '../../../store/actions';
 import { propTypesFilteredOffers } from '../../../types';
-import { DATA_HOTELS } from '../../../mock/data';
 
 function PageMainBase(props) {
   const {
@@ -17,17 +16,12 @@ function PageMainBase(props) {
     sortType,
     setSortType,
     filteredOffers,
-    setInitOffers,
   } = props;
   const { length: offersCount } = filteredOffers;
 
   const mainElEmptyClass = (offersCount === 0)
     ? 'page__main--index-empty'
     : '';
-
-  useEffect(() => {
-    setInitOffers(DATA_HOTELS);
-  }, []);
 
   return (
     <div className="page page--gray page--main">
@@ -68,9 +62,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.setSortType(sortType));
     dispatch(ActionCreator.setFilteredOffers());
   },
-  setInitOffers(initOffers) {
-    dispatch(ActionCreator.setInitOffers(initOffers));
-  },
 });
 
 const PageMain = connect(mapStateToProps, mapDispatchToProps)(PageMainBase);
@@ -81,7 +72,6 @@ PageMainBase.propTypes = {
   sortType: PropTypes.string.isRequired,
   setSortType: PropTypes.func.isRequired,
   filteredOffers: propTypesFilteredOffers,
-  setInitOffers: PropTypes.func.isRequired,
 };
 
 export { PageMainBase, PageMain };

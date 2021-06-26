@@ -29,10 +29,7 @@ const prepareInitialDataStructure = (offers) => {
   };
 };
 
-const getFilteredOffersByID = (offers, offersIDs) => {
-  const result = offersIDs.map((id) => offers[id]);
-  return result;
-};
+const getFilteredOffersByID = (offers, offersIDs) => offersIDs.map((id) => offers[id]);
 
 const getSortedOffersID = (filteredOffers, cityNameCurrent, sortTypeCurrent) => {
   // eslint-disable-next-line no-console

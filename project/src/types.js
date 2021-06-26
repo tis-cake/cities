@@ -5,7 +5,7 @@ const propTypesPlaceCard = {
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  rating: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
   previewImage: PropTypes.string.isRequired,
   isFavorite: PropTypes.bool.isRequired,
   isPremium: PropTypes.bool.isRequired,
@@ -13,14 +13,14 @@ const propTypesPlaceCard = {
 
 const propTypesPerson = {
   avatarUrl: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  isPro: PropTypes.bool.isRequired,
+  id: PropTypes.number.isRequired,
+  isPro: PropTypes.bool,
   name: PropTypes.string.isRequired,
 };
 
 const propTypesLocation = {
-  latitude: PropTypes.string.isRequired,
-  longitude: PropTypes.string.isRequired,
+  latitude: PropTypes.number.isRequired,
+  longitude: PropTypes.number.isRequired,
   zoom: PropTypes.number.isRequired,
 };
 
@@ -54,7 +54,7 @@ const propTypesReview = {
   comment: PropTypes.string.isRequired,
   date: PropTypes.instanceOf(Date),
   id: PropTypes.string.isRequired,
-  rating: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
   user: PropTypes.shape({
     ...propTypesPerson,
   }),

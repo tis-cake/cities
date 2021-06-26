@@ -5,22 +5,17 @@ import {
   sortRatingHighToLow
 } from './utils/sort';
 
-// временно тут, пока нет данных с сервера
-const mapObjID = (items) => {
-  const result = {};
-
-  for (const item of items) {
-    result[item.id] = item;
-  }
-
-  return result;
-};
-
 const AppRoute = {
   ROOT: '/',
   LOGIN: '/login',
   DETAIL_OFFER: '/offer',
   FAVORITES: '/favorites',
+};
+
+const APIRoute = {
+  OFFERS: '/hotels',
+  LOGIN: '/login',
+  LOGOUT: '/logout',
 };
 
 const SortType = {
@@ -97,6 +92,12 @@ const KeyCode = {
   ESC: 27,
 };
 
+const AuthorizationStatus = {
+  AUTH: 'AUTH',
+  NO_AUTH: 'NO_AUTH',
+  UNKNOWN: 'UNKNOWN',
+};
+
 const defaultUserData = {
   isAuthorized: false,
   email: '',
@@ -104,15 +105,16 @@ const defaultUserData = {
 
 export {
   AppRoute,
+  APIRoute,
   SortType,
   SortTypeValue,
   SortTypeAction,
   Cities,
   СitiesLocation,
   KeyCode,
+  AuthorizationStatus,
 
   DEFAULT_CITY,
 
-  defaultUserData,
-  mapObjID
+  defaultUserData
 };
