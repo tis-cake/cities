@@ -6,10 +6,11 @@ import { Header } from '../../shared/header/header';
 import { Footer } from '../../shared/footer/footer';
 import { FavoritesList } from '../../favorites/favorites-list/favorites-list';
 
+import { ActionCreator } from '../../../store/actions';
 import { propTypesOffers } from '../../../types';
 
 function PageFavoritesBase(props) {
-  const { cityName, favoritesOffers } = props;
+  const { cityName, setCityName, favoritesOffers } = props;
 
   return (
     <div className="page">
@@ -23,6 +24,7 @@ function PageFavoritesBase(props) {
             <FavoritesList
               offers={favoritesOffers}
               cityName={cityName}
+              setCityName={setCityName}
             />
           </section>
         </div>
@@ -38,10 +40,18 @@ const mapStateToProps = (state) => ({
   favoritesOffers: state.offers,
 });
 
-const PageFavorites = connect(mapStateToProps)(PageFavoritesBase);
+const mapDispatchToProps = (dispatch) => ({
+  setCityName(cityName) {
+    dispatch(ActionCreator.setCityName(cityName));
+    dispatch(ActionCreator.setFilteredOffers());
+  },
+});
+
+const PageFavorites = connect(mapStateToProps, mapDispatchToProps)(PageFavoritesBase);
 
 PageFavoritesBase.propTypes = {
   cityName: PropTypes.string.isRequired,
+  setCityName: PropTypes.func.isRequired,
   favoritesOffers: propTypesOffers,
 };
 

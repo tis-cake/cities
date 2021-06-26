@@ -40,7 +40,7 @@ function PlaceCardInfo({ placeData }) {
       />
 
       <h2 className="place-card__name">
-        <Link to={`${AppRoute.ROOM_DETAIL}/${id}`}>
+        <Link to={`${AppRoute.DETAIL_OFFER}/${id}`}>
           {title}
         </Link>
       </h2>

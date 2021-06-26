@@ -1,3 +1,10 @@
+import {
+  sortPriceLowToHigh,
+  sortPriceHighToLow,
+  sortRatingLowToHigh,
+  sortRatingHighToLow
+} from './utils/sort';
+
 // временно тут, пока нет данных с сервера
 const mapObjID = (items) => {
   const result = {};
@@ -12,8 +19,32 @@ const mapObjID = (items) => {
 const AppRoute = {
   ROOT: '/',
   LOGIN: '/login',
-  ROOM_DETAIL: '/offer',
+  DETAIL_OFFER: '/offer',
   FAVORITES: '/favorites',
+};
+
+const SortType = {
+  DEFAULT: 'DEFAULT',
+  PRICE_LOW_TO_HIGH: 'PRICE_LOW_TO_HIGH',
+  PRICE_HIGH_TO_LOW: 'PRICE_HIGH_TO_LOW',
+  RATING_LOW_TO_HIGH: 'RATING_LOW_TO_HIGH',
+  RATING_HIGH_TO_LOW: 'RATING_HIGH_TO_LOW',
+};
+
+const SortTypeValue = {
+  [SortType.DEFAULT]: 'Popular',
+  [SortType.PRICE_LOW_TO_HIGH]: 'Price: low to high',
+  [SortType.PRICE_HIGH_TO_LOW]: 'Price: high to low',
+  [SortType.RATING_LOW_TO_HIGH]: 'Top rated last',
+  [SortType.RATING_HIGH_TO_LOW]: 'Top rated first',
+};
+
+const SortTypeAction = {
+  [SortType.DEFAULT]: [],
+  [SortType.PRICE_LOW_TO_HIGH]: sortPriceLowToHigh,
+  [SortType.PRICE_HIGH_TO_LOW]: sortPriceHighToLow,
+  [SortType.RATING_LOW_TO_HIGH]: sortRatingLowToHigh,
+  [SortType.RATING_HIGH_TO_LOW]: sortRatingHighToLow,
 };
 
 const Cities = {
@@ -62,6 +93,10 @@ const СitiesLocation = {
   },
 };
 
+const KeyCode = {
+  ESC: 27,
+};
+
 const defaultUserData = {
   isAuthorized: false,
   email: '',
@@ -69,8 +104,12 @@ const defaultUserData = {
 
 export {
   AppRoute,
+  SortType,
+  SortTypeValue,
+  SortTypeAction,
   Cities,
   СitiesLocation,
+  KeyCode,
 
   DEFAULT_CITY,
 

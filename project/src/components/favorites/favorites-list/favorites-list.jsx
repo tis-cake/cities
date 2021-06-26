@@ -19,7 +19,9 @@ const getFilteredOffersFavoritesOnCities = (offers) => {
   return result;
 };
 
-function FavoritesList({ cityName, offers }) {
+function FavoritesList(props) {
+  const { cityName, setCityName, offers } = props;
+
   const favoritesList = getFilteredOffersFavoritesOnCities(offers);
 
   return (
@@ -30,6 +32,7 @@ function FavoritesList({ cityName, offers }) {
           offers={offersFavorites}
           cityCurrent={cityName}
           city={city}
+          setCityName={setCityName}
         />
       ))}
     </ul>
@@ -38,6 +41,7 @@ function FavoritesList({ cityName, offers }) {
 
 FavoritesList.propTypes = {
   cityName: PropTypes.string.isRequired,
+  setCityName: PropTypes.func.isRequired,
   offers: propTypesOffers,
 };
 

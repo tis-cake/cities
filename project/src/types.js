@@ -18,6 +18,19 @@ const propTypesPerson = {
   name: PropTypes.string.isRequired,
 };
 
+const propTypesLocation = {
+  latitude: PropTypes.string.isRequired,
+  longitude: PropTypes.string.isRequired,
+  zoom: PropTypes.number.isRequired,
+};
+
+const propTypesCity = {
+  name: PropTypes.string.isRequired,
+  location: PropTypes.shape({
+    ...propTypesLocation,
+  }),
+};
+
 const propTypesOffer = {
   ...propTypesPlaceCard,
 
@@ -27,20 +40,13 @@ const propTypesOffer = {
   images: PropTypes.arrayOf(PropTypes.string.isRequired),
   maxAdults: PropTypes.number.isRequired,
   city: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    location: PropTypes.shape({
-      latitude: PropTypes.string.isRequired,
-      longitude: PropTypes.string.isRequired,
-      zoom: PropTypes.number.isRequired,
-    }),
+    ...propTypesCity,
   }),
   host: PropTypes.shape({
     ...propTypesPerson,
   }),
   location: PropTypes.shape({
-    latitude: PropTypes.string.isRequired,
-    longitude: PropTypes.string.isRequired,
-    zoom: PropTypes.number.isRequired,
+    ...propTypesLocation,
   }),
 };
 
@@ -67,17 +73,13 @@ const propTypesFilteredOffers = PropTypes.arrayOf(
   PropTypes.shape(propTypesOffer),
 );
 
-// const propTypesIdOffersOnCities = PropTypes.shape({
-//   city: PropTypes.arrayOf(PropTypes.string.isRequired),
-// });
-
 export {
   propTypesPlaceCard,
   propTypesOffer,
   propTypesReview,
   propTypesUser,
+  propTypesCity,
 
   propTypesOffers,
   propTypesFilteredOffers
-  // propTypesIdOffersOnCities
 };

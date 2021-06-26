@@ -23,7 +23,11 @@ function UserAuthorized (props) {
         </Link>
       </li>
       <li className="header__nav-item">
-        <a className="header__nav-link" href="#" onClick={handleSignOutClick}>
+        <a
+          className="header__nav-link"
+          href="#"
+          onClick={handleSignOutClick}
+        >
           <span className="header__signout">Sign out</span>
         </a>
       </li>

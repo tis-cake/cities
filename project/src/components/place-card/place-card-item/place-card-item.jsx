@@ -9,11 +9,15 @@ import { propTypesPlaceCard } from '../../../types';
 
 const { PlaceCardImageNormal, PlaceCardImageSmall } = PlaceCardImage;
 
-function PlaceCardСities({ placeData, onMouseActive }) {
+function PlaceCardСities({ placeData, setActiveOffer }) {
   const { isPremium } = placeData;
 
   return (
-    <article className="cities__place-card place-card" onMouseEnter={() => onMouseActive(placeData)}>
+    <article
+      className="cities__place-card place-card"
+      onMouseEnter={() => setActiveOffer(placeData)}
+      onMouseLeave={() => setActiveOffer({})}
+    >
       {isPremium && <PlaceCardMark />}
 
       <div className="cities__image-wrapper place-card__image-wrapper">
@@ -62,7 +66,7 @@ function PlaceCardFavorites({ placeData }) {
 
 PlaceCardСities.propTypes = {
   placeData: PropTypes.shape(propTypesPlaceCard),
-  onMouseActive: PropTypes.func.isRequired,
+  setActiveOffer: PropTypes.func.isRequired,
 };
 
 PlaceCardNearPlaces.propTypes = {

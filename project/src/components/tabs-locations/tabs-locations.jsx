@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 import { AppRoute, Cities } from '../../const';
-// className={`locations__item-link tabs__item ${(city === cityCurrent) ? 'tabs__item--active' : ''}`}
+
+function handleLocationLinkClick(city, cityCurrent, setCityName) {
+  if (city !== cityCurrent) {
+    setCityName(city);
+  }
+}
 
 function TabsLocations({ cityCurrent, setCityName }) {
   return (
@@ -17,7 +22,7 @@ function TabsLocations({ cityCurrent, setCityName }) {
               isActive={() => (city === cityCurrent)}
 
               to={AppRoute.ROOT}
-              onClick={() => setCityName(city)}
+              onClick={() => handleLocationLinkClick(city, cityCurrent, setCityName)}
             >
               <span>{city}</span>
             </NavLink>
