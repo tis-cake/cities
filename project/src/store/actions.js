@@ -4,7 +4,10 @@ const ActionType = {
   SET_INIT_OFFERS: 'main/setInitOffers',
   SET_FILTERED_OFFERS: 'main/setFilteredOffers',
   SET_DETAIL_OFFER_ACTIVE_ID: 'detail/setDetailOfferActiveID',
+
+  SET_USER: 'user/setUser',
   LOGOUT: 'user/logout',
+  REDIRECT_TO_ROUTE: 'user/redirectToRoute',
   REQUIRED_AUTHORIZATION: 'user/requiredAuthorization',
 };
 
@@ -42,9 +45,23 @@ function setFilteredOffers() {
   };
 }
 
+function setUser(user) {
+  return {
+    type: ActionType.SET_USER,
+    payload: user,
+  };
+}
+
 function logout() {
   return {
     type: ActionType.LOGOUT,
+  };
+}
+
+function redirectToRoute(url) {
+  return {
+    type: ActionType.REDIRECT_TO_ROUTE,
+    payload: url,
   };
 }
 
@@ -61,7 +78,10 @@ const ActionCreator = {
   setInitOffers,
   setFilteredOffers,
   setDetailOfferActiveID,
+
+  setUser,
   logout,
+  redirectToRoute,
   requireAuthorization,
 };
 

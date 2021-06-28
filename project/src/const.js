@@ -98,11 +98,6 @@ const AuthorizationStatus = {
   UNKNOWN: 'UNKNOWN',
 };
 
-const defaultUserData = {
-  isAuthorized: false,
-  email: '',
-};
-
 export {
   AppRoute,
   APIRoute,
@@ -114,7 +109,5 @@ export {
   KeyCode,
   AuthorizationStatus,
 
-  DEFAULT_CITY,
-
-  defaultUserData
+  DEFAULT_CITY
 };

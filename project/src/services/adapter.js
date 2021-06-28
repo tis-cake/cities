@@ -38,4 +38,18 @@ const adaptOffersToClient = (offers) => {
   return mapObjID(adaptedOffers);
 };
 
-export { adaptOfferToClient, adaptOffersToClient };
+const adaptUserToClient = (user) => {
+  const adaptedUser = {
+    ...user,
+    avatarUrl: user.avatar_url,
+    isPro: user.is_pro,
+  };
+
+  delete adaptedUser.avatar_url;
+  delete adaptedUser.is_pro;
+  delete adaptedUser.token;
+
+  return adaptedUser;
+};
+
+export { adaptOffersToClient, adaptUserToClient };

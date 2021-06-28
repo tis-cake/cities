@@ -1,64 +1,39 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-import { UserContext } from '../../../context';
-import { AppRoute, defaultUserData } from '../../../const';
+import { UserAuthorized } from './user-authorized/user-authorized';
+import { UserNotAuthorized } from './user-not-authorized/user-not-authorized';
 
-function UserAuthorized (props) {
-  const { email, setUserDataContext } = props;
+import { AuthorizationStatus } from '../../../const';
+import { ActionServer } from '../../../server/actions';
 
-  function handleSignOutClick(evt) {
-    evt.preventDefault();
-    setUserDataContext(defaultUserData);
-  }
+function UserBase(props) {
+  const { authorizationStatus } = props;
 
   return (
-    <React.Fragment>
-      <li className="header__nav-item user">
-        <Link className="header__nav-link header__nav-link--profile" to={AppRoute.FAVORITES}>
-          <div className="header__avatar-wrapper user__avatar-wrapper">
-          </div>
-          <span className="header__user-name user__name">{email}</span>
-        </Link>
-      </li>
-      <li className="header__nav-item">
-        <a
-          className="header__nav-link"
-          href="#"
-          onClick={handleSignOutClick}
-        >
-          <span className="header__signout">Sign out</span>
-        </a>
-      </li>
-    </React.Fragment>
+    (authorizationStatus === AuthorizationStatus.AUTH)
+      ? <UserAuthorized {...props}/>
+      : <UserNotAuthorized/>
   );
 }
 
-function UserNotAuthorized () {
-  return (
-    <li className="header__nav-item user">
-      <Link className="header__nav-link header__nav-link--profile" to={AppRoute.LOGIN}>
-        <div className="header__avatar-wrapper user__avatar-wrapper">
-        </div>
-        <span className="header__login">Sign in</span>
-      </Link>
-    </li>
-  );
-}
+const mapStateToProps = (state) => ({
+  authorizationStatus: state.authorizationStatus,
+  user: state.user,
+});
 
-function User() {
-  const [ userDataContext, setUserDataContext ] = useContext(UserContext);
-  const { isAuthorized, email } = userDataContext;
+const mapDispatchToProps = (dispatch) => ({
+  logout() {
+    dispatch(ActionServer.logout());
+  },
+});
 
-  return (
-    isAuthorized ? <UserAuthorized email={email} setUserDataContext={setUserDataContext} /> : <UserNotAuthorized />
-  );
-}
+const User = connect(mapStateToProps, mapDispatchToProps)(UserBase);
 
-UserAuthorized.propTypes = {
-  email: PropTypes.string.isRequired,
-  setUserDataContext: PropTypes.func.isRequired,
+UserBase.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
+  logout: PropTypes.func.isRequired,
 };
 
-export { User };
+export { UserBase, User };

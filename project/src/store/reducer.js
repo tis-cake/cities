@@ -19,6 +19,7 @@ const initialState = {
   filteredOffers: [],
   favoritesOffers: {},
 
+  user: {},
   isDataLoaded: false,
   authorizationStatus: AuthorizationStatus.UNKNOWN,
 };
@@ -94,9 +95,16 @@ const reducer = (state = initialState, action) => {
       };
     }
 
+    case ActionType.SET_USER:
+      return {
+        ...state,
+        user: action.payload,
+      };
+
     case ActionType.LOGOUT:
       return {
         ...state,
+        user: {},
         authorizationStatus: AuthorizationStatus.NO_AUTH,
       };
 

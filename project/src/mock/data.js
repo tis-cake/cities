@@ -6,14 +6,7 @@ import { generateMocks } from './utils';
 const DATA_HOTELS = mapObjID(generateMocks(20, getHotelMock));
 const DATA_REVIEWS = generateMocks(5, getReviewMock);
 
-const userData = {
-  isAuthorized: true,
-  email: 'giorno@yare-yare.daze',
-};
-
 export {
   DATA_HOTELS,
-  DATA_REVIEWS,
-
-  userData
+  DATA_REVIEWS
 };
