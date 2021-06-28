@@ -21,7 +21,7 @@ function Rating(props) {
 Rating.propTypes = {
   children: PropTypes.element,
 
-  rating: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
   blockClassName: PropTypes.string.isRequired,
 };
 

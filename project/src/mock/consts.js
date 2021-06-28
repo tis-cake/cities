@@ -1,3 +1,13 @@
+const mapObjID = (items) => {
+  const result = {};
+
+  for (const item of items) {
+    result[item.id] = item;
+  }
+
+  return result;
+};
+
 const HOTEL_CITIES = [
   'Paris',
   'Cologne',
@@ -74,5 +84,7 @@ export {
   HOTEL_TYPES,
   HOTEL_GOODS,
   HOTEL_TITLES,
-  HOTEL_DESCRIPTIONS
+  HOTEL_DESCRIPTIONS,
+
+  mapObjID
 };

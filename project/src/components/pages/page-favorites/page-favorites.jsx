@@ -4,29 +4,31 @@ import { connect } from 'react-redux';
 
 import { Header } from '../../shared/header/header';
 import { Footer } from '../../shared/footer/footer';
-import { FavoritesList } from '../../favorites/favorites-list/favorites-list';
+import { Favorites } from '../../favorites/favorites';
 
 import { ActionCreator } from '../../../store/actions';
 import { propTypesOffers } from '../../../types';
 
 function PageFavoritesBase(props) {
   const { cityName, setCityName, favoritesOffers } = props;
+  const offersCount = Object.values(favoritesOffers).length;
+
+  const mainElEmptyClass = (offersCount === 0)
+    ? 'page__main--favorites-empty'
+    : '';
 
   return (
     <div className="page">
       <Header />
 
-      <main className="page__main page__main--favorites">
+      <main className={`page__main page__main--favorites ${mainElEmptyClass}`}>
         <div className="page__favorites-container container">
-          <section className="favorites">
-            <h1 className="favorites__title">Saved listing</h1>
-
-            <FavoritesList
-              offers={favoritesOffers}
-              cityName={cityName}
-              setCityName={setCityName}
-            />
-          </section>
+          <Favorites
+            offers={favoritesOffers}
+            offersCount={offersCount}
+            cityName={cityName}
+            setCityName={setCityName}
+          />
         </div>
       </main>
 
@@ -37,7 +39,7 @@ function PageFavoritesBase(props) {
 
 const mapStateToProps = (state) => ({
   cityName: state.cityName,
-  favoritesOffers: state.offers,
+  favoritesOffers: state.favoritesOffers,
 });
 
 const mapDispatchToProps = (dispatch) => ({

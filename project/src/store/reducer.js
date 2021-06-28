@@ -2,7 +2,7 @@
 
 import { ActionType } from './actions';
 
-import { SortType, DEFAULT_CITY } from '../const';
+import { SortType, AuthorizationStatus, DEFAULT_CITY } from '../const';
 import {
   prepareInitialDataStructure,
   getFilteredOffersByID,
@@ -18,6 +18,9 @@ const initialState = {
   offersOnCitiesID: {},
   filteredOffers: [],
   favoritesOffers: {},
+
+  isDataLoaded: false,
+  authorizationStatus: AuthorizationStatus.UNKNOWN,
 };
 
 const reducer = (state = initialState, action) => {
@@ -87,8 +90,21 @@ const reducer = (state = initialState, action) => {
         offersOnCitiesID: offersOnCitiesID,
         filteredOffers: filteredOffers,
         favoritesOffers: favoritesOffers,
+        isDataLoaded: true,
       };
     }
+
+    case ActionType.LOGOUT:
+      return {
+        ...state,
+        authorizationStatus: AuthorizationStatus.NO_AUTH,
+      };
+
+    case ActionType.REQUIRED_AUTHORIZATION:
+      return {
+        ...state,
+        authorizationStatus: action.payload,
+      };
 
     default: {
       return (state);
