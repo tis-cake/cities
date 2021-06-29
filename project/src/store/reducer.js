@@ -12,12 +12,11 @@ import {
 const initialState = {
   cityName: DEFAULT_CITY,
   sortType: SortType.DEFAULT,
-  detailOfferActiveID: '',
 
   offers: {},
   offersOnCitiesID: {},
-  filteredOffers: [],
   favoritesOffers: {},
+  filteredOffers: [],
 
   user: {},
   isDataLoaded: false,
@@ -58,13 +57,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         sortType: action.payload,
-      };
-    }
-
-    case ActionType.SET_DETAIL_OFFER_ACTIVE_ID: {
-      return {
-        ...state,
-        detailOfferActiveID: action.payload,
       };
     }
 

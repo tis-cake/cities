@@ -1,19 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { ReviewsList } from './reviews-list/reviews-list';
 import { FormReviews } from '../forms/form-reviews/form-reviews';
 
-import { propTypesReview } from '../../types';
+import { propTypesReviews } from '../../types';
 
-function Reviews({ reviewsList }) {
-  const { length } = reviewsList;
+function Reviews({ reviews }) {
+  const { length: reviewsCount } = reviews;
 
   return (
     <React.Fragment>
-      <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{length}</span></h2>
+      <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviewsCount}</span></h2>
 
-      {(length > 0) && <ReviewsList reviewsList={reviewsList}/>}
+      {(reviewsCount > 0) && <ReviewsList reviewsList={reviews}/>}
 
       <FormReviews />
     </React.Fragment>
@@ -21,9 +20,7 @@ function Reviews({ reviewsList }) {
 }
 
 Reviews.propTypes = {
-  reviewsList: PropTypes.arrayOf(
-    PropTypes.shape(propTypesReview),
-  ),
+  reviews: propTypesReviews,
 };
 
 export { Reviews };

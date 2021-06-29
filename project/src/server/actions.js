@@ -1,12 +1,33 @@
+import { api as serverAPI } from '../store/store';
 import { ActionCreator } from '../store/actions';
 import { AppRoute, APIRoute, AuthorizationStatus } from '../const';
-import { adaptOffersToClient, adaptUserToClient } from '../services/adapter';
+import {
+  mapObjID,
+  adaptReviewsToClient,
+  adaptOffersToClient,
+  adaptOfferToClient,
+  adaptUserToClient
+} from '../services/adapter';
 
 const TOKEN = 'token';
+
+const fetchOfferActive = (id) => (
+  Promise.all([
+    serverAPI.get(`hotels/${id}`),
+    serverAPI.get(`hotels/${id}/nearby`),
+    serverAPI.get(`comments/${id}`),
+  ])
+    .then(([offer, nearby, reviews]) => ({
+      offer: adaptOfferToClient(offer.data),
+      nearby: adaptOffersToClient(nearby.data),
+      reviews: adaptReviewsToClient(reviews.data),
+    }))
+);
 
 const fetchOffersList = () => (dispatch, _getState, api) => (
   api.get(APIRoute.OFFERS)
     .then(({ data }) => adaptOffersToClient(data))
+    .then((offers) => mapObjID(offers))
     .then((offers) => dispatch(ActionCreator.setInitOffers(offers)))
 );
 
@@ -37,6 +58,7 @@ const logout = () => (dispatch, _getState, api) => (
 
 const ActionServer = {
   checkAuthorization,
+  fetchOfferActive,
   fetchOffersList,
   login,
   logout,
