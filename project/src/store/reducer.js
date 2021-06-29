@@ -19,6 +19,7 @@ const initialState = {
   filteredOffers: [],
 
   user: {},
+  reviews: [],
   isDataLoaded: false,
   authorizationStatus: AuthorizationStatus.UNKNOWN,
 };
@@ -87,24 +88,34 @@ const reducer = (state = initialState, action) => {
       };
     }
 
-    case ActionType.SET_USER:
+    case ActionType.SET_USER: {
       return {
         ...state,
         user: action.payload,
       };
+    }
 
-    case ActionType.LOGOUT:
+    case ActionType.SET_REVIEWS: {
+      return {
+        ...state,
+        reviews: action.payload,
+      };
+    }
+
+    case ActionType.LOGOUT: {
       return {
         ...state,
         user: {},
         authorizationStatus: AuthorizationStatus.NO_AUTH,
       };
+    }
 
-    case ActionType.REQUIRED_AUTHORIZATION:
+    case ActionType.REQUIRED_AUTHORIZATION: {
       return {
         ...state,
         authorizationStatus: action.payload,
       };
+    }
 
     default: {
       return (state);

@@ -13,23 +13,36 @@ const TOKEN = 'token';
 
 const fetchOfferActive = (id) => (
   Promise.all([
-    serverAPI.get(`hotels/${id}`),
-    serverAPI.get(`hotels/${id}/nearby`),
-    serverAPI.get(`comments/${id}`),
+    serverAPI.get(`${APIRoute.OFFERS}/${id}`),
+    serverAPI.get(`${APIRoute.OFFERS}/${id}/nearby`),
+    // serverAPI.get(`${APIRoute.OFFERS}/${id}`),
   ])
     .then(([offer, nearby, reviews]) => ({
       offer: adaptOfferToClient(offer.data),
       nearby: adaptOffersToClient(nearby.data),
-      reviews: adaptReviewsToClient(reviews.data),
+      // reviews: adaptReviewsToClient(reviews.data),
     }))
 );
 
-const fetchOffersList = () => (dispatch, _getState, api) => (
+const fetchOffers = () => (dispatch, _getState, api) => (
   api.get(APIRoute.OFFERS)
     .then(({ data }) => adaptOffersToClient(data))
     .then((offers) => mapObjID(offers))
     .then((offers) => dispatch(ActionCreator.setInitOffers(offers)))
 );
+
+const fetchReviews = (id) => (dispatch, _getState, api) => (
+  api.get(`${APIRoute.REVIEWS}/${id}`)
+    .then(({ data }) => adaptReviewsToClient(data))
+    .then((reviews) => dispatch(ActionCreator.setReviews(reviews)))
+);
+
+const postReview = (id, comment) => (dispatch, _getState, api) => {
+  api.post(`${APIRoute.REVIEWS}/${id}`, comment)
+    .then(() => api.get(`${APIRoute.REVIEWS}/${id}`))
+    .then(({ data }) => adaptReviewsToClient(data))
+    .then((reviews) => dispatch(ActionCreator.setReviews(reviews)));
+};
 
 const checkAuthorization = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)
@@ -59,7 +72,9 @@ const logout = () => (dispatch, _getState, api) => (
 const ActionServer = {
   checkAuthorization,
   fetchOfferActive,
-  fetchOffersList,
+  fetchOffers,
+  fetchReviews,
+  postReview,
   login,
   logout,
 };

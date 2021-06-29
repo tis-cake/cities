@@ -1,11 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import PropTypes from 'prop-types';
 
-function FormReviews() {
+import './form-reviews.css';
+
+const MIN_LENGTH = 50;
+const MAX_LENGTH = 300;
+
+const notify = (el) => {
+  el.classList.add('active');
+  setTimeout(() => el.classList.remove('active'), 3000);
+};
+
+function FormReviews({ postReview, id }) {
   const [ rating, setRating ] = useState('');
   const [ comment, setComment ] = useState('');
 
-  // eslint-disable-next-line no-console
-  console.log(rating, comment);
+  const formRef = useRef(null);
+  const commentRef = useRef(null);
+  const notifyRef = useRef(null);
 
   function handleRatingChange(evt) {
     setRating(evt.currentTarget.value);
@@ -15,8 +27,32 @@ function FormReviews() {
     setComment(evt.currentTarget.value);
   }
 
+  function hanleFormSubmit(evt) {
+    evt.preventDefault();
+
+    const isCommentValidity = (comment.length >= MIN_LENGTH && comment.length <= MAX_LENGTH);
+
+    if (isCommentValidity) {
+      postReview(id, {
+        'comment': comment,
+        'rating': rating,
+      });
+
+      setRating('');
+      setComment('');
+    } else {
+      notify(notifyRef.current);
+    }
+  }
+
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form
+      className="reviews__form form"
+      action="#"
+      method="post"
+      onSubmit={hanleFormSubmit}
+      ref={formRef}
+    >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         <input
@@ -27,6 +63,7 @@ function FormReviews() {
           type="radio"
           required
           onChange={handleRatingChange}
+          checked={(rating === '5')}
         />
         <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
           <svg className="form__star-image" width="37" height="33">
@@ -41,6 +78,7 @@ function FormReviews() {
           id="4-stars"
           type="radio"
           onChange={handleRatingChange}
+          checked={(rating === '4')}
         />
         <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
           <svg className="form__star-image" width="37" height="33">
@@ -55,6 +93,7 @@ function FormReviews() {
           id="3-stars"
           type="radio"
           onChange={handleRatingChange}
+          checked={(rating === '3')}
         />
         <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
           <svg className="form__star-image" width="37" height="33">
@@ -69,6 +108,7 @@ function FormReviews() {
           id="2-stars"
           type="radio"
           onChange={handleRatingChange}
+          checked={(rating === '2')}
         />
         <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
           <svg className="form__star-image" width="37" height="33">
@@ -83,6 +123,7 @@ function FormReviews() {
           id="1-star"
           type="radio"
           onChange={handleRatingChange}
+          checked={(rating === '1')}
         />
         <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
           <svg className="form__star-image" width="37" height="33">
@@ -99,6 +140,8 @@ function FormReviews() {
         minLength="50"
         maxLength="300"
         onChange = {handleTextareaChange}
+        ref={commentRef}
+        value={comment}
       />
 
       <div className="reviews__button-wrapper">
@@ -107,8 +150,17 @@ function FormReviews() {
         </p>
         <button className="reviews__submit form__submit button" type="submit" disabled="">Submit</button>
       </div>
+
+      <div className="form__notify" ref={notifyRef}>
+        <p className="form__notify-text">Заполните, пожалуйста, все поля!</p>
+      </div>
     </form>
   );
 }
+
+FormReviews.propTypes = {
+  id: PropTypes.string.isRequired,
+  postReview: PropTypes.func.isRequired,
+};
 
 export { FormReviews };

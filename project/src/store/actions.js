@@ -5,6 +5,7 @@ const ActionType = {
   SET_FILTERED_OFFERS: 'main/setFilteredOffers',
 
   SET_USER: 'user/setUser',
+  SET_REVIEWS: 'user/setReviews',
   LOGOUT: 'user/logout',
   REDIRECT_TO_ROUTE: 'redirect/redirectToRoute',
   REQUIRED_AUTHORIZATION: 'user/requiredAuthorization',
@@ -44,6 +45,13 @@ function setUser(user) {
   };
 }
 
+function setReviews(reviews) {
+  return {
+    type: ActionType.SET_REVIEWS,
+    payload: reviews,
+  };
+}
+
 function logout() {
   return {
     type: ActionType.LOGOUT,
@@ -71,6 +79,7 @@ const ActionCreator = {
   setFilteredOffers,
 
   setUser,
+  setReviews,
   logout,
   redirectToRoute,
   requireAuthorization,

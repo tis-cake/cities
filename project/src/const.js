@@ -10,9 +10,11 @@ const AppRoute = {
   LOGIN: '/login',
   DETAIL_OFFER: '/offer',
   FAVORITES: '/favorites',
+  NOT_FOUND: '/404',
 };
 
 const APIRoute = {
+  REVIEWS: '/comments',
   OFFERS: '/hotels',
   LOGIN: '/login',
   LOGOUT: '/logout',

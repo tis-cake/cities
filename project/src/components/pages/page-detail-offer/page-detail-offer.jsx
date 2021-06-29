@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -8,11 +8,13 @@ import { Header } from '../../shared/header/header';
 import { Property } from '../../property/property';
 import { PageLoading } from '../page-loading/page-loading';
 
+import { AppRoute } from '../../../const';
 import { ActionServer } from '../../../server/actions';
 
 function PageDetailOfferBase(props) {
   const { cityName } = props;
   const { id } = useParams();
+  const history = useHistory();
 
   const [offerData, setOfferData] = useState(null);
 
@@ -20,7 +22,8 @@ function PageDetailOfferBase(props) {
     window.scrollTo(0, 0);
 
     ActionServer.fetchOfferActive(id)
-      .then(({ offer, nearby, reviews }) => setOfferData({ offer, nearby, reviews }));
+      .then(({ offer, nearby }) => setOfferData({ offer, nearby }))
+      .catch((err) => history.push(AppRoute.NOT_FOUND));
 
     return setOfferData(null);
   }, [id]);
@@ -40,7 +43,7 @@ function PageDetailOfferBase(props) {
           cityName={cityName}
           offers={offerData.nearby}
           offer={offerData.offer}
-          reviews={offerData.reviews}
+          id={id}
         />
 
         <div className="container">

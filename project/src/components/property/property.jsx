@@ -12,11 +12,11 @@ import { PropertyGallery } from './property-gallery/property-gallery';
 import { PropertyInsides } from './property-insides/property-insides';
 import { PropertyFeatures } from './property-features/property-features';
 
-import { propTypesOffer, propTypesFilteredOffers, propTypesReviews } from '../../types';
+import { propTypesOffer, propTypesFilteredOffers } from '../../types';
 
 const { BookmarkButtonBig } = BookmarkButton;
 
-function Property({ cityName, offers, offer, reviews }) {
+function Property({ cityName, offers, offer, id }) {
   const {
     title,
     isPremium,
@@ -56,7 +56,7 @@ function Property({ cityName, offers, offer, reviews }) {
           <PropertyHost placeData={offer}/>
 
           <section className="property__reviews reviews">
-            <Reviews reviews={reviews}/>
+            <Reviews id={id}/>
           </section>
         </div>
       </div>
@@ -74,7 +74,7 @@ Property.propTypes = {
   cityName: PropTypes.string.isRequired,
   offers: propTypesFilteredOffers,
   offer: PropTypes.shape(propTypesOffer),
-  reviews: propTypesReviews,
+  id: PropTypes.string.isRequired,
 };
 
 export { Property };

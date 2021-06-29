@@ -44,6 +44,10 @@ function AppBase(props) {
           <PageDetailOffer />
         </Route>
 
+        <Route exact path={AppRoute.NOT_FOUND}>
+          <PageNotFound />
+        </Route>
+
         <Route>
           <PageNotFound />
         </Route>
