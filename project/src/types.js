@@ -61,8 +61,11 @@ const propTypesReview = {
 };
 
 const propTypesUser = {
-  isAuthorized: PropTypes.bool.isRequired,
+  id: PropTypes.number.isRequired,
   email: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  avatarUrl: PropTypes.string.isRequired,
+  isPro: PropTypes.bool.isRequired,
 };
 
 const propTypesOffers = PropTypes.shape({
@@ -77,8 +80,8 @@ export {
   propTypesPlaceCard,
   propTypesOffer,
   propTypesReview,
-  propTypesUser,
   propTypesCity,
+  propTypesUser,
 
   propTypesOffers,
   propTypesFilteredOffers

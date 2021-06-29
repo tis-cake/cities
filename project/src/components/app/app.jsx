@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { Switch, Route, Router as BrowserRouter } from 'react-router-dom';
 
+import { PrivateRoute } from '../private-route/private-route';
 import { PageMain } from '../pages/page-main/page-main';
 import { PageLogin } from '../pages/page-login/page-login';
 import { PageLoading } from '../pages/page-loading/page-loading';
@@ -10,16 +11,11 @@ import { PageNotFound } from '../pages/page-not-found/page-not-found';
 import { PageFavorites } from '../pages/page-favorites/page-favorites';
 import { PageDetailOffer } from '../pages/page-detail-offer/page-detail-offer';
 
+import { browserHistory } from '../../services/browser-history';
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { UserContext } from '../../context';
-import { propTypesUser } from '../../types';
 
 function AppBase(props) {
-  const { userData, authorizationStatus, isDataLoaded } = props;
-  const [userDataContext, setUserDataContext] = useState(userData);
-
-  // eslint-disable-next-line no-console
-  console.log(authorizationStatus, isDataLoaded);
+  const { authorizationStatus, isDataLoaded } = props;
 
   if (authorizationStatus === AuthorizationStatus.UNKNOWN || !isDataLoaded) {
     return (
@@ -28,27 +24,31 @@ function AppBase(props) {
   }
 
   return (
-    <UserContext.Provider value={[userDataContext, setUserDataContext]}>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path={AppRoute.ROOT}>
-            <PageMain />
-          </Route>
-          <Route exact path={AppRoute.FAVORITES}>
-            <PageFavorites />
-          </Route>
-          <Route exact path={AppRoute.LOGIN}>
-            <PageLogin />
-          </Route>
-          <Route exact path={`${AppRoute.DETAIL_OFFER}/:id`}>
-            <PageDetailOffer />
-          </Route>
-          <Route>
-            <PageNotFound />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    </UserContext.Provider>
+    <BrowserRouter history={browserHistory}>
+      <Switch>
+        <Route exact path={AppRoute.ROOT}>
+          <PageMain />
+        </Route>
+
+        <PrivateRoute
+          exact
+          path={AppRoute.FAVORITES}
+          render={() => <PageFavorites />}
+        />
+
+        <Route exact path={AppRoute.LOGIN}>
+          <PageLogin />
+        </Route>
+
+        <Route exact path={`${AppRoute.DETAIL_OFFER}/:id`}>
+          <PageDetailOffer />
+        </Route>
+
+        <Route>
+          <PageNotFound />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
@@ -57,13 +57,11 @@ const mapStateToProps = (state) => ({
   isDataLoaded: state.isDataLoaded,
 });
 
-AppBase.propTypes = {
-  userData: PropTypes.shape(propTypesUser),
+const App = connect(mapStateToProps, null)(AppBase);
 
+AppBase.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   isDataLoaded: PropTypes.bool.isRequired,
 };
-
-const App = connect(mapStateToProps)(AppBase);
 
 export { AppBase, App };

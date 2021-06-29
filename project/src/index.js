@@ -5,17 +5,15 @@ import { Provider } from 'react-redux';
 import { App } from './components/app/app';
 
 import { store } from './store/store';
-import { checkAuthorization, fetchOffersList } from './store/actions-api';
+import { ActionServer } from './server/actions';
 
-import { userData } from './mock/data';
-
-store.dispatch(checkAuthorization());
-store.dispatch(fetchOffersList());
+store.dispatch(ActionServer.checkAuthorization());
+store.dispatch(ActionServer.fetchOffersList());
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App userData={userData}/>
+      <App />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'),
