@@ -12,14 +12,14 @@ import {
 const initialState = {
   cityName: DEFAULT_CITY,
   sortType: SortType.DEFAULT,
-  detailOfferActiveID: '',
 
   offers: {},
   offersOnCitiesID: {},
-  filteredOffers: [],
   favoritesOffers: {},
+  filteredOffers: [],
 
   user: {},
+  reviews: [],
   isDataLoaded: false,
   authorizationStatus: AuthorizationStatus.UNKNOWN,
 };
@@ -61,13 +61,6 @@ const reducer = (state = initialState, action) => {
       };
     }
 
-    case ActionType.SET_DETAIL_OFFER_ACTIVE_ID: {
-      return {
-        ...state,
-        detailOfferActiveID: action.payload,
-      };
-    }
-
     case ActionType.SET_FILTERED_OFFERS: {
       return {
         ...state,
@@ -95,24 +88,34 @@ const reducer = (state = initialState, action) => {
       };
     }
 
-    case ActionType.SET_USER:
+    case ActionType.SET_USER: {
       return {
         ...state,
         user: action.payload,
       };
+    }
 
-    case ActionType.LOGOUT:
+    case ActionType.SET_REVIEWS: {
+      return {
+        ...state,
+        reviews: action.payload,
+      };
+    }
+
+    case ActionType.LOGOUT: {
       return {
         ...state,
         user: {},
         authorizationStatus: AuthorizationStatus.NO_AUTH,
       };
+    }
 
-    case ActionType.REQUIRED_AUTHORIZATION:
+    case ActionType.REQUIRED_AUTHORIZATION: {
       return {
         ...state,
         authorizationStatus: action.payload,
       };
+    }
 
     default: {
       return (state);

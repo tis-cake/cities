@@ -1,9 +1,6 @@
 import { SortType, SortTypeAction, Cities } from '../const';
 
 const prepareInitialDataStructure = (offers) => {
-  // eslint-disable-next-line no-console
-  console.log('%c INIT', 'color: white; background: #212529; font-size: 32px');
-
   const favoritesOffers = {};
   const idOffersOnCitiesSortedType = {};
 
@@ -32,9 +29,6 @@ const prepareInitialDataStructure = (offers) => {
 const getFilteredOffersByID = (offers, offersIDs) => offersIDs.map((id) => offers[id]);
 
 const getSortedOffersID = (filteredOffers, cityNameCurrent, sortTypeCurrent) => {
-  // eslint-disable-next-line no-console
-  console.log('сортировка инит!');
-
   const arraySorted = SortTypeAction[sortTypeCurrent](filteredOffers);
   const result = arraySorted.map((el) => el.id);
 

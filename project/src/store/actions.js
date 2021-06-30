@@ -3,11 +3,11 @@ const ActionType = {
   SET_SORT_TYPE: 'main/setSortType',
   SET_INIT_OFFERS: 'main/setInitOffers',
   SET_FILTERED_OFFERS: 'main/setFilteredOffers',
-  SET_DETAIL_OFFER_ACTIVE_ID: 'detail/setDetailOfferActiveID',
 
   SET_USER: 'user/setUser',
+  SET_REVIEWS: 'user/setReviews',
   LOGOUT: 'user/logout',
-  REDIRECT_TO_ROUTE: 'user/redirectToRoute',
+  REDIRECT_TO_ROUTE: 'redirect/redirectToRoute',
   REQUIRED_AUTHORIZATION: 'user/requiredAuthorization',
 };
 
@@ -22,13 +22,6 @@ function setSortType(sortType) {
   return {
     type: ActionType.SET_SORT_TYPE,
     payload: sortType,
-  };
-}
-
-function setDetailOfferActiveID(id) {
-  return {
-    type: ActionType.SET_DETAIL_OFFER_ACTIVE_ID,
-    payload: id,
   };
 }
 
@@ -49,6 +42,13 @@ function setUser(user) {
   return {
     type: ActionType.SET_USER,
     payload: user,
+  };
+}
+
+function setReviews(reviews) {
+  return {
+    type: ActionType.SET_REVIEWS,
+    payload: reviews,
   };
 }
 
@@ -77,9 +77,9 @@ const ActionCreator = {
   setSortType,
   setInitOffers,
   setFilteredOffers,
-  setDetailOfferActiveID,
 
   setUser,
+  setReviews,
   logout,
   redirectToRoute,
   requireAuthorization,

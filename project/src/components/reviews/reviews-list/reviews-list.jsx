@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { ReviewsItem } from '../reviews-item/reviews-item';
 
-import { propTypesReview } from '../../../types';
+import { propTypesReviews } from '../../../types';
 
 function ReviewsList(props) {
   const { reviewsList } = props;
@@ -21,9 +20,7 @@ function ReviewsList(props) {
 }
 
 ReviewsList.propTypes = {
-  reviewsList: PropTypes.arrayOf(
-    PropTypes.shape(propTypesReview),
-  ),
+  reviewsList: propTypesReviews,
 };
 
 export { ReviewsList };

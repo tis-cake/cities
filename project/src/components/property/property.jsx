@@ -13,11 +13,10 @@ import { PropertyInsides } from './property-insides/property-insides';
 import { PropertyFeatures } from './property-features/property-features';
 
 import { propTypesOffer, propTypesFilteredOffers } from '../../types';
-import { DATA_REVIEWS } from '../../mock/data';
 
 const { BookmarkButtonBig } = BookmarkButton;
 
-function Property({ cityName, filteredOffers, currentPlaceData }) {
+function Property({ cityName, offers, offer, id }) {
   const {
     title,
     isPremium,
@@ -25,13 +24,13 @@ function Property({ cityName, filteredOffers, currentPlaceData }) {
     goods: {
       length: goodsCount,
     },
-  } = currentPlaceData;
+  } = offer;
 
-  const renderPropertyInsides = (goodsCount > 0) && <PropertyInsides placeData={currentPlaceData}/>;
+  const renderPropertyInsides = (goodsCount > 0) && <PropertyInsides placeData={offer}/>;
 
   return (
     <section className="property">
-      <PropertyGallery placeData={currentPlaceData}/>
+      <PropertyGallery placeData={offer}/>
 
       <div className="property__container container">
         <div className="property__wrapper">
@@ -48,22 +47,22 @@ function Property({ cityName, filteredOffers, currentPlaceData }) {
             blockClassName={'property'}
           />
 
-          <PropertyRating placeData={currentPlaceData}/>
-          <PropertyFeatures placeData={currentPlaceData}/>
-          <PropertyPrice placeData={currentPlaceData}/>
+          <PropertyRating placeData={offer}/>
+          <PropertyFeatures placeData={offer}/>
+          <PropertyPrice placeData={offer}/>
 
           {renderPropertyInsides}
 
-          <PropertyHost placeData={currentPlaceData}/>
+          <PropertyHost placeData={offer}/>
 
           <section className="property__reviews reviews">
-            <Reviews reviewsList={DATA_REVIEWS}/>
+            <Reviews id={id}/>
           </section>
         </div>
       </div>
       <section className="property__map map">
         <Map
-          offers={filteredOffers}
+          offers={offers}
           cityName={cityName}
         />
       </section>
@@ -73,8 +72,9 @@ function Property({ cityName, filteredOffers, currentPlaceData }) {
 
 Property.propTypes = {
   cityName: PropTypes.string.isRequired,
-  filteredOffers: propTypesFilteredOffers,
-  currentPlaceData: PropTypes.shape(propTypesOffer),
+  offers: propTypesFilteredOffers,
+  offer: PropTypes.shape(propTypesOffer),
+  id: PropTypes.string.isRequired,
 };
 
 export { Property };

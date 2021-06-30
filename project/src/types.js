@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 const propTypesPlaceCard = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
@@ -50,16 +50,6 @@ const propTypesOffer = {
   }),
 };
 
-const propTypesReview = {
-  comment: PropTypes.string.isRequired,
-  date: PropTypes.instanceOf(Date),
-  id: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired,
-  user: PropTypes.shape({
-    ...propTypesPerson,
-  }),
-};
-
 const propTypesUser = {
   id: PropTypes.number.isRequired,
   email: PropTypes.string.isRequired,
@@ -67,6 +57,20 @@ const propTypesUser = {
   avatarUrl: PropTypes.string.isRequired,
   isPro: PropTypes.bool.isRequired,
 };
+
+const propTypesReview = {
+  comment: PropTypes.string.isRequired,
+  date: PropTypes.instanceOf(Date),
+  id: PropTypes.number.isRequired,
+  rating: PropTypes.number.isRequired,
+  user: PropTypes.shape({
+    ...propTypesPerson,
+  }),
+};
+
+const propTypesReviews = PropTypes.arrayOf(
+  PropTypes.shape(propTypesReview),
+);
 
 const propTypesOffers = PropTypes.shape({
   offer: PropTypes.shape(propTypesOffer),
@@ -79,10 +83,11 @@ const propTypesFilteredOffers = PropTypes.arrayOf(
 export {
   propTypesPlaceCard,
   propTypesOffer,
-  propTypesReview,
   propTypesCity,
   propTypesUser,
 
+  propTypesReview,
+  propTypesReviews,
   propTypesOffers,
   propTypesFilteredOffers
 };
