@@ -1,11 +1,10 @@
-import { ActionType } from './actions';
-
-import { SortType, AuthorizationStatus, DEFAULT_CITY } from '../const';
+import { ActionType } from '../../actions';
+import { SortType, DEFAULT_CITY } from '../../../const';
 import {
   prepareInitialDataStructure,
   getFilteredOffersByID,
   getSortedOffersID
-} from '../utils/store';
+} from '../../../utils/store';
 
 const initialState = {
   cityName: DEFAULT_CITY,
@@ -13,17 +12,13 @@ const initialState = {
 
   offers: {},
   offersOnCitiesID: {},
+  favoritesOffers: {},
   filteredOffers: [],
 
-  reviews: [],
-  favorites: {},
-
-  user: {},
   isDataLoaded: false,
-  authorizationStatus: AuthorizationStatus.UNKNOWN,
 };
 
-const reducer = (state = initialState, action) => {
+const main = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.SET_CITY_NAME: {
       return {
@@ -83,39 +78,10 @@ const reducer = (state = initialState, action) => {
       };
     }
 
-    case ActionType.SET_USER: {
-      return {
-        ...state,
-        user: action.payload,
-      };
-    }
-
-    case ActionType.SET_REVIEWS: {
-      return {
-        ...state,
-        reviews: action.payload,
-      };
-    }
-
-    case ActionType.LOGOUT: {
-      return {
-        ...state,
-        user: {},
-        authorizationStatus: AuthorizationStatus.NO_AUTH,
-      };
-    }
-
-    case ActionType.REQUIRED_AUTHORIZATION: {
-      return {
-        ...state,
-        authorizationStatus: action.payload,
-      };
-    }
-
     default: {
       return (state);
     }
   }
 };
 
-export { reducer };
+export { main };

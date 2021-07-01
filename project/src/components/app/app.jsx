@@ -18,6 +18,9 @@ function App() {
   const authorizationStatus = useSelector((state) => Selector.getAuthorizationStatus(state));
   const isDataLoaded = useSelector((state) => Selector.getDataLoadedStatus(state));
 
+  // eslint-disable-next-line no-console
+  console.log(isDataLoaded);
+
   if (authorizationStatus === AuthorizationStatus.UNKNOWN || !isDataLoaded) {
     return (
       <PageLoading />
