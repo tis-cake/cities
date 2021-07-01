@@ -1,16 +1,23 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Header } from '../../shared/header/header';
 import { Footer } from '../../shared/footer/footer';
 import { Favorites } from '../../favorites/favorites';
 
+import { Selector } from '../../../store/selectors';
 import { ActionCreator } from '../../../store/actions';
-import { propTypesOffers } from '../../../types';
 
-function PageFavoritesBase(props) {
-  const { cityName, setCityName, favoritesOffers } = props;
+function PageFavorites() {
+  const dispatch = useDispatch();
+  const cityName = useSelector((state) => Selector.getCityName(state));
+  const favoritesOffers = useSelector((state) => Selector.getFavoritesOffers(state));
+
+  const setCityName = (city) => {
+    dispatch(ActionCreator.setCityName(city));
+    dispatch(ActionCreator.setFilteredOffers());
+  };
+
   const offersCount = Object.values(favoritesOffers).length;
 
   const mainElEmptyClass = (offersCount === 0)
@@ -37,24 +44,4 @@ function PageFavoritesBase(props) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  cityName: state.cityName,
-  favoritesOffers: state.favoritesOffers,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  setCityName(cityName) {
-    dispatch(ActionCreator.setCityName(cityName));
-    dispatch(ActionCreator.setFilteredOffers());
-  },
-});
-
-const PageFavorites = connect(mapStateToProps, mapDispatchToProps)(PageFavoritesBase);
-
-PageFavoritesBase.propTypes = {
-  cityName: PropTypes.string.isRequired,
-  setCityName: PropTypes.func.isRequired,
-  favoritesOffers: propTypesOffers,
-};
-
-export { PageFavorites, PageFavoritesBase };
+export { PageFavorites };

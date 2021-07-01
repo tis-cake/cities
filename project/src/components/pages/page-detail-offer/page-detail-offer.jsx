@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 import { Nearby } from '../../nearby/nearby';
 import { Header } from '../../shared/header/header';
@@ -9,14 +8,15 @@ import { Property } from '../../property/property';
 import { PageLoading } from '../page-loading/page-loading';
 
 import { AppRoute } from '../../../const';
+import { Selector } from '../../../store/selectors';
 import { ActionServer } from '../../../server/actions';
 
-function PageDetailOfferBase(props) {
-  const { cityName } = props;
-  const { id } = useParams();
-  const history = useHistory();
-
+function PageDetailOffer() {
   const [offerData, setOfferData] = useState(null);
+  const history = useHistory();
+  const { id } = useParams();
+
+  const cityName = useSelector((state) => Selector.getCityName(state));
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -54,14 +54,4 @@ function PageDetailOfferBase(props) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  cityName: state.cityName,
-});
-
-const PageDetailOffer = connect(mapStateToProps, null)(PageDetailOfferBase);
-
-PageDetailOfferBase.propTypes = {
-  cityName: PropTypes.string.isRequired,
-};
-
-export { PageDetailOfferBase, PageDetailOffer };
+export { PageDetailOffer };

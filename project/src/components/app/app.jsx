@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Switch, Route, Router as BrowserRouter } from 'react-router-dom';
 
 import { PrivateRoute } from '../private-route/private-route';
@@ -13,9 +12,11 @@ import { PageDetailOffer } from '../pages/page-detail-offer/page-detail-offer';
 
 import { browserHistory } from '../../services/browser-history';
 import { AppRoute, AuthorizationStatus } from '../../const';
+import { Selector } from '../../store/selectors';
 
-function AppBase(props) {
-  const { authorizationStatus, isDataLoaded } = props;
+function App() {
+  const authorizationStatus = useSelector((state) => Selector.getAuthorizationStatus(state));
+  const isDataLoaded = useSelector((state) => Selector.getDataLoadedStatus(state));
 
   if (authorizationStatus === AuthorizationStatus.UNKNOWN || !isDataLoaded) {
     return (
@@ -56,16 +57,4 @@ function AppBase(props) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  authorizationStatus: state.authorizationStatus,
-  isDataLoaded: state.isDataLoaded,
-});
-
-const App = connect(mapStateToProps, null)(AppBase);
-
-AppBase.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  isDataLoaded: PropTypes.bool.isRequired,
-};
-
-export { AppBase, App };
+export { App };

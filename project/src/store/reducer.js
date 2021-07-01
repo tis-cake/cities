@@ -1,5 +1,3 @@
-// import { combineReducers } from 'redux';
-
 import { ActionType } from './actions';
 
 import { SortType, AuthorizationStatus, DEFAULT_CITY } from '../const';
@@ -18,8 +16,9 @@ const initialState = {
   favoritesOffers: {},
   filteredOffers: [],
 
-  user: {},
   reviews: [],
+
+  user: {},
   isDataLoaded: false,
   authorizationStatus: AuthorizationStatus.UNKNOWN,
 };

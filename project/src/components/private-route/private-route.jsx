@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
 
-import {AppRoute, AuthorizationStatus} from '../../const';
+import { Selector } from '../../store/selectors';
+import { AppRoute, AuthorizationStatus } from '../../const';
 
-function PrivateRouteBase({render, path, exact, authorizationStatus}) {
+function PrivateRoute({render, path, exact }) {
+  const authorizationStatus = useSelector((state) => Selector.getAuthorizationStatus(state));
+
   return (
     <Route
       path={path}
@@ -19,17 +22,10 @@ function PrivateRouteBase({render, path, exact, authorizationStatus}) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  authorizationStatus: state.authorizationStatus,
-});
-
-const PrivateRoute = connect(mapStateToProps, null)(PrivateRouteBase);
-
-PrivateRouteBase.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
+PrivateRoute.propTypes = {
   exact: PropTypes.bool.isRequired,
   path: PropTypes.string.isRequired,
   render: PropTypes.func.isRequired,
 };
 
-export { PrivateRouteBase, PrivateRoute };
+export { PrivateRoute };
