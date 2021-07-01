@@ -11,18 +11,17 @@ import { ActionCreator } from '../../../store/actions';
 function PageFavorites() {
   const dispatch = useDispatch();
   const cityName = useSelector((state) => Selector.getCityName(state));
-  const favoritesOffers = useSelector((state) => Selector.getFavoritesOffers(state));
+  const favorites = useSelector((state) => Selector.getFavorites(state));
+  const favoritesCount = Object.values(favorites).length;
+
+  const mainElEmptyClass = (favoritesCount === 0)
+    ? 'page__main--favorites-empty'
+    : '';
 
   const setCityName = (city) => {
     dispatch(ActionCreator.setCityName(city));
     dispatch(ActionCreator.setFilteredOffers());
   };
-
-  const offersCount = Object.values(favoritesOffers).length;
-
-  const mainElEmptyClass = (offersCount === 0)
-    ? 'page__main--favorites-empty'
-    : '';
 
   return (
     <div className="page">
@@ -31,8 +30,8 @@ function PageFavorites() {
       <main className={`page__main page__main--favorites ${mainElEmptyClass}`}>
         <div className="page__favorites-container container">
           <Favorites
-            offers={favoritesOffers}
-            offersCount={offersCount}
+            favorites={favorites}
+            favoritesCount={favoritesCount}
             cityName={cityName}
             setCityName={setCityName}
           />

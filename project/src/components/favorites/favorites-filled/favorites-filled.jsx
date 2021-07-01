@@ -5,13 +5,13 @@ import { FavoritesList } from '../favorites-list/favorites-list';
 
 import { propTypesOffers } from '../../../types';
 
-function FavoritesFilled({ offers, cityName, setCityName }) {
+function FavoritesFilled({ favorites, cityName, setCityName }) {
   return (
     <section className="favorites">
       <h1 className="favorites__title">Saved listing</h1>
 
       <FavoritesList
-        offers={offers}
+        favorites={favorites}
         cityName={cityName}
         setCityName={setCityName}
       />
@@ -20,7 +20,7 @@ function FavoritesFilled({ offers, cityName, setCityName }) {
 }
 
 FavoritesFilled.propTypes = {
-  offers: propTypesOffers,
+  favorites: propTypesOffers,
   cityName: PropTypes.string.isRequired,
   setCityName: PropTypes.func.isRequired,
 };

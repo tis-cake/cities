@@ -1,13 +1,13 @@
 // MAIN
 const getCityName = (state) => state.cityName;
 const getSortType = (state) => state.sortType;
-
-// OFFERS
-const getFavoritesOffers = (state) => state.favoritesOffers;
 const getFilteredOffers = (state) => state.filteredOffers;
 
 // REVIEWS
 const getReviews = (state) => state.reviews;
+
+// FAVORITES
+const getFavorites = (state) => state.favorites;
 
 // USER
 const getAuthorizationStatus = (state) => state.authorizationStatus;
@@ -17,11 +17,10 @@ const getUser = (state) => state.user;
 const Selector = {
   getCityName,
   getSortType,
-
-  getFavoritesOffers,
   getFilteredOffers,
 
   getReviews,
+  getFavorites,
 
   getAuthorizationStatus,
   getDataLoadedStatus,

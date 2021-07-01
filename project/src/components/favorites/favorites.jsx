@@ -7,16 +7,16 @@ import { FavoritesEmpty } from './favorites-empty/favorites-empty';
 import { propTypesOffers } from '../../types';
 
 function Favorites(props) {
-  const { offersCount } = props;
+  const { favoritesCount } = props;
 
   return (
-    (offersCount > 0) ? <FavoritesFilled {...props}/> : <FavoritesEmpty />
+    (favoritesCount > 0) ? <FavoritesFilled {...props}/> : <FavoritesEmpty />
   );
 }
 
 Favorites.propTypes = {
-  offers: propTypesOffers,
-  offersCount: PropTypes.number.isRequired,
+  favorites: propTypesOffers,
+  favoritesCount: PropTypes.number.isRequired,
 };
 
 export { Favorites };

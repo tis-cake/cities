@@ -13,10 +13,10 @@ const initialState = {
 
   offers: {},
   offersOnCitiesID: {},
-  favoritesOffers: {},
   filteredOffers: [],
 
   reviews: [],
+  favorites: {},
 
   user: {},
   isDataLoaded: false,
@@ -70,10 +70,7 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.SET_INIT_OFFERS: {
       const { payload } = action;
-      const {
-        favoritesOffers,
-        offersOnCitiesID,
-      } = prepareInitialDataStructure(payload);
+      const { offersOnCitiesID } = prepareInitialDataStructure(payload);
 
       const filteredOffers = getFilteredOffersByID(payload, offersOnCitiesID[state.cityName][state.sortType]);
 
@@ -82,7 +79,6 @@ const reducer = (state = initialState, action) => {
         offers: payload,
         offersOnCitiesID: offersOnCitiesID,
         filteredOffers: filteredOffers,
-        favoritesOffers: favoritesOffers,
         isDataLoaded: true,
       };
     }
