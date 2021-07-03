@@ -1,27 +1,33 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Cities } from '../../cities/cities';
 import { Header } from '../../shared/header/header';
 import { TabsLocations } from '../../tabs-locations/tabs-locations';
 
+import { Selector } from '../../../store/selectors';
 import { ActionCreator } from '../../../store/actions';
-import { propTypesFilteredOffers } from '../../../types';
 
-function PageMainBase(props) {
-  const {
-    cityName,
-    setCityName,
-    sortType,
-    setSortType,
-    filteredOffers,
-  } = props;
-  const { length: offersCount } = filteredOffers;
+function PageMain() {
+  const dispatch = useDispatch();
+  const cityName = useSelector((state) => Selector.getCityName(state));
+  const sortType = useSelector((state) => Selector.getSortType(state));
+  const filteredOffers = useSelector((state) => Selector.getFilteredOffers(state));
+  const offersCount = filteredOffers.length;
 
   const mainElEmptyClass = (offersCount === 0)
     ? 'page__main--index-empty'
     : '';
+
+  const setCityName = (city) => {
+    dispatch(ActionCreator.setCityName(city));
+    dispatch(ActionCreator.setFilteredOffers());
+  };
+
+  const setSortType = (type) => {
+    dispatch(ActionCreator.setSortType(type));
+    dispatch(ActionCreator.setFilteredOffers());
+  };
 
   return (
     <div className="page page--gray page--main">
@@ -47,31 +53,4 @@ function PageMainBase(props) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  cityName: state.cityName,
-  sortType: state.sortType,
-  filteredOffers: state.filteredOffers,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  setCityName(cityName) {
-    dispatch(ActionCreator.setCityName(cityName));
-    dispatch(ActionCreator.setFilteredOffers());
-  },
-  setSortType(sortType) {
-    dispatch(ActionCreator.setSortType(sortType));
-    dispatch(ActionCreator.setFilteredOffers());
-  },
-});
-
-const PageMain = connect(mapStateToProps, mapDispatchToProps)(PageMainBase);
-
-PageMainBase.propTypes = {
-  cityName: PropTypes.string.isRequired,
-  setCityName: PropTypes.func.isRequired,
-  sortType: PropTypes.string.isRequired,
-  setSortType: PropTypes.func.isRequired,
-  filteredOffers: propTypesFilteredOffers,
-};
-
-export { PageMainBase, PageMain };
+export { PageMain };

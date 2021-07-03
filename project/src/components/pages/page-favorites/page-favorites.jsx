@@ -1,21 +1,27 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Header } from '../../shared/header/header';
 import { Footer } from '../../shared/footer/footer';
 import { Favorites } from '../../favorites/favorites';
 
+import { Selector } from '../../../store/selectors';
 import { ActionCreator } from '../../../store/actions';
-import { propTypesOffers } from '../../../types';
 
-function PageFavoritesBase(props) {
-  const { cityName, setCityName, favoritesOffers } = props;
-  const offersCount = Object.values(favoritesOffers).length;
+function PageFavorites() {
+  const dispatch = useDispatch();
+  const cityName = useSelector((state) => Selector.getCityName(state));
+  const favorites = useSelector((state) => Selector.getFavorites(state));
+  const favoritesCount = Object.values(favorites).length;
 
-  const mainElEmptyClass = (offersCount === 0)
+  const mainElEmptyClass = (favoritesCount === 0)
     ? 'page__main--favorites-empty'
     : '';
+
+  const setCityName = (city) => {
+    dispatch(ActionCreator.setCityName(city));
+    dispatch(ActionCreator.setFilteredOffers());
+  };
 
   return (
     <div className="page">
@@ -24,8 +30,8 @@ function PageFavoritesBase(props) {
       <main className={`page__main page__main--favorites ${mainElEmptyClass}`}>
         <div className="page__favorites-container container">
           <Favorites
-            offers={favoritesOffers}
-            offersCount={offersCount}
+            favorites={favorites}
+            favoritesCount={favoritesCount}
             cityName={cityName}
             setCityName={setCityName}
           />
@@ -37,24 +43,4 @@ function PageFavoritesBase(props) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  cityName: state.cityName,
-  favoritesOffers: state.favoritesOffers,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  setCityName(cityName) {
-    dispatch(ActionCreator.setCityName(cityName));
-    dispatch(ActionCreator.setFilteredOffers());
-  },
-});
-
-const PageFavorites = connect(mapStateToProps, mapDispatchToProps)(PageFavoritesBase);
-
-PageFavoritesBase.propTypes = {
-  cityName: PropTypes.string.isRequired,
-  setCityName: PropTypes.func.isRequired,
-  favoritesOffers: propTypesOffers,
-};
-
-export { PageFavorites, PageFavoritesBase };
+export { PageFavorites };

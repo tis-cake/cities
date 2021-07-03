@@ -1,7 +1,6 @@
 import { SortType, SortTypeAction, Cities } from '../const';
 
 const prepareInitialDataStructure = (offers) => {
-  const favoritesOffers = {};
   const idOffersOnCitiesSortedType = {};
 
   for (const city of Object.values(Cities)) {
@@ -13,15 +12,10 @@ const prepareInitialDataStructure = (offers) => {
   }
 
   for (const offer of Object.values(offers)) {
-    if (offer.isFavorite) {
-      favoritesOffers[offer.id] = offer;
-    }
-
     idOffersOnCitiesSortedType[offer.city.name][SortType.DEFAULT].push(offer.id);
   }
 
   return {
-    favoritesOffers: favoritesOffers,
     offersOnCitiesID: idOffersOnCitiesSortedType,
   };
 };

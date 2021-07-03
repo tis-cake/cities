@@ -1,13 +1,10 @@
-// import { combineReducers } from 'redux';
-
-import { ActionType } from './actions';
-
-import { SortType, AuthorizationStatus, DEFAULT_CITY } from '../const';
+import { ActionType } from '../../actions';
+import { SortType, DEFAULT_CITY } from '../../../const';
 import {
   prepareInitialDataStructure,
   getFilteredOffersByID,
   getSortedOffersID
-} from '../utils/store';
+} from '../../../utils/store';
 
 const initialState = {
   cityName: DEFAULT_CITY,
@@ -18,13 +15,10 @@ const initialState = {
   favoritesOffers: {},
   filteredOffers: [],
 
-  user: {},
-  reviews: [],
   isDataLoaded: false,
-  authorizationStatus: AuthorizationStatus.UNKNOWN,
 };
 
-const reducer = (state = initialState, action) => {
+const main = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.SET_CITY_NAME: {
       return {
@@ -71,10 +65,7 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.SET_INIT_OFFERS: {
       const { payload } = action;
-      const {
-        favoritesOffers,
-        offersOnCitiesID,
-      } = prepareInitialDataStructure(payload);
+      const { offersOnCitiesID } = prepareInitialDataStructure(payload);
 
       const filteredOffers = getFilteredOffersByID(payload, offersOnCitiesID[state.cityName][state.sortType]);
 
@@ -83,37 +74,7 @@ const reducer = (state = initialState, action) => {
         offers: payload,
         offersOnCitiesID: offersOnCitiesID,
         filteredOffers: filteredOffers,
-        favoritesOffers: favoritesOffers,
         isDataLoaded: true,
-      };
-    }
-
-    case ActionType.SET_USER: {
-      return {
-        ...state,
-        user: action.payload,
-      };
-    }
-
-    case ActionType.SET_REVIEWS: {
-      return {
-        ...state,
-        reviews: action.payload,
-      };
-    }
-
-    case ActionType.LOGOUT: {
-      return {
-        ...state,
-        user: {},
-        authorizationStatus: AuthorizationStatus.NO_AUTH,
-      };
-    }
-
-    case ActionType.REQUIRED_AUTHORIZATION: {
-      return {
-        ...state,
-        authorizationStatus: action.payload,
       };
     }
 
@@ -123,4 +84,4 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export { reducer };
+export { main };

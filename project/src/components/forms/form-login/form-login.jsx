@@ -1,21 +1,23 @@
 import React, { useRef } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 
 import { ActionServer } from '../../../server/actions';
 
-function FormLoginBase({ onSubmit }) {
+function FormLogin() {
+  const dispatch = useDispatch();
   const loginRef = useRef();
   const passwordRef = useRef();
 
-  function handleFormSubmit(evt) {
+  const onSubmit = (authorizationData) => dispatch(ActionServer.login(authorizationData));
+
+  const handleFormSubmit = (evt) => {
     evt.preventDefault();
 
     onSubmit({
       login: loginRef.current.value,
       password: passwordRef.current.value,
     });
-  }
+  };
 
   return (
     <form
@@ -50,17 +52,5 @@ function FormLoginBase({ onSubmit }) {
     </form>
   );
 }
-
-const mapDispatchToProps = (dispatch) => ({
-  onSubmit(authorizationData) {
-    dispatch(ActionServer.login(authorizationData));
-  },
-});
-
-const FormLogin = connect(null, mapDispatchToProps)(FormLoginBase);
-
-FormLoginBase.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
 
 export { FormLogin };

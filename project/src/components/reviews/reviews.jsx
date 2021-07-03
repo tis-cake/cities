@@ -1,24 +1,22 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { ReviewsList } from './reviews-list/reviews-list';
 import { FormReviews } from '../forms/form-reviews/form-reviews';
 
-import { ActionServer } from '../../server/actions';
+import { Selector } from '../../store/selectors';
 import { AuthorizationStatus } from '../../const';
-import { propTypesReviews } from '../../types';
+import { ActionServer } from '../../server/actions';
 
-function ReviewsBase(props) {
-  const {
-    authorizationStatus,
-    reviews,
-    id,
-    fetchReviews,
-    postReview,
-  } = props;
+function Reviews({ id }) {
+  const dispatch = useDispatch();
+  const authorizationStatus = useSelector((state) => Selector.getAuthorizationStatus(state));
+  const reviews = useSelector((state) => Selector.getReviews(state));
+  const reviewsCount = reviews.length;
 
-  const { length: reviewsCount } = reviews;
+  const fetchReviews = (ID) => dispatch(ActionServer.fetchReviews(ID));
+  const postReview = (ID, review) => dispatch(ActionServer.postReview(ID, review));
 
   useEffect(() => {
     fetchReviews(id);
@@ -35,28 +33,8 @@ function ReviewsBase(props) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  reviews: state.reviews,
-  authorizationStatus: state.authorizationStatus,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  fetchReviews(id) {
-    dispatch(ActionServer.fetchReviews(id));
-  },
-  postReview(id, review) {
-    dispatch(ActionServer.postReview(id, review));
-  },
-});
-
-const Reviews = connect(mapStateToProps, mapDispatchToProps)(ReviewsBase);
-
-ReviewsBase.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
+Reviews.propTypes = {
   id: PropTypes.string.isRequired,
-  reviews: propTypesReviews,
-  fetchReviews: PropTypes.func.isRequired,
-  postReview: PropTypes.func.isRequired,
 };
 
-export { ReviewsBase, Reviews };
+export { Reviews };

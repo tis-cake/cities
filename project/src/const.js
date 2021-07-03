@@ -55,7 +55,7 @@ const Cities = {
 
 const DEFAULT_CITY = Cities.PARIS;
 
-const DEFAULT_ZOOM = 10;
+const DEFAULT_ZOOM = 12;
 
 const СitiesLocation = {
   [Cities.PARIS]: {
