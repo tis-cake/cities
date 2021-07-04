@@ -10,18 +10,14 @@ import { PageNotFound } from '../pages/page-not-found/page-not-found';
 import { PageFavorites } from '../pages/page-favorites/page-favorites';
 import { PageDetailOffer } from '../pages/page-detail-offer/page-detail-offer';
 
-import { browserHistory } from '../../services/browser-history';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute } from '../../const';
 import { Selector } from '../../store/selectors';
+import { browserHistory } from '../../services/browser-history';
 
 function App() {
-  const authorizationStatus = useSelector((state) => Selector.getAuthorizationStatus(state));
   const isDataLoaded = useSelector((state) => Selector.getDataLoadedStatus(state));
 
-  // eslint-disable-next-line no-console
-  console.log(isDataLoaded);
-
-  if (authorizationStatus === AuthorizationStatus.UNKNOWN || !isDataLoaded) {
+  if (!isDataLoaded) {
     return (
       <PageLoading />
     );

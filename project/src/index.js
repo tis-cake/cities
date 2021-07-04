@@ -8,7 +8,6 @@ import { store } from './store/store';
 import { ActionServer } from './server/actions';
 
 store.dispatch(ActionServer.checkAuthorization());
-store.dispatch(ActionServer.fetchFavorites());
 store.dispatch(ActionServer.fetchOffers());
 
 ReactDOM.render(

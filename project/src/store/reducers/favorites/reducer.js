@@ -2,6 +2,8 @@ import { ActionType } from '../../actions';
 
 const initialState = {
   favorites: [],
+
+  isDataLoaded: false,
 };
 
 const favorites = (state = initialState, action) => {
@@ -10,6 +12,7 @@ const favorites = (state = initialState, action) => {
       return {
         ...state,
         favorites: action.payload,
+        isDataLoaded: true,
       };
     }
 

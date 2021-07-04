@@ -3,15 +3,10 @@ import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { rootReducer } from './reducers/root-reducer';
-import { ActionCreator } from './actions';
 import { createAPI } from '../server/api';
 import { redirect } from './middlewares/redirect';
 
-import { AuthorizationStatus } from '../const';
-
-const api = createAPI(
-  () => store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH)),
-);
+const api = createAPI();
 
 const store = createStore(
   rootReducer,

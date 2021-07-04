@@ -8,9 +8,11 @@ import { Favorites } from '../../favorites/favorites';
 import { Selector } from '../../../store/selectors';
 import { ActionServer } from '../../../server/actions';
 import { ActionCreator } from '../../../store/actions';
+import { PageLoading } from '../page-loading/page-loading';
 
 function PageFavorites() {
   const dispatch = useDispatch();
+  const isDataLoaded = useSelector((state) => Selector.getFavoritesDataLoadedStatus(state));
   const cityName = useSelector((state) => Selector.getCityName(state));
   const favorites = useSelector((state) => Selector.getFavorites(state));
   const favoritesCount = favorites.length;
@@ -29,6 +31,12 @@ function PageFavorites() {
   useEffect(() => {
     fetchFavorites();
   }, []);
+
+  if (!isDataLoaded) {
+    return (
+      <PageLoading />
+    );
+  }
 
   return (
     <div className="page">
