@@ -3,12 +3,16 @@ const ActionType = {
   SET_SORT_TYPE: 'main/setSortType',
   SET_INIT_OFFERS: 'main/setInitOffers',
   SET_FILTERED_OFFERS: 'main/setFilteredOffers',
+  CHANGE_OFFERS_BY_FAVORITE: 'main/changeOffersByFavorite',
 
-  SET_USER: 'user/setUser',
-  SET_REVIEWS: 'user/setReviews',
+  SET_REVIEWS: 'reviews/setReviews',
+  SET_FAVORITES: 'favorites/setFavorites',
+
   LOGOUT: 'user/logout',
-  REDIRECT_TO_ROUTE: 'redirect/redirectToRoute',
+  SET_USER: 'user/setUser',
   REQUIRED_AUTHORIZATION: 'user/requiredAuthorization',
+
+  REDIRECT_TO_ROUTE: 'redirect/redirectToRoute',
 };
 
 function setCityName(cityName) {
@@ -38,6 +42,13 @@ function setFilteredOffers() {
   };
 }
 
+function changeOffersByFavorite(id) {
+  return {
+    type: ActionType.CHANGE_OFFERS_BY_FAVORITE,
+    payload: id,
+  };
+}
+
 function setUser(user) {
   return {
     type: ActionType.SET_USER,
@@ -52,16 +63,16 @@ function setReviews(reviews) {
   };
 }
 
-function logout() {
+function setFavorites(favorites) {
   return {
-    type: ActionType.LOGOUT,
+    type: ActionType.SET_FAVORITES,
+    payload: favorites,
   };
 }
 
-function redirectToRoute(url) {
+function logout() {
   return {
-    type: ActionType.REDIRECT_TO_ROUTE,
-    payload: url,
+    type: ActionType.LOGOUT,
   };
 }
 
@@ -72,14 +83,24 @@ function requireAuthorization(status) {
   };
 }
 
+function redirectToRoute(url) {
+  return {
+    type: ActionType.REDIRECT_TO_ROUTE,
+    payload: url,
+  };
+}
+
 const ActionCreator = {
   setCityName,
   setSortType,
   setInitOffers,
   setFilteredOffers,
+  changeOffersByFavorite,
+
+  setReviews,
+  setFavorites,
 
   setUser,
-  setReviews,
   logout,
   redirectToRoute,
   requireAuthorization,

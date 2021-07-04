@@ -2,6 +2,7 @@ import { ActionType } from '../../actions';
 import { SortType, DEFAULT_CITY } from '../../../const';
 import {
   prepareInitialDataStructure,
+  getChangedOffersByFavorite,
   getFilteredOffersByID,
   getSortedOffersID
 } from '../../../utils/store';
@@ -75,6 +76,16 @@ const main = (state = initialState, action) => {
         offersOnCitiesID: offersOnCitiesID,
         filteredOffers: filteredOffers,
         isDataLoaded: true,
+      };
+    }
+
+    case ActionType.CHANGE_OFFERS_BY_FAVORITE: {
+      const { payload: id } = action;
+      const offers = getChangedOffersByFavorite(state.offers, id);
+
+      return {
+        ...state,
+        offers,
       };
     }
 

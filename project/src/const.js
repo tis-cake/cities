@@ -14,10 +14,15 @@ const AppRoute = {
 };
 
 const APIRoute = {
+  FAVORITES: '/favorite',
   REVIEWS: '/comments',
   OFFERS: '/hotels',
   LOGIN: '/login',
   LOGOUT: '/logout',
+};
+
+const HttpCode = {
+  UNAUTHORIZED: 401,
 };
 
 const SortType = {
@@ -103,6 +108,7 @@ const AuthorizationStatus = {
 export {
   AppRoute,
   APIRoute,
+  HttpCode,
   SortType,
   SortTypeValue,
   SortTypeAction,

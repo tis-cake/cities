@@ -1,5 +1,9 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { ActionServer } from '../../../server/actions';
+import { propTypesID } from '../../../types';
 
 function BookmarkButtonIconNormal({ blockClassName }) {
   return (
@@ -17,8 +21,8 @@ function BookmarkButtonIconBig({ blockClassName }) {
   );
 }
 
-function BookmarkButtonLayout(props) {
-  const { isFavorite, blockClassName } = props;
+function BookmarkButtonLayout({ children, id, isFavorite, blockClassName }) {
+  const dispatch = useDispatch();
 
   const bookmarkButtonActiveClass = isFavorite
     ? `${blockClassName}__bookmark-button--active`
@@ -28,9 +32,15 @@ function BookmarkButtonLayout(props) {
     ? 'To bookmarks'
     : 'In bookmarks';
 
+  const postFavorite = (ID, status) => dispatch(ActionServer.postFavorite(ID, status));
+
   return (
-    <button className={`${blockClassName}__bookmark-button ${bookmarkButtonActiveClass} button`} type="button">
-      {props.children}
+    <button
+      className={`${blockClassName}__bookmark-button ${bookmarkButtonActiveClass} button`}
+      type="button"
+      onClick={() => postFavorite(id, !isFavorite)}
+    >
+      {children}
 
       <span className="visually-hidden">{bookmarkButtonActiveValue}</span>
     </button>
@@ -58,8 +68,9 @@ const BookmarkButton = { BookmarkButtonNormal, BookmarkButtonBig };
 BookmarkButtonLayout.propTypes = {
   children: PropTypes.element,
 
-  isFavorite: PropTypes.bool.isRequired,
   blockClassName: PropTypes.string.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
+  id: propTypesID,
 };
 
 BookmarkButtonIconNormal.propTypes = {

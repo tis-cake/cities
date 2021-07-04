@@ -20,6 +20,13 @@ const prepareInitialDataStructure = (offers) => {
   };
 };
 
+const getChangedOffersByFavorite = (offers, id) => {
+  const currentSattus = offers[id].isFavorite;
+  offers[id].isFavorite = !currentSattus;
+
+  return offers;
+};
+
 const getFilteredOffersByID = (offers, offersIDs) => offersIDs.map((id) => offers[id]);
 
 const getSortedOffersID = (filteredOffers, cityNameCurrent, sortTypeCurrent) => {
@@ -31,6 +38,7 @@ const getSortedOffersID = (filteredOffers, cityNameCurrent, sortTypeCurrent) => 
 
 export {
   prepareInitialDataStructure,
+  getChangedOffersByFavorite,
   getFilteredOffersByID,
   getSortedOffersID
 };
