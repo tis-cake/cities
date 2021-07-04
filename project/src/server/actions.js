@@ -8,7 +8,7 @@ import {
   adaptOffersToClient,
   adaptOfferToClient,
   adaptUserToClient
-} from '../services/adapter';
+} from './adapter';
 
 const TOKEN = 'token';
 
@@ -16,12 +16,10 @@ const fetchOfferActive = (id) => (
   Promise.all([
     serverAPI.get(`${APIRoute.OFFERS}/${id}`),
     serverAPI.get(`${APIRoute.OFFERS}/${id}/nearby`),
-    // serverAPI.get(`${APIRoute.OFFERS}/${id}`),
   ])
     .then(([offer, nearby, reviews]) => ({
       offer: adaptOfferToClient(offer.data),
       nearby: adaptOffersToClient(nearby.data),
-      // reviews: adaptReviewsToClient(reviews.data),
     }))
 );
 

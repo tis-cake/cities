@@ -20,11 +20,13 @@ const prepareInitialDataStructure = (offers) => {
   };
 };
 
-const getChangedOffersByFavorite = (offers, id) => {
-  const currentSattus = offers[id].isFavorite;
-  offers[id].isFavorite = !currentSattus;
+const getFilteredOffersByFavorite = (filteredOffers, id) => {
+  const index = filteredOffers.findIndex((offer) => offer.id === id);
+  const changedOffer = filteredOffers[index];
+  const currentStatus = changedOffer.isFavorite;
+  changedOffer.isFavorite = !currentStatus;
 
-  return offers;
+  return [...filteredOffers];
 };
 
 const getFilteredOffersByID = (offers, offersIDs) => offersIDs.map((id) => offers[id]);
@@ -38,7 +40,8 @@ const getSortedOffersID = (filteredOffers, cityNameCurrent, sortTypeCurrent) => 
 
 export {
   prepareInitialDataStructure,
-  getChangedOffersByFavorite,
+
+  getFilteredOffersByFavorite,
   getFilteredOffersByID,
   getSortedOffersID
 };
