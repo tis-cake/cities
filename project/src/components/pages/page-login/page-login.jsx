@@ -3,6 +3,10 @@ import React from 'react';
 import { Header } from '../../shared/header/header';
 import { FormLogin } from '../../forms/form-login/form-login';
 
+import { withFormNotify } from '../../../hoks/with-form-notify/with-form-notify';
+
+const FormLoginWrapped = withFormNotify(FormLogin);
+
 function PageLogin() {
   return (
     <div className="page page--gray page--login">
@@ -13,7 +17,7 @@ function PageLogin() {
           <section className="login">
             <h1 className="login__title">Sign in</h1>
 
-            <FormLogin />
+            <FormLoginWrapped />
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">

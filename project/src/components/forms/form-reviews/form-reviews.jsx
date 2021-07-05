@@ -1,33 +1,29 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-import './form-reviews.css';
+import { propTypesNotify } from '../../../types';
 
 const MIN_LENGTH = 50;
 const MAX_LENGTH = 300;
 
-const notify = (el) => {
-  el.classList.add('active');
-  setTimeout(() => el.classList.remove('active'), 3000);
-};
-
-function FormReviews({ postReview, id }) {
-  const [ rating, setRating ] = useState('');
-  const [ comment, setComment ] = useState('');
+function FormReviews({ postReview, id, showNotify, renderFormNotify }) {
+  const [rating, setRating] = useState('');
+  const [comment, setComment] = useState('');
 
   const formRef = useRef(null);
   const commentRef = useRef(null);
-  const notifyRef = useRef(null);
 
-  function handleRatingChange(evt) {
+  const FormNotify = renderFormNotify();
+
+  const handleRatingChange = (evt) => {
     setRating(evt.currentTarget.value);
-  }
+  };
 
-  function handleTextareaChange(evt) {
+  const handleTextareaChange = (evt) => {
     setComment(evt.currentTarget.value);
-  }
+  };
 
-  function hanleFormSubmit(evt) {
+  const handleFormSubmit = (evt) => {
     evt.preventDefault();
 
     const isCommentValidity = (comment.length >= MIN_LENGTH && comment.length <= MAX_LENGTH);
@@ -41,16 +37,16 @@ function FormReviews({ postReview, id }) {
       setRating('');
       setComment('');
     } else {
-      notify(notifyRef.current);
+      showNotify();
     }
-  }
+  };
 
   return (
     <form
       className="reviews__form form"
       action="#"
       method="post"
-      onSubmit={hanleFormSubmit}
+      onSubmit={handleFormSubmit}
       ref={formRef}
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
@@ -151,9 +147,7 @@ function FormReviews({ postReview, id }) {
         <button className="reviews__submit form__submit button" type="submit" disabled="">Submit</button>
       </div>
 
-      <div className="form__notify" ref={notifyRef}>
-        <p className="form__notify-text">Заполните, пожалуйста, все поля!</p>
-      </div>
+      {FormNotify}
     </form>
   );
 }
@@ -161,6 +155,8 @@ function FormReviews({ postReview, id }) {
 FormReviews.propTypes = {
   id: PropTypes.string.isRequired,
   postReview: PropTypes.func.isRequired,
+
+  ...propTypesNotify,
 };
 
 export { FormReviews };
