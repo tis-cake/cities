@@ -1,13 +1,15 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import { SortType, SortTypeValue, KeyCode } from '../../../const';
 
 function Sort({ sortType, setSortType }) {
+  const [select, setSelet] = useState(false);
   const selectRef = useRef(null);
 
-  const optionOpenClass = 'places__options--opened';
+  const selectActiveClass = (select)
+    ? 'places__options--opened'
+    : '';
 
   const handleOptionClick = (evt, sortTypeCurrent) => {
     setSortType(sortTypeCurrent);
@@ -28,7 +30,7 @@ function Sort({ sortType, setSortType }) {
   };
 
   const closeSelect = () => {
-    selectRef.current.classList.remove(optionOpenClass);
+    setSelet(false);
 
     document.removeEventListener('keydown', handleEscKeyPress);
     document.removeEventListener('click', handleSelectOutsideClick);
@@ -37,12 +39,12 @@ function Sort({ sortType, setSortType }) {
   const openSelect = (evt) => {
     evt.stopPropagation();
 
-    if (selectRef.current.classList.contains(optionOpenClass)) {
+    if (select) {
       closeSelect();
       return;
     }
 
-    selectRef.current.classList.add(optionOpenClass);
+    setSelet(true);
     document.addEventListener('keydown', handleEscKeyPress);
     document.addEventListener('click', handleSelectOutsideClick);
   };
@@ -63,48 +65,19 @@ function Sort({ sortType, setSortType }) {
       </span>
 
       <ul
-        className="places__options places__options--custom"
+        className={`places__options places__options--custom ${selectActiveClass}`}
         ref={selectRef}
       >
-        <li
-          className={`places__option ${(sortType === SortType.DEFAULT) ? 'places__option--active' : ''}`}
-          tabIndex="0"
-          onClick={(evt) => handleOptionClick(evt, SortType.DEFAULT)}
-        >
-          {SortTypeValue[SortType.DEFAULT]}
-        </li>
-
-        <li
-          className={`places__option ${(sortType === SortType.PRICE_LOW_TO_HIGH) ? 'places__option--active' : ''}`}
-          tabIndex="0"
-          onClick={(evt) => handleOptionClick(evt, SortType.PRICE_LOW_TO_HIGH)}
-        >
-          {SortTypeValue[SortType.PRICE_LOW_TO_HIGH]}
-        </li>
-
-        <li
-          className={`places__option ${(sortType === SortType.PRICE_HIGH_TO_LOW) ? 'places__option--active' : ''}`}
-          tabIndex="0"
-          onClick={(evt) => handleOptionClick(evt, SortType.PRICE_HIGH_TO_LOW)}
-        >
-          {SortTypeValue[SortType.PRICE_HIGH_TO_LOW]}
-        </li>
-
-        <li
-          className={`places__option ${(sortType === SortType.RATING_HIGH_TO_LOW) ? 'places__option--active' : ''}`}
-          tabIndex="0"
-          onClick={(evt) => handleOptionClick(evt, SortType.RATING_HIGH_TO_LOW)}
-        >
-          {SortTypeValue[SortType.RATING_HIGH_TO_LOW]}
-        </li>
-
-        <li
-          className={`places__option ${(sortType === SortType.RATING_LOW_TO_HIGH) ? 'places__option--active' : ''}`}
-          tabIndex="0"
-          onClick={(evt) => handleOptionClick(evt, SortType.RATING_LOW_TO_HIGH)}
-        >
-          {SortTypeValue[SortType.RATING_LOW_TO_HIGH]}
-        </li>
+        {Object.values(SortType).map((type) => (
+          <li
+            key={type}
+            tabIndex="0"
+            className={`places__option ${(sortType === type) ? 'places__option--active' : ''}`}
+            onClick={(evt) => handleOptionClick(evt, type)}
+          >
+            {SortTypeValue[type]}
+          </li>
+        ))}
       </ul>
     </form>
   );

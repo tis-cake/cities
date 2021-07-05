@@ -2,26 +2,14 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { BookmarkButtonIcon } from './bookmark-button-icon/bookmark-button-icon';
+
 import { ActionServer } from '../../../server/actions';
 import { propTypesID } from '../../../types';
 
-function BookmarkButtonIconNormal({ blockClassName }) {
-  return (
-    <svg className={`${blockClassName}__bookmark-icon`} width="18" height="19">
-      <use xlinkHref="#icon-bookmark"></use>
-    </svg>
-  );
-}
+const { BookmarkButtonIconNormal, BookmarkButtonIconBig } = BookmarkButtonIcon;
 
-function BookmarkButtonIconBig({ blockClassName }) {
-  return (
-    <svg className={`${blockClassName}__bookmark-icon`} width="31" height="33">
-      <use xlinkHref="#icon-bookmark"></use>
-    </svg>
-  );
-}
-
-function BookmarkButtonLayout({ children, id, isFavorite, blockClassName }) {
+function BookmarkButtonWrapper({ children, id, isFavorite, blockClassName }) {
   const dispatch = useDispatch();
 
   const bookmarkButtonActiveClass = isFavorite
@@ -49,36 +37,28 @@ function BookmarkButtonLayout({ children, id, isFavorite, blockClassName }) {
 
 function BookmarkButtonNormal(props) {
   return (
-    <BookmarkButtonLayout {...props}>
+    <BookmarkButtonWrapper {...props}>
       <BookmarkButtonIconNormal {...props}/>
-    </BookmarkButtonLayout>
+    </BookmarkButtonWrapper>
   );
 }
 
 function BookmarkButtonBig(props) {
   return (
-    <BookmarkButtonLayout {...props}>
+    <BookmarkButtonWrapper {...props}>
       <BookmarkButtonIconBig {...props}/>
-    </BookmarkButtonLayout>
+    </BookmarkButtonWrapper>
   );
 }
 
 const BookmarkButton = { BookmarkButtonNormal, BookmarkButtonBig };
 
-BookmarkButtonLayout.propTypes = {
+BookmarkButtonWrapper.propTypes = {
   children: PropTypes.element,
 
   blockClassName: PropTypes.string.isRequired,
   isFavorite: PropTypes.bool.isRequired,
   id: propTypesID,
-};
-
-BookmarkButtonIconNormal.propTypes = {
-  blockClassName: PropTypes.string.isRequired,
-};
-
-BookmarkButtonIconBig.propTypes = {
-  blockClassName: PropTypes.string.isRequired,
 };
 
 export { BookmarkButton };
