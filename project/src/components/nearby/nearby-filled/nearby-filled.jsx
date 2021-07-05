@@ -2,7 +2,7 @@ import React from 'react';
 
 import { PlaceCardList } from '../../place-card/place-card-list/place-card-list';
 
-import { propTypesFilteredOffers } from '../../../types';
+import { propTypesOffersARR } from '../../../types';
 
 const { PlaceCardListNearPlaces } = PlaceCardList;
 
@@ -18,7 +18,7 @@ function NearbyFilled({ offers }) {
 }
 
 NearbyFilled.propTypes = {
-  offers: propTypesFilteredOffers,
+  offers: propTypesOffersARR,
 };
 
 export { NearbyFilled };

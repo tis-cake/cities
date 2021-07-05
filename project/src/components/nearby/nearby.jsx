@@ -2,7 +2,7 @@ import React from 'react';
 
 import { NearbyFilled } from './nearby-filled/nearby-filled';
 
-import { propTypesFilteredOffers } from '../../types';
+import { propTypesOffersARR } from '../../types';
 
 function Nearby({ offers }) {
   return (
@@ -11,7 +11,7 @@ function Nearby({ offers }) {
 }
 
 Nearby.propTypes = {
-  offers: propTypesFilteredOffers,
+  offers: propTypesOffersARR,
 };
 
 export { Nearby };

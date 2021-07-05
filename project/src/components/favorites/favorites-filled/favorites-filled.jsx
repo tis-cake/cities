@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { FavoritesList } from '../favorites-list/favorites-list';
 
-import { propTypesOffers } from '../../../types';
+import { propTypesOffersARR } from '../../../types';
 
 function FavoritesFilled({ favorites, cityName, setCityName }) {
   return (
@@ -20,7 +20,7 @@ function FavoritesFilled({ favorites, cityName, setCityName }) {
 }
 
 FavoritesFilled.propTypes = {
-  favorites: propTypesOffers,
+  favorites: propTypesOffersARR,
   cityName: PropTypes.string.isRequired,
   setCityName: PropTypes.func.isRequired,
 };

@@ -1,7 +1,12 @@
 import PropTypes from 'prop-types';
 
+const propTypesID = PropTypes.oneOfType([
+  PropTypes.string.isRequired,
+  PropTypes.number.isRequired,
+]);
+
 const propTypesPlaceCard = {
-  id: PropTypes.number.isRequired,
+  id: propTypesID,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
@@ -12,8 +17,8 @@ const propTypesPlaceCard = {
 };
 
 const propTypesPerson = {
+  id: propTypesID,
   avatarUrl: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
   isPro: PropTypes.bool,
   name: PropTypes.string.isRequired,
 };
@@ -51,17 +56,22 @@ const propTypesOffer = {
 };
 
 const propTypesUser = {
-  id: PropTypes.number.isRequired,
+  id: propTypesID,
   email: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   avatarUrl: PropTypes.string.isRequired,
   isPro: PropTypes.bool.isRequired,
 };
 
+const propTypesNotify = {
+  showNotify: PropTypes.func.isRequired,
+  renderFormNotify: PropTypes.func.isRequired,
+};
+
 const propTypesReview = {
+  id: propTypesID,
   comment: PropTypes.string.isRequired,
   date: PropTypes.instanceOf(Date),
-  id: PropTypes.number.isRequired,
   rating: PropTypes.number.isRequired,
   user: PropTypes.shape({
     ...propTypesPerson,
@@ -72,22 +82,25 @@ const propTypesReviews = PropTypes.arrayOf(
   PropTypes.shape(propTypesReview),
 );
 
-const propTypesOffers = PropTypes.shape({
+const propTypesOffersOBJ = PropTypes.shape({
   offer: PropTypes.shape(propTypesOffer),
 });
 
-const propTypesFilteredOffers = PropTypes.arrayOf(
+const propTypesOffersARR = PropTypes.arrayOf(
   PropTypes.shape(propTypesOffer),
 );
+
 
 export {
   propTypesPlaceCard,
   propTypesOffer,
   propTypesCity,
   propTypesUser,
+  propTypesID,
 
+  propTypesNotify,
   propTypesReview,
   propTypesReviews,
-  propTypesOffers,
-  propTypesFilteredOffers
+  propTypesOffersOBJ,
+  propTypesOffersARR
 };

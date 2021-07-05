@@ -8,8 +8,9 @@ import {
 const AppRoute = {
   ROOT: '/',
   LOGIN: '/login',
-  DETAIL_OFFER: '/offer',
   FAVORITES: '/favorites',
+  DETAIL_OFFER: '/offer',
+  DETAIL_OFFER_PARAMS: '/offer/:id',
   NOT_FOUND: '/404',
 };
 
