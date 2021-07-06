@@ -29,6 +29,7 @@ function PlaceCardInfo({ placeData }) {
         </div>
 
         <BookmarkButtonNormal
+          id={id}
           isFavorite={isFavorite}
           blockClassName={'place-card'}
         />

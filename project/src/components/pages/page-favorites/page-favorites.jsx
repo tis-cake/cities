@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Header } from '../../shared/header/header';
@@ -6,22 +6,37 @@ import { Footer } from '../../shared/footer/footer';
 import { Favorites } from '../../favorites/favorites';
 
 import { Selector } from '../../../store/selectors';
+import { ActionServer } from '../../../server/actions';
 import { ActionCreator } from '../../../store/actions';
+import { PageLoading } from '../page-loading/page-loading';
 
 function PageFavorites() {
   const dispatch = useDispatch();
+  const isDataLoaded = useSelector((state) => Selector.getFavoritesDataLoadedStatus(state));
   const cityName = useSelector((state) => Selector.getCityName(state));
   const favorites = useSelector((state) => Selector.getFavorites(state));
-  const favoritesCount = Object.values(favorites).length;
+  const favoritesCount = favorites.length;
 
   const mainElEmptyClass = (favoritesCount === 0)
     ? 'page__main--favorites-empty'
     : '';
 
+  const fetchFavorites = (ID) => dispatch(ActionServer.fetchFavorites(ID));
+
   const setCityName = (city) => {
     dispatch(ActionCreator.setCityName(city));
     dispatch(ActionCreator.setFilteredOffers());
   };
+
+  useEffect(() => {
+    fetchFavorites();
+  }, []);
+
+  if (!isDataLoaded) {
+    return (
+      <PageLoading />
+    );
+  }
 
   return (
     <div className="page">
@@ -31,7 +46,6 @@ function PageFavorites() {
         <div className="page__favorites-container container">
           <Favorites
             favorites={favorites}
-            favoritesCount={favoritesCount}
             cityName={cityName}
             setCityName={setCityName}
           />

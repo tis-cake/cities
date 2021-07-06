@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { PlaceCardItem } from '../../place-card-item/place-card-item';
 
-import { propTypesFilteredOffers } from '../../../../types';
+import { propTypesOffersARR } from '../../../../types';
 
 const { PlaceCardСities } = PlaceCardItem;
 
@@ -22,7 +22,7 @@ function PlaceCardListСities({ offers, setActiveOffer }) {
 }
 
 PlaceCardListСities.propTypes = {
-  offers: propTypesFilteredOffers,
+  offers: propTypesOffersARR,
   setActiveOffer: PropTypes.func.isRequired,
 };
 

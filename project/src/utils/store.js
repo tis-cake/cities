@@ -20,6 +20,15 @@ const prepareInitialDataStructure = (offers) => {
   };
 };
 
+const getFilteredOffersByFavorite = (filteredOffers, id) => {
+  const index = filteredOffers.findIndex((offer) => offer.id === id);
+  const changedOffer = filteredOffers[index];
+  const currentStatus = changedOffer.isFavorite;
+  changedOffer.isFavorite = !currentStatus;
+
+  return [...filteredOffers];
+};
+
 const getFilteredOffersByID = (offers, offersIDs) => offersIDs.map((id) => offers[id]);
 
 const getSortedOffersID = (filteredOffers, cityNameCurrent, sortTypeCurrent) => {
@@ -31,6 +40,8 @@ const getSortedOffersID = (filteredOffers, cityNameCurrent, sortTypeCurrent) => 
 
 export {
   prepareInitialDataStructure,
+
+  getFilteredOffersByFavorite,
   getFilteredOffersByID,
   getSortedOffersID
 };

@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { СitiesLocation } from '../../const';
-import { propTypesFilteredOffers } from '../../types';
+import { propTypesOffersARR } from '../../types';
 import {
   updateLeafletView,
   updateLeafletMarkers,
@@ -38,7 +38,7 @@ function Map({offers, cityName, activeOffer = {}}) {
 }
 
 Map.propTypes = {
-  offers: propTypesFilteredOffers,
+  offers: propTypesOffersARR,
   cityName: PropTypes.string.isRequired,
   activeOffer: PropTypes.any,
 };

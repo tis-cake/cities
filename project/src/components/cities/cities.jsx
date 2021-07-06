@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { CitiesFilled } from './cities-filled/cities-filled';
 import { CitiesEmpty } from './cities-empty/cities-empty';
 
-import { propTypesFilteredOffers } from '../../types';
+import { propTypesOffersARR } from '../../types';
 
 function Cities(props) {
   const {
@@ -24,7 +24,7 @@ function Cities(props) {
 
 Cities.propTypes = {
   cityName: PropTypes.string.isRequired,
-  offers: propTypesFilteredOffers,
+  offers: propTypesOffersARR,
 };
 
 export { Cities };

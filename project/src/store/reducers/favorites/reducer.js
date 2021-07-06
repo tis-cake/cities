@@ -1,15 +1,18 @@
 import { ActionType } from '../../actions';
 
 const initialState = {
-  favorites: {},
+  favorites: [],
+
+  isDataLoaded: false,
 };
 
 const favorites = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.SET_REVIEWS: {
+    case ActionType.SET_FAVORITES: {
       return {
         ...state,
         favorites: action.payload,
+        isDataLoaded: true,
       };
     }
 

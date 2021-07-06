@@ -3,7 +3,7 @@ import { AuthorizationStatus } from '../../../const';
 
 const initialState = {
   user: {},
-  authorizationStatus: AuthorizationStatus.UNKNOWN,
+  authorizationStatus: AuthorizationStatus.NO_AUTH,
 };
 
 const user = (state = initialState, action) => {

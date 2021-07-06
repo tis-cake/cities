@@ -2,7 +2,7 @@ import React from 'react';
 
 import { PlaceCardItem } from '../../place-card-item/place-card-item';
 
-import { propTypesFilteredOffers } from '../../../../types';
+import { propTypesOffersARR } from '../../../../types';
 
 const { PlaceCardFavorites } = PlaceCardItem;
 
@@ -20,7 +20,7 @@ function PlaceCardListFavorites({ offers }) {
 }
 
 PlaceCardListFavorites.propTypes = {
-  offers: propTypesFilteredOffers,
+  offers: propTypesOffersARR,
 };
 
 export { PlaceCardListFavorites };

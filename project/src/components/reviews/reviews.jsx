@@ -9,6 +9,10 @@ import { Selector } from '../../store/selectors';
 import { AuthorizationStatus } from '../../const';
 import { ActionServer } from '../../server/actions';
 
+import { withFormNotify } from '../../hoks/with-form-notify/with-form-notify';
+
+const FormReviewsWrapped = withFormNotify(FormReviews);
+
 function Reviews({ id }) {
   const dispatch = useDispatch();
   const authorizationStatus = useSelector((state) => Selector.getAuthorizationStatus(state));
@@ -28,7 +32,7 @@ function Reviews({ id }) {
 
       {(reviewsCount > 0) && <ReviewsList reviewsList={reviews}/>}
 
-      {(authorizationStatus === AuthorizationStatus.AUTH) && <FormReviews postReview={postReview} id={id}/>}
+      {(authorizationStatus === AuthorizationStatus.AUTH) && <FormReviewsWrapped postReview={postReview} id={id}/>}
     </React.Fragment>
   );
 }

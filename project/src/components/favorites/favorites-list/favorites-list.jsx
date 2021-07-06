@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 import { FavoritesItem } from '../favorites-item/favorites-item';
 
-import { propTypesOffers } from '../../../types';
+import { propTypesOffersARR } from '../../../types';
 
-const getFilteredOffersFavoritesOnCities = (offers) => {
+const getFilteredFavoritesOnCities = (offers) => {
   const result = {};
 
-  for (const offer of Object.values(offers)) {
+  for (const offer of offers) {
     if (result[offer.city.name]) {
       result[offer.city.name].push(offer);
     } else {
@@ -20,9 +20,9 @@ const getFilteredOffersFavoritesOnCities = (offers) => {
 };
 
 function FavoritesList(props) {
-  const { cityName, setCityName, offers } = props;
+  const { cityName, setCityName, favorites } = props;
 
-  const favoritesList = getFilteredOffersFavoritesOnCities(offers);
+  const favoritesList = getFilteredFavoritesOnCities(favorites);
 
   return (
     <ul className="favorites__list">
@@ -42,7 +42,7 @@ function FavoritesList(props) {
 FavoritesList.propTypes = {
   cityName: PropTypes.string.isRequired,
   setCityName: PropTypes.func.isRequired,
-  offers: propTypesOffers,
+  favorites: propTypesOffersARR,
 };
 
 export { FavoritesList };

@@ -8,16 +8,22 @@ import {
 const AppRoute = {
   ROOT: '/',
   LOGIN: '/login',
-  DETAIL_OFFER: '/offer',
   FAVORITES: '/favorites',
+  DETAIL_OFFER: '/offer',
+  DETAIL_OFFER_PARAMS: '/offer/:id',
   NOT_FOUND: '/404',
 };
 
 const APIRoute = {
+  FAVORITES: '/favorite',
   REVIEWS: '/comments',
   OFFERS: '/hotels',
   LOGIN: '/login',
   LOGOUT: '/logout',
+};
+
+const HttpCode = {
+  UNAUTHORIZED: 401,
 };
 
 const SortType = {
@@ -97,12 +103,12 @@ const KeyCode = {
 const AuthorizationStatus = {
   AUTH: 'AUTH',
   NO_AUTH: 'NO_AUTH',
-  UNKNOWN: 'UNKNOWN',
 };
 
 export {
   AppRoute,
   APIRoute,
+  HttpCode,
   SortType,
   SortTypeValue,
   SortTypeAction,

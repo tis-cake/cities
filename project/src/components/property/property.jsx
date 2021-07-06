@@ -12,7 +12,7 @@ import { PropertyGallery } from './property-gallery/property-gallery';
 import { PropertyInsides } from './property-insides/property-insides';
 import { PropertyFeatures } from './property-features/property-features';
 
-import { propTypesOffer, propTypesFilteredOffers } from '../../types';
+import { propTypesID, propTypesOffer, propTypesOffersARR } from '../../types';
 
 const { BookmarkButtonBig } = BookmarkButton;
 
@@ -43,6 +43,7 @@ function Property({ cityName, offers, offer, id }) {
           </div>
 
           <BookmarkButtonBig
+            id={id}
             isFavorite={isFavorite}
             blockClassName={'property'}
           />
@@ -72,9 +73,9 @@ function Property({ cityName, offers, offer, id }) {
 
 Property.propTypes = {
   cityName: PropTypes.string.isRequired,
-  offers: propTypesFilteredOffers,
+  offers: propTypesOffersARR,
   offer: PropTypes.shape(propTypesOffer),
-  id: PropTypes.string.isRequired,
+  id: propTypesID,
 };
 
 export { Property };

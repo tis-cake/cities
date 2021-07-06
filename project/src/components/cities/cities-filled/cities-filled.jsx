@@ -6,7 +6,7 @@ import { Sort } from '../../shared/sort/sort';
 import { PlaceCardList } from '../../place-card/place-card-list/place-card-list';
 
 import { castPlacesFormat } from '../../../utils/format';
-import { propTypesFilteredOffers } from '../../../types';
+import { propTypesOffersARR } from '../../../types';
 
 const { PlaceCardListСities } = PlaceCardList;
 
@@ -46,7 +46,7 @@ function CitiesFilled({ offers, cityName, sortType, setSortType }) {
 }
 
 CitiesFilled.propTypes = {
-  offers: propTypesFilteredOffers,
+  offers: propTypesOffersARR,
   cityName: PropTypes.string.isRequired,
   sortType: PropTypes.string.isRequired,
   setSortType: PropTypes.func.isRequired,
