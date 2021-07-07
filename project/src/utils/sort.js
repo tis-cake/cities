@@ -1,26 +1,35 @@
-const sortPriceLowToHigh = (arr) => {
-  const result = arr.slice().sort((a, b) => a.price - b.price);
-  return result;
+import { SortType } from '../const';
+
+const sortOffers = (offers, sortBy) => {
+  const slicedOffers = offers.slice();
+
+  switch (sortBy) {
+    case SortType.PRICE_LOW_TO_HIGH: {
+      return slicedOffers.sort((a, b) => a.price - b.price);
+    }
+
+    case SortType.PRICE_HIGH_TO_LOW: {
+      return slicedOffers.sort((a, b) => b.price - a.price);
+    }
+
+    case SortType.RATING_LOW_TO_HIGH: {
+      return slicedOffers.sort((a, b) => a.rating - b.rating);
+    }
+
+    case SortType.RATING_HIGH_TO_LOW: {
+      return slicedOffers.sort((a, b) => b.rating - a.rating);
+    }
+
+    case SortType.DATE_NEW_TO_OLD: {
+      return slicedOffers.sort((a, b) => new Date(b.date) - new Date(a.date));
+    }
+
+    default: {
+      return slicedOffers;
+    }
+  }
 };
 
-const sortPriceHighToLow = (arr) => {
-  const result = arr.slice().sort((a, b) => b.price - a.price);
-  return result;
-};
+const sortDateNewToOld = (elements) => elements.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
 
-const sortRatingLowToHigh = (arr) => {
-  const result = arr.slice().sort((a, b) => a.rating - b.rating);
-  return result;
-};
-
-const sortRatingHighToLow = (arr) => {
-  const result = arr.slice().sort((a, b) => b.rating - a.rating);
-  return result;
-};
-
-export {
-  sortPriceLowToHigh,
-  sortPriceHighToLow,
-  sortRatingLowToHigh,
-  sortRatingHighToLow
-};
+export { sortOffers, sortDateNewToOld };

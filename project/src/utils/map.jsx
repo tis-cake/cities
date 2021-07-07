@@ -58,13 +58,11 @@ const getLeafletMarkers = (points, activeOffer = false) => {
       lng: point.longitude,
     },
     {
-      // icon: defaultCustomIcon,
       icon: (point === activeOffer.location)
         ? currentCustomIcon
         : defaultCustomIcon,
     },
   ));
-  // .bindPopup(point.popupName);
 
   return result;
 };
@@ -86,9 +84,6 @@ const useMap = (mapRef, locationCityCurrent) => {
 
   useEffect(() => {
     if (mapRef.current !== null && map === null) {
-      // eslint-disable-next-line no-console
-      console.log('НОВЫЙ ИНСТАНС LEAFLET_MAP');
-
       const instance = leaflet.map(mapRef.current, {
         center: {
           lat: locationCityCurrent.latitude,

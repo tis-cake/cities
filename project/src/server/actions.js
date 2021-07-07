@@ -12,12 +12,12 @@ import {
 
 const TOKEN = 'token';
 
-const fetchOfferActive = (id) => (
+const fetchDetailOffer = (id) => (
   Promise.all([
     serverAPI.get(`${APIRoute.OFFERS}/${id}`),
     serverAPI.get(`${APIRoute.OFFERS}/${id}/nearby`),
   ])
-    .then(([offer, nearby, reviews]) => ({
+    .then(([offer, nearby]) => ({
       offer: adaptOfferToClient(offer.data),
       nearby: adaptOffersToClient(nearby.data),
     }))
@@ -90,7 +90,7 @@ const logout = () => (dispatch, _getState, api) => (
 );
 
 const ActionServer = {
-  fetchOfferActive,
+  fetchDetailOffer,
   fetchOffers,
   fetchReviews,
   postReview,

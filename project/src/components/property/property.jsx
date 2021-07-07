@@ -16,7 +16,15 @@ import { propTypesID, propTypesOffer, propTypesOffersARR } from '../../types';
 
 const { BookmarkButtonBig } = BookmarkButton;
 
-function Property({ cityName, offers, offer, id }) {
+function Property(props) {
+  const {
+    cityName,
+    offers,
+    offer,
+    id,
+    handleFavoriteClick,
+  } = props;
+
   const {
     title,
     isPremium,
@@ -46,6 +54,7 @@ function Property({ cityName, offers, offer, id }) {
             id={id}
             isFavorite={isFavorite}
             blockClassName={'property'}
+            extraHandlerFavoriteClick={handleFavoriteClick}
           />
 
           <PropertyRating placeData={offer}/>
@@ -76,6 +85,8 @@ Property.propTypes = {
   offers: propTypesOffersARR,
   offer: PropTypes.shape(propTypesOffer),
   id: propTypesID,
+
+  handleFavoriteClick: PropTypes.func,
 };
 
 export { Property };

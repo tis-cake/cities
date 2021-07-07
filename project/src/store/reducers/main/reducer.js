@@ -33,7 +33,7 @@ const main = (state = initialState, action) => {
       const currentIDs = state.offersOnCitiesID[state.cityName][action.payload];
 
       if (defaultIDs.length !== 0 && currentIDs.length === 0) {
-        const sortedOffersID = getSortedOffersID(state.filteredOffers, state.cityName, action.payload);
+        const sortedOffersID = getSortedOffersID(state.filteredOffers, action.payload);
 
         return {
           ...state,

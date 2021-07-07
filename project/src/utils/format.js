@@ -47,10 +47,15 @@ const formatRating = (rating) => {
   return result;
 };
 
+const formatRatingRound = (rating) => {
+  const result = `${Math.round(rating) / 5 * 100}%`;
+  return result;
+};
+
 const formatDateTime = (date) => {
   const year = date.getFullYear();
   const month = castNumberFormat(date.getMonth() + 1);
-  const day = date.getDate();
+  const day = castNumberFormat(date.getDate());
 
   const result = `${year}-${month}-${day}`;
   return result;
@@ -70,6 +75,7 @@ export {
   castPlacesFormat,
 
   formatRating,
+  formatRatingRound,
   formatDateTime,
   formatDateReview
 };

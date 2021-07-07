@@ -1,10 +1,3 @@
-import {
-  sortPriceLowToHigh,
-  sortPriceHighToLow,
-  sortRatingLowToHigh,
-  sortRatingHighToLow
-} from './utils/sort';
-
 const AppRoute = {
   ROOT: '/',
   LOGIN: '/login',
@@ -20,6 +13,11 @@ const APIRoute = {
   OFFERS: '/hotels',
   LOGIN: '/login',
   LOGOUT: '/logout',
+};
+
+const AuthorizationStatus = {
+  AUTH: 'AUTH',
+  NO_AUTH: 'NO_AUTH',
 };
 
 const HttpCode = {
@@ -40,14 +38,6 @@ const SortTypeValue = {
   [SortType.PRICE_HIGH_TO_LOW]: 'Price: high to low',
   [SortType.RATING_LOW_TO_HIGH]: 'Top rated last',
   [SortType.RATING_HIGH_TO_LOW]: 'Top rated first',
-};
-
-const SortTypeAction = {
-  [SortType.DEFAULT]: [],
-  [SortType.PRICE_LOW_TO_HIGH]: sortPriceLowToHigh,
-  [SortType.PRICE_HIGH_TO_LOW]: sortPriceHighToLow,
-  [SortType.RATING_LOW_TO_HIGH]: sortRatingLowToHigh,
-  [SortType.RATING_HIGH_TO_LOW]: sortRatingHighToLow,
 };
 
 const Cities = {
@@ -100,22 +90,22 @@ const KeyCode = {
   ESC: 27,
 };
 
-const AuthorizationStatus = {
-  AUTH: 'AUTH',
-  NO_AUTH: 'NO_AUTH',
+const NotifyMessage = {
+  DEFAULT: 'Заполните, пожалуйста, все поля!',
+  PASSWORD_INCORRECT_SPACES: 'Пароль не может состоять из одних пробелов!',
 };
 
 export {
   AppRoute,
   APIRoute,
+  AuthorizationStatus,
   HttpCode,
   SortType,
   SortTypeValue,
-  SortTypeAction,
   Cities,
   СitiesLocation,
   KeyCode,
-  AuthorizationStatus,
+  NotifyMessage,
 
   DEFAULT_CITY
 };

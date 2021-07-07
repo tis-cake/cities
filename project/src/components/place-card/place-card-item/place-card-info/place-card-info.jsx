@@ -36,6 +36,7 @@ function PlaceCardInfo({ placeData }) {
       </div>
 
       <Rating
+        isRound
         rating={rating}
         blockClassName={'place-card'}
       />

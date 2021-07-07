@@ -1,4 +1,5 @@
-import { SortType, SortTypeAction, Cities } from '../const';
+import { sortOffers } from '../utils/sort';
+import { SortType, Cities } from '../const';
 
 const prepareInitialDataStructure = (offers) => {
   const idOffersOnCitiesSortedType = {};
@@ -21,18 +22,19 @@ const prepareInitialDataStructure = (offers) => {
 };
 
 const getFilteredOffersByFavorite = (filteredOffers, id) => {
-  const index = filteredOffers.findIndex((offer) => offer.id === id);
-  const changedOffer = filteredOffers[index];
+  const copiedOffers = [...filteredOffers];
+  const index = copiedOffers.findIndex((offer) => String(offer.id) === String(id));
+  const changedOffer = copiedOffers[index];
   const currentStatus = changedOffer.isFavorite;
   changedOffer.isFavorite = !currentStatus;
 
-  return [...filteredOffers];
+  return copiedOffers;
 };
 
 const getFilteredOffersByID = (offers, offersIDs) => offersIDs.map((id) => offers[id]);
 
-const getSortedOffersID = (filteredOffers, cityNameCurrent, sortTypeCurrent) => {
-  const arraySorted = SortTypeAction[sortTypeCurrent](filteredOffers);
+const getSortedOffersID = (filteredOffers, sortTypeCurrent) => {
+  const arraySorted = sortOffers(filteredOffers, sortTypeCurrent);
   const result = arraySorted.map((el) => el.id);
 
   return result;

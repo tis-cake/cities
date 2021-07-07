@@ -17,6 +17,8 @@ function FormReviews({ postReview, id, showNotify, renderFormNotify }) {
 
   const FormNotify = renderFormNotify();
 
+  const isCommentValidity = (comment.length >= MIN_LENGTH && comment.length <= MAX_LENGTH);
+
   const handleRatingChange = (evt) => {
     setRating(evt.currentTarget.value);
   };
@@ -25,10 +27,14 @@ function FormReviews({ postReview, id, showNotify, renderFormNotify }) {
     setComment(evt.currentTarget.value);
   };
 
+  const handleFormSubmitMouseOver = () => {
+    if (!isCommentValidity) {
+      showNotify();
+    }
+  };
+
   const handleFormSubmit = (evt) => {
     evt.preventDefault();
-
-    const isCommentValidity = (comment.length >= MIN_LENGTH && comment.length <= MAX_LENGTH);
 
     if (isCommentValidity) {
       postReview(id, {
@@ -38,8 +44,6 @@ function FormReviews({ postReview, id, showNotify, renderFormNotify }) {
 
       setRating('');
       setComment('');
-    } else {
-      showNotify();
     }
   };
 
@@ -75,7 +79,14 @@ function FormReviews({ postReview, id, showNotify, renderFormNotify }) {
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled="">Submit</button>
+        <button
+          className="reviews__submit form__submit button"
+          type="submit"
+          disabled={!isCommentValidity}
+          onMouseOver={handleFormSubmitMouseOver}
+        >
+          Submit
+        </button>
       </div>
 
       {FormNotify}

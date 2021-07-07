@@ -10,12 +10,9 @@ function ReviewsItem({ reviewData }) {
   const {
     comment,
     date,
-    // id,
     rating,
     user: {
       avatarUrl,
-      // id,
-      // isPro,
       name,
     },
   } = reviewData;
