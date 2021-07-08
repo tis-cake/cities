@@ -34,6 +34,9 @@ function Property(props) {
     },
   } = offer;
 
+  const mapOffers = offers.slice();
+  mapOffers.push(offer);
+
   const renderPropertyInsides = (goodsCount > 0) && <PropertyInsides placeData={offer}/>;
 
   return (
@@ -72,8 +75,9 @@ function Property(props) {
       </div>
       <section className="property__map map">
         <Map
-          offers={offers}
+          offers={mapOffers}
           cityName={cityName}
+          activeOffer={offer}
         />
       </section>
     </section>

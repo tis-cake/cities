@@ -1,6 +1,6 @@
 import { api as serverAPI } from '../store/store';
 import { ActionCreator } from '../store/actions';
-import { handleError } from '../utils/error';
+import { handleError } from '../utils/error/error';
 import { AppRoute, APIRoute, AuthorizationStatus } from '../const';
 import {
   mapObjID,
@@ -28,29 +28,40 @@ const fetchOffers = () => (dispatch, _getState, api) => (
     .then(({ data }) => adaptOffersToClient(data))
     .then((offers) => mapObjID(offers))
     .then((offers) => dispatch(ActionCreator.setInitOffers(offers)))
-    .catch(() => {})
+    .catch((err) => handleError(err))
 );
 
 const fetchReviews = (id) => (dispatch, _getState, api) => (
   api.get(`${APIRoute.REVIEWS}/${id}`)
     .then(({ data }) => adaptReviewsToClient(data))
     .then((reviews) => dispatch(ActionCreator.setReviews(reviews)))
-    .catch(() => {})
+    .catch((err) => handleError(err))
 );
 
-const postReview = (id, comment) => (dispatch, _getState, api) => (
+const postReview = (id, comment) => (dispatch, _getState, api) => {
+  dispatch(ActionCreator.setReviewSendedStatus(false));
+  dispatch(ActionCreator.setReviewSendingStatus(true));
+
   api.post(`${APIRoute.REVIEWS}/${id}`, comment)
+    .then(() => {
+      dispatch(ActionCreator.setReviewSendedStatus(true));
+      dispatch(ActionCreator.setReviewSendingStatus(false));
+    })
     .then(() => api.get(`${APIRoute.REVIEWS}/${id}`))
     .then(({ data }) => adaptReviewsToClient(data))
     .then((reviews) => dispatch(ActionCreator.setReviews(reviews)))
-    .catch(() => {})
-);
+    .catch((err) => {
+      dispatch(ActionCreator.setReviewSendedStatus(false));
+      dispatch(ActionCreator.setReviewSendingStatus(false));
+      handleError(err);
+    });
+};
 
 const fetchFavorites = () => (dispatch, _getState, api) => (
   api.get(APIRoute.FAVORITES)
     .then(({ data }) => adaptOffersToClient(data))
     .then((favorites) => dispatch(ActionCreator.setFavorites(favorites)))
-    .catch(() => {})
+    .catch((err) => handleError(err))
 );
 
 const postFavorite = (id, status) => (dispatch, _getState, api) => (

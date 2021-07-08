@@ -11,7 +11,7 @@ function ReviewsList(props) {
   const { reviewsList } = props;
 
   const slicedReviews = (reviewsList.length > MAX_REVIEWS_COUNT)
-    ? reviewsList.slice(0, MAX_REVIEWS_COUNT)
+    ? reviewsList.slice(-MAX_REVIEWS_COUNT)
     : reviewsList;
 
   const sortedReviews = sortDateNewToOld(slicedReviews);

@@ -1,8 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { FormRatingList } from '../form-rating/form-rating-list/form-rating-list';
 
+import { Selector } from '../../../store/selectors';
 import { propTypesNotify } from '../../../types';
 
 const MIN_LENGTH = 50;
@@ -16,6 +18,8 @@ function FormReviews({ postReview, id, showNotify, renderFormNotify }) {
   const commentRef = useRef(null);
 
   const FormNotify = renderFormNotify();
+  const sendedStatus = useSelector((state) => Selector.getReviewSendedStatus(state));
+  const sendingStatus = useSelector((state) => Selector.getReviewSendingStatus(state));
 
   const isCommentValidity = (comment.length >= MIN_LENGTH && comment.length <= MAX_LENGTH);
 
@@ -41,11 +45,15 @@ function FormReviews({ postReview, id, showNotify, renderFormNotify }) {
         'comment': comment,
         'rating': rating,
       });
+    }
+  };
 
+  useEffect(() => {
+    if (sendedStatus) {
       setRating('');
       setComment('');
     }
-  };
+  }, [sendedStatus]);
 
   return (
     <form
@@ -60,6 +68,7 @@ function FormReviews({ postReview, id, showNotify, renderFormNotify }) {
       <FormRatingList
         rating={rating}
         blockClassName={'reviews'}
+        sendingStatus={sendingStatus}
         handleRatingChange={handleRatingChange}
       />
 
@@ -70,9 +79,10 @@ function FormReviews({ postReview, id, showNotify, renderFormNotify }) {
         placeholder="Tell how was your stay, what you like and what can be improved"
         minLength="50"
         maxLength="300"
-        onChange = {handleTextareaChange}
-        ref={commentRef}
         value={comment}
+        ref={commentRef}
+        disabled={sendingStatus}
+        onChange = {handleTextareaChange}
       />
 
       <div className="reviews__button-wrapper">

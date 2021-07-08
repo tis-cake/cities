@@ -6,6 +6,8 @@ const ActionType = {
   CHANGE_OFFERS_BY_FAVORITE: 'main/changeOffersByFavorite',
 
   SET_REVIEWS: 'reviews/setReviews',
+  SET_REVIEW_SENDED_STATUS: 'reviews/setSendedStatus',
+  SET_REVIEW_SENDING_STATUS: 'reviews/setSendingStatus',
   SET_FAVORITES: 'favorites/setFavorites',
 
   LOGOUT: 'user/logout',
@@ -15,80 +17,68 @@ const ActionType = {
   REDIRECT_TO_ROUTE: 'redirect/redirectToRoute',
 };
 
-function setCityName(cityName) {
-  return {
-    type: ActionType.SET_CITY_NAME,
-    payload: cityName,
-  };
-}
+const setCityName = (cityName) => ({
+  type: ActionType.SET_CITY_NAME,
+  payload: cityName,
+});
 
-function setSortType(sortType) {
-  return {
-    type: ActionType.SET_SORT_TYPE,
-    payload: sortType,
-  };
-}
+const setSortType = (sortType) => ({
+  type: ActionType.SET_SORT_TYPE,
+  payload: sortType,
+});
 
-function setInitOffers(initOffers) {
-  return {
-    type: ActionType.SET_INIT_OFFERS,
-    payload: initOffers,
-  };
-}
+const setInitOffers = (initOffers) => ({
+  type: ActionType.SET_INIT_OFFERS,
+  payload: initOffers,
+});
 
-function setFilteredOffers() {
-  return {
-    type: ActionType.SET_FILTERED_OFFERS,
-  };
-}
+const setFilteredOffers = () => ({
+  type: ActionType.SET_FILTERED_OFFERS,
+});
 
-function changeOffersByFavorite(id) {
-  return {
-    type: ActionType.CHANGE_OFFERS_BY_FAVORITE,
-    payload: id,
-  };
-}
+const changeOffersByFavorite = (id) => ({
+  type: ActionType.CHANGE_OFFERS_BY_FAVORITE,
+  payload: id,
+});
 
-function setUser(user) {
-  return {
-    type: ActionType.SET_USER,
-    payload: user,
-  };
-}
+const setUser = (user) => ({
+  type: ActionType.SET_USER,
+  payload: user,
+});
 
-function setReviews(reviews) {
-  return {
-    type: ActionType.SET_REVIEWS,
-    payload: reviews,
-  };
-}
+const setReviews = (reviews) => ({
+  type: ActionType.SET_REVIEWS,
+  payload: reviews,
+});
 
-function setFavorites(favorites) {
-  return {
-    type: ActionType.SET_FAVORITES,
-    payload: favorites,
-  };
-}
+const setReviewSendedStatus = (status) => ({
+  type: ActionType.SET_REVIEW_SENDED_STATUS,
+  payload: status,
+});
 
-function logout() {
-  return {
-    type: ActionType.LOGOUT,
-  };
-}
+const setReviewSendingStatus = (status) => ({
+  type: ActionType.SET_REVIEW_SENDING_STATUS,
+  payload: status,
+});
 
-function requireAuthorization(status) {
-  return {
-    type: ActionType.REQUIRED_AUTHORIZATION,
-    payload: status,
-  };
-}
+const setFavorites = (favorites) => ({
+  type: ActionType.SET_FAVORITES,
+  payload: favorites,
+});
 
-function redirectToRoute(url) {
-  return {
-    type: ActionType.REDIRECT_TO_ROUTE,
-    payload: url,
-  };
-}
+const logout = () => ({
+  type: ActionType.LOGOUT,
+});
+
+const requireAuthorization = (status) => ({
+  type: ActionType.REQUIRED_AUTHORIZATION,
+  payload: status,
+});
+
+const redirectToRoute = (url) => ({
+  type: ActionType.REDIRECT_TO_ROUTE,
+  payload: url,
+});
 
 const ActionCreator = {
   setCityName,
@@ -98,6 +88,8 @@ const ActionCreator = {
   changeOffersByFavorite,
 
   setReviews,
+  setReviewSendedStatus,
+  setReviewSendingStatus,
   setFavorites,
 
   setUser,
