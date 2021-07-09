@@ -41,11 +41,6 @@ const changeOffersByFavorite = (id) => ({
   payload: id,
 });
 
-const setUser = (user) => ({
-  type: ActionType.SET_USER,
-  payload: user,
-});
-
 const setReviews = (reviews) => ({
   type: ActionType.SET_REVIEWS,
   payload: reviews,
@@ -68,6 +63,11 @@ const setFavorites = (favorites) => ({
 
 const logout = () => ({
   type: ActionType.LOGOUT,
+});
+
+const setUser = (user) => ({
+  type: ActionType.SET_USER,
+  payload: user,
 });
 
 const requireAuthorization = (status) => ({

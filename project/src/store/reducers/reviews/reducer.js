@@ -3,8 +3,8 @@ import { ActionType } from '../../actions';
 const initialState = {
   reviews: [],
 
-  isDataSending: false,
   isDataSended: false,
+  isDataSending: false,
 };
 
 const reviews = (state = initialState, action) => {
