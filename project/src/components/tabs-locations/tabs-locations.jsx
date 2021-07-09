@@ -13,7 +13,7 @@ function handleLocationLinkClick(city, cityCurrent, setCityName) {
 function TabsLocations({ cityCurrent, setCityName }) {
   return (
     <section className="locations container">
-      <ul className="locations__list tabs__list">
+      <ul className="locations__list tabs__list" data-testid="tabs-locations">
         {Object.values(Cities).map((city) => (
           <li key={`locations-item-${city}`} className="locations__item">
             <NavLink

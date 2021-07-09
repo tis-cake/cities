@@ -11,7 +11,7 @@ function Rating(props) {
     : formatRating(rating);
 
   return (
-    <div className={`${blockClassName}__rating rating`}>
+    <div className={`${blockClassName}__rating rating`} data-testid="rating">
       <div className={`${blockClassName}__stars rating__stars`}>
         <span style={{width: formattedRating}}></span>
         <span className="visually-hidden">Rating</span>

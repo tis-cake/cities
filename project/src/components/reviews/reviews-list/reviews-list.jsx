@@ -17,7 +17,7 @@ function ReviewsList(props) {
   const sortedReviews = sortDateNewToOld(slicedReviews);
 
   return (
-    <ul className="reviews__list">
+    <ul className="reviews__list" data-testid="review-list">
       {sortedReviews.map((review) => (
         <ReviewsItem
           key={review.id}

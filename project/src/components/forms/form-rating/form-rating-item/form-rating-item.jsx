@@ -25,6 +25,7 @@ function FormRatingItem(props) {
         required
         onChange={handleRatingChange}
         disabled={sendingStatus}
+        data-testid="form-rating-item"
       />
       <label
         className={`${blockClassName}__rating-label form__rating-label`}

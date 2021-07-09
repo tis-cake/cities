@@ -8,7 +8,7 @@ function PropertyFeatures({ placeData }) {
   const { type, bedrooms, maxAdults } = placeData;
 
   return (
-    <ul className="property__features">
+    <ul className="property__features" data-testid="property-features">
       <li className="property__feature property__feature--entire">
         {type}
       </li>

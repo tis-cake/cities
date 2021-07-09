@@ -15,7 +15,7 @@ function FormRatingList(props) {
   const { blockClassName } = props;
 
   return (
-    <div className={`${blockClassName}__rating-form form__rating`}>
+    <div className={`${blockClassName}__rating-form form__rating`} data-testid="form-rating-list">
       {ratingTitles.map((title, index, arr) => {
         const indexReverse = arr.length - index;
 

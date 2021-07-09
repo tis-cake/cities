@@ -15,7 +15,7 @@ function PropertyGallery({ placeData }) {
 
   return (
     <div className="property__gallery-container container">
-      <div className="property__gallery">
+      <div className="property__gallery" data-testid="property-gallery">
         {slicedImages.map((image) => (
           <div key={`property-image-${nanoid()}`} className="property__image-wrapper">
             <img className="property__image" src={image} alt="Studio" />

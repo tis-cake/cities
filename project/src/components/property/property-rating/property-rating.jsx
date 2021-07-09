@@ -10,7 +10,7 @@ function PropertyRating({ placeData }) {
 
   return (
     <Rating rating={rating} blockClassName={'property'}>
-      <span className="property__rating-value rating__value">{rating}</span>
+      <span className="property__rating-value rating__value" data-testid="property-rating">{rating}</span>
     </Rating>
   );
 }
