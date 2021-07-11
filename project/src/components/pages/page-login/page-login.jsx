@@ -3,7 +3,7 @@ import React from 'react';
 import { Header } from '../../shared/header/header';
 import { FormLogin } from '../../forms/form-login/form-login';
 
-import { withFormNotify } from '../../../hoks/with-form-notify/with-form-notify';
+import { withFormNotify } from '../../../hocs/with-form-notify/with-form-notify';
 
 const FormLoginWrapped = withFormNotify(FormLogin);
 

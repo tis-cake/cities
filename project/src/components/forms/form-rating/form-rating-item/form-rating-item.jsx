@@ -6,6 +6,7 @@ function FormRatingItem(props) {
     title,
     rating,
     indexReverse,
+    sendingStatus,
     blockClassName,
     handleRatingChange,
   } = props;
@@ -23,10 +24,13 @@ function FormRatingItem(props) {
         type="radio"
         required
         onChange={handleRatingChange}
+        disabled={sendingStatus}
+        data-testid="form-rating-item"
       />
       <label
         className={`${blockClassName}__rating-label form__rating-label`}
         htmlFor={`${indexReverse}-stars`}
+        disabled={sendingStatus}
         title={title}
       >
         <svg className="form__star-image" width="37" height="33">
@@ -38,6 +42,7 @@ function FormRatingItem(props) {
 }
 
 FormRatingItem.propTypes = {
+  sendingStatus: PropTypes.bool,
   title: PropTypes.string.isRequired,
   rating: PropTypes.string.isRequired,
   indexReverse: PropTypes.number.isRequired,

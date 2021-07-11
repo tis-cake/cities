@@ -1,15 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { formatRating } from '../../../utils/format';
+import { formatRating, formatRatingRound } from '../../../utils/format';
 
 function Rating(props) {
-  const { rating, blockClassName } = props;
+  const { rating, blockClassName, isRound } = props;
+
+  const formattedRating = isRound
+    ? formatRatingRound(rating)
+    : formatRating(rating);
 
   return (
-    <div className={`${blockClassName}__rating rating`}>
+    <div className={`${blockClassName}__rating rating`} data-testid="rating">
       <div className={`${blockClassName}__stars rating__stars`}>
-        <span style={{width: formatRating(rating)}}></span>
+        <span style={{width: formattedRating}}></span>
         <span className="visually-hidden">Rating</span>
       </div>
 
@@ -21,6 +25,7 @@ function Rating(props) {
 Rating.propTypes = {
   children: PropTypes.element,
 
+  isRound: PropTypes.bool,
   rating: PropTypes.number.isRequired,
   blockClassName: PropTypes.string.isRequired,
 };

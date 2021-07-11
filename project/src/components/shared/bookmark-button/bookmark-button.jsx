@@ -9,7 +9,15 @@ import { propTypesID } from '../../../types';
 
 const { BookmarkButtonIconNormal, BookmarkButtonIconBig } = BookmarkButtonIcon;
 
-function BookmarkButtonWrapper({ children, id, isFavorite, blockClassName }) {
+function BookmarkButtonWrapper(props) {
+  const {
+    id,
+    isFavorite,
+    blockClassName,
+    children,
+    extraHandlerFavoriteClick = false,
+  } = props;
+
   const dispatch = useDispatch();
 
   const bookmarkButtonActiveClass = isFavorite
@@ -20,7 +28,13 @@ function BookmarkButtonWrapper({ children, id, isFavorite, blockClassName }) {
     ? 'To bookmarks'
     : 'In bookmarks';
 
-  const postFavorite = (ID, status) => dispatch(ActionServer.postFavorite(ID, status));
+  const postFavorite = (ID, status) => {
+    dispatch(ActionServer.postFavorite(ID, status));
+
+    if (extraHandlerFavoriteClick) {
+      extraHandlerFavoriteClick();
+    }
+  };
 
   return (
     <button
@@ -54,11 +68,12 @@ function BookmarkButtonBig(props) {
 const BookmarkButton = { BookmarkButtonNormal, BookmarkButtonBig };
 
 BookmarkButtonWrapper.propTypes = {
-  children: PropTypes.element,
-
   blockClassName: PropTypes.string.isRequired,
   isFavorite: PropTypes.bool.isRequired,
   id: propTypesID,
+
+  children: PropTypes.element,
+  extraHandlerFavoriteClick: PropTypes.func,
 };
 
 export { BookmarkButton };

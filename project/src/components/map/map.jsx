@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { СitiesLocation } from '../../const';
-import { propTypesOffersARR } from '../../types';
+import { propTypesOffer, propTypesOffersARR } from '../../types';
 import {
   updateLeafletView,
   updateLeafletMarkers,
@@ -30,7 +30,7 @@ function Map({offers, cityName, activeOffer = {}}) {
     if (map) {
       updateLeafletMarkers(map, locationPoints, activeOffer);
     }
-  }, [activeOffer]);
+  }, [map, activeOffer]);
 
   return (
     <div id="map" ref={mapRef} style={{height: '100%'}}/>
@@ -40,7 +40,10 @@ function Map({offers, cityName, activeOffer = {}}) {
 Map.propTypes = {
   offers: propTypesOffersARR,
   cityName: PropTypes.string.isRequired,
-  activeOffer: PropTypes.any,
+  activeOffer: PropTypes.oneOfType([
+    PropTypes.shape(propTypesOffer),
+    PropTypes.object,
+  ]),
 };
 
 export { Map };

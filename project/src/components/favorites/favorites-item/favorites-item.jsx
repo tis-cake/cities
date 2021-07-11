@@ -9,11 +9,11 @@ import { propTypesOffer } from '../../../types';
 
 const { PlaceCardListFavorites } = PlaceCardList;
 
-function handleLocationLinkClick(city, cityCurrent, setCityName) {
+const handleLocationLinkClick = (city, cityCurrent, setCityName) => {
   if (city !== cityCurrent) {
     setCityName(city);
   }
-}
+};
 
 function FavoritesItem(props) {
   const { offers, cityCurrent, city, setCityName } = props;

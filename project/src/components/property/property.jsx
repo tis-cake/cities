@@ -16,7 +16,15 @@ import { propTypesID, propTypesOffer, propTypesOffersARR } from '../../types';
 
 const { BookmarkButtonBig } = BookmarkButton;
 
-function Property({ cityName, offers, offer, id }) {
+function Property(props) {
+  const {
+    cityName,
+    offers,
+    offer,
+    id,
+    handleFavoriteClick,
+  } = props;
+
   const {
     title,
     isPremium,
@@ -25,6 +33,9 @@ function Property({ cityName, offers, offer, id }) {
       length: goodsCount,
     },
   } = offer;
+
+  const mapOffers = offers.slice();
+  mapOffers.push(offer);
 
   const renderPropertyInsides = (goodsCount > 0) && <PropertyInsides placeData={offer}/>;
 
@@ -46,6 +57,7 @@ function Property({ cityName, offers, offer, id }) {
             id={id}
             isFavorite={isFavorite}
             blockClassName={'property'}
+            extraHandlerFavoriteClick={handleFavoriteClick}
           />
 
           <PropertyRating placeData={offer}/>
@@ -63,8 +75,9 @@ function Property({ cityName, offers, offer, id }) {
       </div>
       <section className="property__map map">
         <Map
-          offers={offers}
+          offers={mapOffers}
           cityName={cityName}
+          activeOffer={offer}
         />
       </section>
     </section>
@@ -76,6 +89,8 @@ Property.propTypes = {
   offers: propTypesOffersARR,
   offer: PropTypes.shape(propTypesOffer),
   id: propTypesID,
+
+  handleFavoriteClick: PropTypes.func,
 };
 
 export { Property };

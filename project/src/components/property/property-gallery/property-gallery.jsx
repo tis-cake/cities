@@ -4,13 +4,19 @@ import PropTypes from 'prop-types';
 
 import { propTypesOffer } from '../../../types';
 
+const MAX_IMAGES_COUNT = 6;
+
 function PropertyGallery({ placeData }) {
   const { images } = placeData;
 
+  const slicedImages = (images.length > MAX_IMAGES_COUNT)
+    ? images.slice(0, MAX_IMAGES_COUNT)
+    : images;
+
   return (
     <div className="property__gallery-container container">
-      <div className="property__gallery">
-        {images.map((image) => (
+      <div className="property__gallery" data-testid="property-gallery">
+        {slicedImages.map((image) => (
           <div key={`property-image-${nanoid()}`} className="property__image-wrapper">
             <img className="property__image" src={image} alt="Studio" />
           </div>

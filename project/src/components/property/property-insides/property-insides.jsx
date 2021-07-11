@@ -8,7 +8,7 @@ function PropertyInsides({ placeData }) {
   const { goods } = placeData;
 
   return (
-    <div className="property__inside">
+    <div className="property__inside" data-testid="property-insides">
       <h2 className="property__inside-title">What&apos;s inside</h2>
 
       <ul className="property__inside-list">

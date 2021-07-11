@@ -18,12 +18,16 @@ function PageDetailOffer() {
 
   const cityName = useSelector((state) => Selector.getCityName(state));
 
+  const getDetailOffer = () => {
+    ActionServer.fetchDetailOffer(id)
+      .then(({ offer, nearby }) => setOfferData({ offer, nearby }))
+      .catch((err) => history.push(AppRoute.NOT_FOUND));
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    ActionServer.fetchOfferActive(id)
-      .then(({ offer, nearby }) => setOfferData({ offer, nearby }))
-      .catch((err) => history.push(AppRoute.NOT_FOUND));
+    getDetailOffer();
 
     return setOfferData(null);
   }, [id]);
@@ -44,6 +48,7 @@ function PageDetailOffer() {
           offers={offerData.nearby}
           offer={offerData.offer}
           id={id}
+          handleFavoriteClick={getDetailOffer}
         />
 
         <div className="container">

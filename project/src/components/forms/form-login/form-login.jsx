@@ -2,7 +2,10 @@ import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { ActionServer } from '../../../server/actions';
+import { NotifyMessage } from '../../../const';
 import { propTypesNotify } from '../../../types';
+
+const patternWithoutOnlySpaces = /[0-9a-zA-Z]/;
 
 function FormLogin({ showNotify, renderFormNotify }) {
   const dispatch = useDispatch();
@@ -17,7 +20,9 @@ function FormLogin({ showNotify, renderFormNotify }) {
     evt.preventDefault();
 
     const isLoginValidity = (loginRef.current.textLength !== 0);
-    const isPasswordValidity = (passwordRef.current.textLength !== 0);
+    const isPasswordValidityLength = (passwordRef.current.textLength !== 0);
+    const isPasswordValidityPattern = (patternWithoutOnlySpaces.test(passwordRef.current.value));
+    const isPasswordValidity = (isPasswordValidityLength && isPasswordValidityPattern);
 
     if (isLoginValidity && isPasswordValidity) {
       onSubmit({
@@ -25,7 +30,11 @@ function FormLogin({ showNotify, renderFormNotify }) {
         password: passwordRef.current.value,
       });
     } else {
-      showNotify();
+      if (isLoginValidity && !isPasswordValidityPattern) {
+        showNotify(NotifyMessage.PASSWORD_INCORRECT_SPACES);
+      } else {
+        showNotify(NotifyMessage.DEFAULT);
+      }
     }
   };
 

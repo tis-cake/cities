@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function BookmarkButtonIconNormal({ blockClassName }) {
   return (
-    <svg className={`${blockClassName}__bookmark-icon`} width="18" height="19">
+    <svg className={`${blockClassName}__bookmark-icon`} width="18" height="19" data-testid="bookmark-button-icon">
       <use xlinkHref="#icon-bookmark"></use>
     </svg>
   );
@@ -11,7 +11,7 @@ function BookmarkButtonIconNormal({ blockClassName }) {
 
 function BookmarkButtonIconBig({ blockClassName }) {
   return (
-    <svg className={`${blockClassName}__bookmark-icon`} width="31" height="33">
+    <svg className={`${blockClassName}__bookmark-icon`} width="31" height="33" data-testid="bookmark-button-icon">
       <use xlinkHref="#icon-bookmark"></use>
     </svg>
   );

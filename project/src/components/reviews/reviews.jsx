@@ -9,7 +9,7 @@ import { Selector } from '../../store/selectors';
 import { AuthorizationStatus } from '../../const';
 import { ActionServer } from '../../server/actions';
 
-import { withFormNotify } from '../../hoks/with-form-notify/with-form-notify';
+import { withFormNotify } from '../../hocs/with-form-notify/with-form-notify';
 
 const FormReviewsWrapped = withFormNotify(FormReviews);
 
