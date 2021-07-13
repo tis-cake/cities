@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import { FormNotify } from '../../components/forms/form-notify/form-notify';
 
+const TIMEOUT = 5000;
+
 const withFormNotify = (Component) => {
   function FormNotifyWrapper(props) {
     const [notify, setNotify] = useState(false);
@@ -20,7 +22,7 @@ const withFormNotify = (Component) => {
 
       setTimeout(() => {
         setNotify(false);
-      }, 5000);
+      }, TIMEOUT);
     };
 
     return (

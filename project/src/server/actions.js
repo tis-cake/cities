@@ -90,7 +90,7 @@ const login = ({ login: email, password }) => (dispatch, _getState, api) => (
     .then((user) => dispatch(ActionCreator.setUser(user)))
     .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
     .then(() => dispatch(ActionCreator.redirectToRoute(AppRoute.ROOT)))
-    .catch(() => {})
+    .catch((err) => handleError(err))
 );
 
 const logout = () => (dispatch, _getState, api) => (

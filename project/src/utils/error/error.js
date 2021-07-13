@@ -4,6 +4,7 @@ import { ActionCreator } from '../../store/actions';
 import './error.css';
 
 const TIMEOUT = 800;
+const TIMEOUT_COEFFICIENT = 4;
 
 const onErrorShowModal = (errorStatus, errorText) => {
   const node = document.createElement('div');
@@ -14,7 +15,7 @@ const onErrorShowModal = (errorStatus, errorText) => {
 
   setTimeout(() => {
     node.remove();
-  }, TIMEOUT * 4);
+  }, TIMEOUT * TIMEOUT_COEFFICIENT);
 };
 
 const handleError = (error, dispatch) => {

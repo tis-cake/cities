@@ -53,7 +53,7 @@ const DEFAULT_CITY = Cities.PARIS;
 
 const DEFAULT_ZOOM = 12;
 
-const СitiesLocation = {
+const CitiesLocation = {
   [Cities.PARIS]: {
     latitude: 48.856663,
     longitude: 2.351556,
@@ -103,7 +103,7 @@ export {
   SortType,
   SortTypeValue,
   Cities,
-  СitiesLocation,
+  CitiesLocation,
   KeyCode,
   NotifyMessage,
 

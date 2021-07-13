@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { СitiesLocation } from '../../const';
+import { CitiesLocation } from '../../const';
 import { propTypesOffer, propTypesOffersARR } from '../../types';
 import {
   updateLeafletView,
@@ -14,7 +14,7 @@ import 'leaflet/dist/leaflet.css';
 function Map({offers, cityName, activeOffer = {}}) {
   const mapRef = useRef(null);
 
-  const locationCityCurrent = СitiesLocation[cityName];
+  const locationCityCurrent = CitiesLocation[cityName];
   const locationPoints = offers.map((offer) => offer.location);
 
   const { map } = useMap(mapRef, locationCityCurrent);
