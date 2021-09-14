@@ -1,36 +1,27 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { AppRoute } from '../../../../const';
-import { propTypesPlaceCard } from '../../../../types';
+import { IPlaceCardItemComponentsProps } from '../../place-card-interfaces';
 
-function PlaceCardImageNormal({ placeData }) {
+const PlaceCardImageNormal: React.FC<IPlaceCardItemComponentsProps> = ({ placeData }) => {
   const { id, previewImage } = placeData;
 
   return (
-    <Link to={`${AppRoute.DETAIL_OFFER}/${id}`} data-testid="place-card-image">
+    <Link to={`${AppRoute.DETAIL_OFFER}/${id}`}>
       <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place" />
     </Link>
   );
-}
+};
 
-function PlaceCardImageSmall({ placeData }) {
+const PlaceCardImageSmall: React.FC<IPlaceCardItemComponentsProps> = ({ placeData }) => {
   const { id, previewImage } = placeData;
 
   return (
-    <Link to={`${AppRoute.DETAIL_OFFER}/${id}`} data-testid="place-card-image">
+    <Link to={`${AppRoute.DETAIL_OFFER}/${id}`}>
       <img className="place-card__image" src={previewImage} width="150" height="110" alt="Place" />
     </Link>
   );
-}
-
-PlaceCardImageNormal.propTypes = {
-  placeData: PropTypes.shape(propTypesPlaceCard),
-};
-
-PlaceCardImageSmall.propTypes = {
-  placeData: PropTypes.shape(propTypesPlaceCard),
 };
 
 const PlaceCardImage = { PlaceCardImageNormal, PlaceCardImageSmall };

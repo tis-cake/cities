@@ -1,14 +1,13 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
-import PropTypes from 'prop-types';
 
-import { propTypesOffer } from '../../../types';
+import { IPropertyComponentsProps } from '../property-interfaces';
 
-function PropertyInsides({ placeData }) {
+const PropertyInsides: React.FC<IPropertyComponentsProps> = ({ placeData }) => {
   const { goods } = placeData;
 
   return (
-    <div className="property__inside" data-testid="property-insides">
+    <div className="property__inside">
       <h2 className="property__inside-title">What&apos;s inside</h2>
 
       <ul className="property__inside-list">
@@ -20,10 +19,6 @@ function PropertyInsides({ placeData }) {
       </ul>
     </div>
   );
-}
-
-PropertyInsides.propTypes = {
-  placeData: PropTypes.shape(propTypesOffer),
 };
 
 export { PropertyInsides };

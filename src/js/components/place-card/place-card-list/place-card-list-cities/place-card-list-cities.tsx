@@ -1,15 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { PlaceCardItem } from '../../place-card-item/place-card-item';
 
-import { propTypesOffersARR } from '../../../../types';
+import { IPlaceCardListСitiesProps } from '../../place-card-interfaces';
 
 const { PlaceCardСities } = PlaceCardItem;
 
-function PlaceCardListСities({ offers, setActiveOffer }) {
+const PlaceCardListСities: React.FC<IPlaceCardListСitiesProps> = ({ offers, setActiveOffer }) => {
   return (
-    <React.Fragment>
+    <>
       {offers.map((place) => (
         <PlaceCardСities
           key={place.id}
@@ -17,13 +16,8 @@ function PlaceCardListСities({ offers, setActiveOffer }) {
           setActiveOffer={setActiveOffer}
         />
       ))}
-    </React.Fragment>
+    </>
   );
-}
-
-PlaceCardListСities.propTypes = {
-  offers: propTypesOffersARR,
-  setActiveOffer: PropTypes.func.isRequired,
 };
 
 export { PlaceCardListСities };

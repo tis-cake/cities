@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 
 import { Map } from '../../map/map';
 import { Sort } from '../../shared/sort/sort';
 import { PlaceCardList } from '../../place-card/place-card-list/place-card-list';
 
 import { castPlacesFormat } from '../../../utils/format';
-import { propTypesOffersARR } from '../../../types';
+import { ICitiesComponentsProps } from '../cities-interfaces';
 
 const { PlaceCardListСities } = PlaceCardList;
 
-function CitiesFilled({ offers, cityName, sortType, setSortType }) {
+const CitiesFilled: React.FC<ICitiesComponentsProps> = ({ offers, cityName, sortType, setSortType }) => {
   const { length: offersCount } = offers;
-  const [ activeOffer, setActiveOffer ] = useState({});
+  const [activeOffer, setActiveOffer] = useState({});
 
   return (
     <div className="cities__places-container container">
@@ -43,13 +42,6 @@ function CitiesFilled({ offers, cityName, sortType, setSortType }) {
       </div>
     </div>
   );
-}
-
-CitiesFilled.propTypes = {
-  offers: propTypesOffersARR,
-  cityName: PropTypes.string.isRequired,
-  sortType: PropTypes.string.isRequired,
-  setSortType: PropTypes.func.isRequired,
 };
 
 export { CitiesFilled };

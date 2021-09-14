@@ -1,14 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { castBedroomsFormat, castAdultsFormat } from '../../../utils/format';
-import { propTypesOffer } from '../../../types';
+import { IPropertyComponentsProps } from '../property-interfaces';
 
-function PropertyFeatures({ placeData }) {
+const PropertyFeatures: React.FC<IPropertyComponentsProps> = ({ placeData }) => {
   const { type, bedrooms, maxAdults } = placeData;
 
   return (
-    <ul className="property__features" data-testid="property-features">
+    <ul className="property__features">
       <li className="property__feature property__feature--entire">
         {type}
       </li>
@@ -20,10 +19,6 @@ function PropertyFeatures({ placeData }) {
       </li>
     </ul>
   );
-}
-
-PropertyFeatures.propTypes = {
-  placeData: PropTypes.shape(propTypesOffer),
 };
 
 export { PropertyFeatures };

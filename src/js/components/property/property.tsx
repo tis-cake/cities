@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { Map } from '../map/map';
 import { Reviews } from '../reviews/reviews';
@@ -12,11 +11,11 @@ import { PropertyGallery } from './property-gallery/property-gallery';
 import { PropertyInsides } from './property-insides/property-insides';
 import { PropertyFeatures } from './property-features/property-features';
 
-import { propTypesID, propTypesOffer, propTypesOffersARR } from '../../types';
+import { IPropertyProps } from './property-interfaces';
 
 const { BookmarkButtonBig } = BookmarkButton;
 
-function Property(props) {
+const Property: React.FC<IPropertyProps> = (props) => {
   const {
     cityName,
     offers,
@@ -29,19 +28,17 @@ function Property(props) {
     title,
     isPremium,
     isFavorite,
-    goods: {
-      length: goodsCount,
-    },
+    goods: { length: goodsCount },
   } = offer;
 
   const mapOffers = offers.slice();
   mapOffers.push(offer);
 
-  const renderPropertyInsides = (goodsCount > 0) && <PropertyInsides placeData={offer}/>;
+  const renderPropertyInsides: JSX.Element = (goodsCount > 0) && <PropertyInsides placeData={offer} />;
 
   return (
     <section className="property">
-      <PropertyGallery placeData={offer}/>
+      <PropertyGallery placeData={offer} />
 
       <div className="property__container container">
         <div className="property__wrapper">
@@ -56,20 +53,20 @@ function Property(props) {
           <BookmarkButtonBig
             id={id}
             isFavorite={isFavorite}
-            blockClassName={'property'}
+            blockClassName="property"
             extraHandlerFavoriteClick={handleFavoriteClick}
           />
 
-          <PropertyRating placeData={offer}/>
-          <PropertyFeatures placeData={offer}/>
-          <PropertyPrice placeData={offer}/>
+          <PropertyRating placeData={offer} />
+          <PropertyFeatures placeData={offer} />
+          <PropertyPrice placeData={offer} />
 
           {renderPropertyInsides}
 
-          <PropertyHost placeData={offer}/>
+          <PropertyHost placeData={offer} />
 
           <section className="property__reviews reviews">
-            <Reviews id={id}/>
+            <Reviews id={id} />
           </section>
         </div>
       </div>
@@ -82,15 +79,6 @@ function Property(props) {
       </section>
     </section>
   );
-}
-
-Property.propTypes = {
-  cityName: PropTypes.string.isRequired,
-  offers: propTypesOffersARR,
-  offer: PropTypes.shape(propTypesOffer),
-  id: propTypesID,
-
-  handleFavoriteClick: PropTypes.func,
 };
 
 export { Property };

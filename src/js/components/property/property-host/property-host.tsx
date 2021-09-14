@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-import { propTypesOffer } from '../../../types';
+import { IPropertyComponentsProps } from '../property-interfaces';
 
-function PropertyHost({ placeData }) {
+const PropertyHost: React.FC<IPropertyComponentsProps> = ({ placeData }) => {
   const {
     description,
     host: {
@@ -38,10 +37,6 @@ function PropertyHost({ placeData }) {
       </div>
     </div>
   );
-}
-
-PropertyHost.propTypes = {
-  placeData: PropTypes.shape(propTypesOffer),
 };
 
 export { PropertyHost };

@@ -1,12 +1,11 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
-import PropTypes from 'prop-types';
 
-import { propTypesOffer } from '../../../types';
+import { IPropertyComponentsProps } from '../property-interfaces';
 
 const MAX_IMAGES_COUNT = 6;
 
-function PropertyGallery({ placeData }) {
+const PropertyGallery: React.FC<IPropertyComponentsProps> = ({ placeData }) => {
   const { images } = placeData;
 
   const slicedImages = (images.length > MAX_IMAGES_COUNT)
@@ -15,7 +14,7 @@ function PropertyGallery({ placeData }) {
 
   return (
     <div className="property__gallery-container container">
-      <div className="property__gallery" data-testid="property-gallery">
+      <div className="property__gallery">
         {slicedImages.map((image) => (
           <div key={`property-image-${nanoid()}`} className="property__image-wrapper">
             <img className="property__image" src={image} alt="Studio" />
@@ -24,10 +23,6 @@ function PropertyGallery({ placeData }) {
       </div>
     </div>
   );
-}
-
-PropertyGallery.propTypes = {
-  placeData: PropTypes.shape(propTypesOffer),
 };
 
 export { PropertyGallery };

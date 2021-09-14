@@ -2,25 +2,21 @@ import React from 'react';
 
 import { PlaceCardItem } from '../../place-card-item/place-card-item';
 
-import { propTypesOffersARR } from '../../../../types';
+import { IPlaceCardListComponentsProps } from '../../place-card-interfaces';
 
 const { PlaceCardNearPlaces } = PlaceCardItem;
 
-function PlaceCardListNearPlaces({ offers }) {
+const PlaceCardListNearPlaces: React.FC<IPlaceCardListComponentsProps> = ({ offers }) => {
   return (
-    <React.Fragment>
+    <>
       {offers.map((place) => (
         <PlaceCardNearPlaces
           key={place.id}
           placeData={place}
         />
       ))}
-    </React.Fragment>
+    </>
   );
-}
-
-PlaceCardListNearPlaces.propTypes = {
-  offers: propTypesOffersARR,
 };
 
 export { PlaceCardListNearPlaces };

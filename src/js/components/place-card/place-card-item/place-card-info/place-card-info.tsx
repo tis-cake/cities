@@ -1,16 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { Rating } from '../../../shared/rating/rating';
 import { BookmarkButton } from '../../../shared/bookmark-button/bookmark-button';
 
 import { AppRoute } from '../../../../const';
-import { propTypesPlaceCard } from '../../../../types';
+import { IPlaceCardItemComponentsProps } from '../../place-card-interfaces';
 
 const { BookmarkButtonNormal } = BookmarkButton;
 
-function PlaceCardInfo({ placeData }) {
+const PlaceCardInfo: React.FC<IPlaceCardItemComponentsProps> = ({ placeData }) => {
   const {
     id,
     title,
@@ -21,7 +20,7 @@ function PlaceCardInfo({ placeData }) {
   } = placeData;
 
   return (
-    <React.Fragment>
+    <>
       <div className="place-card__price-wrapper">
         <div className="place-card__price">
           <b className="place-card__price-value">&euro;{price}</b>
@@ -31,14 +30,14 @@ function PlaceCardInfo({ placeData }) {
         <BookmarkButtonNormal
           id={id}
           isFavorite={isFavorite}
-          blockClassName={'place-card'}
+          blockClassName="place-card"
         />
       </div>
 
       <Rating
         isRound
         rating={rating}
-        blockClassName={'place-card'}
+        blockClassName="place-card"
       />
 
       <h2 className="place-card__name">
@@ -47,12 +46,8 @@ function PlaceCardInfo({ placeData }) {
         </Link>
       </h2>
       <p className="place-card__type">{type}</p>
-    </React.Fragment>
+    </>
   );
-}
-
-PlaceCardInfo.propTypes = {
-  placeData: PropTypes.shape(propTypesPlaceCard),
 };
 
 export { PlaceCardInfo };

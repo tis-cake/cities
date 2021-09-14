@@ -1,11 +1,11 @@
 import React from 'react';
 
-function PlaceCardMark() {
+const PlaceCardMark: React.FC = () => {
   return (
     <div className="place-card__mark">
       <span>Premium</span>
     </div>
   );
-}
+};
 
 export { PlaceCardMark };
