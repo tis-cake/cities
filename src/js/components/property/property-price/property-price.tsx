@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IPropertyComponentsProps } from '../property-interfaces';
+import { IPropertyComponentsProps } from '../interfaces';
 
 const PropertyPrice: React.FC<IPropertyComponentsProps> = ({ placeData }) => {
   const { price } = placeData;

@@ -4,7 +4,7 @@ import { PlaceCardMark } from './place-card-mark/place-card-mark';
 import { PlaceCardInfo } from './place-card-info/place-card-info';
 import { PlaceCardImage } from './place-card-image/place-card-image';
 
-import { IPlaceCardItemComponentsProps, IPlaceCardСitiesProps } from '../place-card-interfaces';
+import { IPlaceCardItemComponentsProps, IPlaceCardСitiesProps } from '../interfaces';
 
 const { PlaceCardImageNormal, PlaceCardImageSmall } = PlaceCardImage;
 

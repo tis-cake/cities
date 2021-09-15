@@ -11,7 +11,7 @@ import { PropertyGallery } from './property-gallery/property-gallery';
 import { PropertyInsides } from './property-insides/property-insides';
 import { PropertyFeatures } from './property-features/property-features';
 
-import { IPropertyProps } from './property-interfaces';
+import { IPropertyProps } from './interfaces';
 
 const { BookmarkButtonBig } = BookmarkButton;
 

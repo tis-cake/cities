@@ -1,7 +1,7 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
 
-import { IPropertyComponentsProps } from '../property-interfaces';
+import { IPropertyComponentsProps } from '../interfaces';
 
 const PropertyInsides: React.FC<IPropertyComponentsProps> = ({ placeData }) => {
   const { goods } = placeData;

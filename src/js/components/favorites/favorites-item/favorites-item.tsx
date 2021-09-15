@@ -1,24 +1,24 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { PlaceCardList } from '../../place-card/place-card-list/place-card-list';
 
 import { AppRoute } from '../../../const';
-import { propTypesOffer } from '../../../types';
+import { ISetCityName } from '../../../interfaces';
+import { IFavoritesItemProps } from '../interfaces';
 
 const { PlaceCardListFavorites } = PlaceCardList;
 
-const handleLocationLinkClick = (city, cityCurrent, setCityName) => {
+const handleLocationLinkClick = (city: string, cityCurrent: string, setCityName: ISetCityName): void => {
   if (city !== cityCurrent) {
     setCityName(city);
   }
 };
 
-function FavoritesItem(props) {
+const FavoritesItem: React.FC<IFavoritesItemProps> = (props) => {
   const { offers, cityCurrent, city, setCityName } = props;
 
-  const locationsCurrentClass = (city === cityCurrent)
+  const locationsCurrentClass: string = (city === cityCurrent)
     ? 'locations--current'
     : '';
 
@@ -36,19 +36,10 @@ function FavoritesItem(props) {
         </div>
       </div>
       <div className="favorites__places">
-        <PlaceCardListFavorites offers={offers}/>
+        <PlaceCardListFavorites offers={offers} />
       </div>
     </li>
   );
-}
-
-FavoritesItem.propTypes = {
-  offers: PropTypes.arrayOf(
-    PropTypes.shape(propTypesOffer),
-  ),
-  cityCurrent: PropTypes.string.isRequired,
-  city: PropTypes.string.isRequired,
-  setCityName: PropTypes.func.isRequired,
 };
 
 export { FavoritesItem };

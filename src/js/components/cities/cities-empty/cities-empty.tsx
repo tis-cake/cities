@@ -1,8 +1,6 @@
 import React from 'react';
 
-interface ICitiesEmptyProps {
-  cityName: string,
-}
+import { ICitiesEmptyProps } from '../interfaces';
 
 const CitiesEmpty: React.FC<ICitiesEmptyProps> = ({ cityName }) => {
   return (

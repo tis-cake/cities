@@ -1,6 +1,6 @@
 import React from 'react';
 
-function FavoritesEmpty() {
+const FavoritesEmpty: React.FC = () => {
   return (
     <section className="favorites favorites--empty">
       <h1 className="visually-hidden">Favorites (empty)</h1>
@@ -10,6 +10,6 @@ function FavoritesEmpty() {
       </div>
     </section>
   );
-}
+};
 
 export { FavoritesEmpty };

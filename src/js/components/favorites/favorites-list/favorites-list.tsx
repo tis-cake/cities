@@ -1,11 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { FavoritesItem } from '../favorites-item/favorites-item';
 
-import { propTypesOffersARR } from '../../../types';
+import { IOffer, IOffersOnCities } from '../../../interfaces';
+import { IFavoritesComponentsProps } from '../interfaces';
 
-const getFilteredFavoritesOnCities = (offers) => {
+const getFilteredFavoritesOnCities = (offers: IOffer[]): IOffersOnCities => {
   const result = {};
 
   for (const offer of offers) {
@@ -19,7 +19,7 @@ const getFilteredFavoritesOnCities = (offers) => {
   return result;
 };
 
-function FavoritesList(props) {
+const FavoritesList: React.FC<IFavoritesComponentsProps> = (props) => {
   const { cityName, setCityName, favorites } = props;
 
   const favoritesList = getFilteredFavoritesOnCities(favorites);
@@ -30,19 +30,13 @@ function FavoritesList(props) {
         <FavoritesItem
           key={`favorites-item-${city}`}
           offers={offersFavorites}
-          cityCurrent={cityName}
           city={city}
+          cityCurrent={cityName}
           setCityName={setCityName}
         />
       ))}
     </ul>
   );
-}
-
-FavoritesList.propTypes = {
-  cityName: PropTypes.string.isRequired,
-  setCityName: PropTypes.func.isRequired,
-  favorites: propTypesOffersARR,
 };
 
 export { FavoritesList };

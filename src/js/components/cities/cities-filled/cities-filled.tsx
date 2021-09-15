@@ -5,7 +5,7 @@ import { Sort } from '../../shared/sort/sort';
 import { PlaceCardList } from '../../place-card/place-card-list/place-card-list';
 
 import { castPlacesFormat } from '../../../utils/format';
-import { ICitiesComponentsProps } from '../cities-interfaces';
+import { ICitiesComponentsProps } from '../interfaces';
 
 const { PlaceCardListСities } = PlaceCardList;
 

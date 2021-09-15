@@ -1,7 +1,7 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
 
-import { IPropertyComponentsProps } from '../property-interfaces';
+import { IPropertyComponentsProps } from '../interfaces';
 
 const MAX_IMAGES_COUNT = 6;
 

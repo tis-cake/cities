@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { castBedroomsFormat, castAdultsFormat } from '../../../utils/format';
-import { IPropertyComponentsProps } from '../property-interfaces';
+import { IPropertyComponentsProps } from '../interfaces';
 
 const PropertyFeatures: React.FC<IPropertyComponentsProps> = ({ placeData }) => {
   const { type, bedrooms, maxAdults } = placeData;

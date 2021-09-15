@@ -2,7 +2,7 @@ import React from 'react';
 
 import { PlaceCardItem } from '../../place-card-item/place-card-item';
 
-import { IPlaceCardListСitiesProps } from '../../place-card-interfaces';
+import { IPlaceCardListСitiesProps } from '../../interfaces';
 
 const { PlaceCardСities } = PlaceCardItem;
 

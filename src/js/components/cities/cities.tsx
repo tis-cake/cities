@@ -3,7 +3,7 @@ import React from 'react';
 import { CitiesFilled } from './cities-filled/cities-filled';
 import { CitiesEmpty } from './cities-empty/cities-empty';
 
-import { ICitiesComponentsProps } from './cities-interfaces';
+import { ICitiesComponentsProps } from './interfaces';
 
 const Cities:React.FC<ICitiesComponentsProps> = (props) => {
   const {

@@ -5,7 +5,7 @@ import { Rating } from '../../../shared/rating/rating';
 import { BookmarkButton } from '../../../shared/bookmark-button/bookmark-button';
 
 import { AppRoute } from '../../../../const';
-import { IPlaceCardItemComponentsProps } from '../../place-card-interfaces';
+import { IPlaceCardItemComponentsProps } from '../../interfaces';
 
 const { BookmarkButtonNormal } = BookmarkButton;
 

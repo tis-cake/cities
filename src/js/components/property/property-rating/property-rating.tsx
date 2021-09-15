@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Rating } from '../../shared/rating/rating';
 
-import { IPropertyComponentsProps } from '../property-interfaces';
+import { IPropertyComponentsProps } from '../interfaces';
 
 const PropertyRating: React.FC<IPropertyComponentsProps> = ({ placeData }) => {
   const { rating } = placeData;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { AppRoute } from '../../../../const';
-import { IPlaceCardItemComponentsProps } from '../../place-card-interfaces';
+import { IPlaceCardItemComponentsProps } from '../../interfaces';
 
 const PlaceCardImageNormal: React.FC<IPlaceCardItemComponentsProps> = ({ placeData }) => {
   const { id, previewImage } = placeData;
