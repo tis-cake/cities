@@ -22,7 +22,7 @@ const getFilteredFavoritesOnCities = (offers: IOffer[]): IOffersOnCities => {
 const FavoritesList: React.FC<IFavoritesComponentsProps> = (props) => {
   const { cityName, setCityName, favorites } = props;
 
-  const favoritesList = getFilteredFavoritesOnCities(favorites);
+  const favoritesList: IOffersOnCities = getFilteredFavoritesOnCities(favorites);
 
   return (
     <ul className="favorites__list">
