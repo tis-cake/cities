@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { Rating } from '../../shared/rating/rating';
 
 import { formatDateTime, formatDateReview } from '../../../utils/format';
-import { propTypesReview } from '../../../types';
+import { IReviewsItemProps } from '../interfaces';
 
-function ReviewsItem({ reviewData }) {
+const ReviewsItem: React.FC<IReviewsItemProps> = ({ reviewData }) => {
   const {
     comment,
     date,
@@ -21,7 +20,7 @@ function ReviewsItem({ reviewData }) {
   const dateReview = formatDateReview(date);
 
   return (
-    <li className="reviews__item" data-testid="reviews-item">
+    <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
           <img className="reviews__avatar user__avatar" src={avatarUrl} width="54" height="54" alt="Reviews avatar" />
@@ -33,7 +32,7 @@ function ReviewsItem({ reviewData }) {
       <div className="reviews__info">
         <Rating
           rating={rating}
-          blockClassName={'reviews'}
+          blockClassName="reviews"
         />
 
         <p className="reviews__text">
@@ -43,10 +42,6 @@ function ReviewsItem({ reviewData }) {
       </div>
     </li>
   );
-}
-
-ReviewsItem.propTypes = {
-  reviewData: PropTypes.shape(propTypesReview),
 };
 
 export { ReviewsItem };
