@@ -1,9 +1,14 @@
 import React, { useState, useRef } from 'react';
-import PropTypes from 'prop-types';
 
 import { SortType, SortTypeValue, KeyCode } from '../../../const';
+import { ISetSortType } from '../../../interfaces';
 
-function Sort({ sortType, setSortType }) {
+interface ISortProps {
+  sortType: string,
+  setSortType: ISetSortType,
+}
+
+const Sort: React.FC<ISortProps> = ({ sortType, setSortType }) => {
   const [select, setSelet] = useState(false);
   const selectRef = useRef(null);
 
@@ -11,9 +16,8 @@ function Sort({ sortType, setSortType }) {
     ? 'places__options--opened'
     : '';
 
-  const handleOptionClick = (evt, sortTypeCurrent) => {
+  const handleOptionClick = (sortTypeCurrent) => {
     setSortType(sortTypeCurrent);
-
     closeSelect();
   };
 
@@ -29,14 +33,14 @@ function Sort({ sortType, setSortType }) {
     }
   };
 
-  const closeSelect = () => {
+  function closeSelect() {
     setSelet(false);
 
     document.removeEventListener('keydown', handleEscKeyPress);
     document.removeEventListener('click', handleSelectOutsideClick);
-  };
+  }
 
-  const openSelect = (evt) => {
+  function openSelect(evt) {
     evt.stopPropagation();
 
     if (select) {
@@ -47,22 +51,22 @@ function Sort({ sortType, setSortType }) {
     setSelet(true);
     document.addEventListener('keydown', handleEscKeyPress);
     document.addEventListener('click', handleSelectOutsideClick);
-  };
+  }
 
   return (
-    <form className="places__sorting" action="#" method="get" data-testid="sort">
+    <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by </span>
-      <span
+      <button
         className="places__sorting-type"
-        tabIndex="0"
+        type="button"
         onClick={(evt) => openSelect(evt)}
       >
         {SortTypeValue[sortType]}
 
         <svg className="places__sorting-arrow" width="7" height="4">
-          <use xlinkHref="#icon-arrow-select"></use>
+          <use xlinkHref="#icon-arrow-select" />
         </svg>
-      </span>
+      </button>
 
       <ul
         className={`places__options places__options--custom ${selectActiveClass}`}
@@ -71,22 +75,20 @@ function Sort({ sortType, setSortType }) {
         {Object.values(SortType).map((type) => (
           <li
             key={type}
-            tabIndex="0"
-            className={`places__option ${(sortType === type) ? 'places__option--active' : ''}`}
-            onClick={(evt) => handleOptionClick(evt, type)}
+            className="places__option"
           >
-            {SortTypeValue[type]}
+            <button
+              className={`places__option-btn ${(sortType === type) ? 'places__option-btn--active' : ''}`}
+              type="button"
+              onClick={() => handleOptionClick(type)}
+            >
+              {SortTypeValue[type]}
+            </button>
           </li>
         ))}
       </ul>
     </form>
   );
-}
-
-Sort.propTypes = {
-  sortType: PropTypes.string.isRequired,
-  setSortType: PropTypes.func.isRequired,
 };
-
 
 export { Sort };

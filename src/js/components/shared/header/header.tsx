@@ -3,7 +3,7 @@ import React from 'react';
 import { LogoHeader } from '../logo/logo-header/logo-header';
 import { Navigation } from '../navigation/navigation';
 
-function Header() {
+const Header: React.FC = () => {
   return (
     <header className="header">
       <div className="container">
@@ -16,6 +16,6 @@ function Header() {
       </div>
     </header>
   );
-}
+};
 
 export { Header };

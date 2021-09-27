@@ -16,8 +16,8 @@ import { AppRoute } from '../../const';
 import { Selector } from '../../store/selectors';
 import { browserHistory } from '../../services/browser-history';
 
-function App() {
-  const isDataLoaded = useSelector((state) => Selector.getDataLoadedStatus(state));
+const App: React.FC = () => {
+  const isDataLoaded: boolean = useSelector((state) => Selector.getDataLoadedStatus(state));
 
   if (!isDataLoaded) {
     return (
@@ -58,6 +58,6 @@ function App() {
       </Switch>
     </BrowserRouter>
   );
-}
+};
 
 export { App };

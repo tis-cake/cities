@@ -1,13 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 
 import { Selector } from '../../../store/selectors';
 import { AppRoute, AuthorizationStatus } from '../../../const';
+import { IUniqueRoutesProps } from '../interfaces';
 
-function PublicRoute({ render, path, exact }) {
-  const authorizationStatus = useSelector((state) => Selector.getAuthorizationStatus(state));
+const PublicRoute: React.FC<IUniqueRoutesProps> = ({ render, path, exact }) => {
+  const authorizationStatus: string = useSelector((state) => Selector.getAuthorizationStatus(state));
 
   return (
     <Route
@@ -20,12 +20,6 @@ function PublicRoute({ render, path, exact }) {
       )}
     />
   );
-}
-
-PublicRoute.propTypes = {
-  exact: PropTypes.bool.isRequired,
-  path: PropTypes.string.isRequired,
-  render: PropTypes.func.isRequired,
 };
 
 export { PublicRoute };

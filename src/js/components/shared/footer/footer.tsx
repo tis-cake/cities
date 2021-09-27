@@ -2,12 +2,12 @@ import React from 'react';
 
 import { LogoFooter } from '../logo/logo-footer/logo-footer';
 
-function Footer() {
+const Footer: React.FC = () => {
   return (
-    <footer className="footer container" data-testid="footer">
+    <footer className="footer container">
       <LogoFooter />
     </footer>
   );
-}
+};
 
 export { Footer };

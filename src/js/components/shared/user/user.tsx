@@ -7,19 +7,21 @@ import { UserNotAuthorized } from './user-not-authorized/user-not-authorized';
 import { ActionServer } from '../../../server/actions';
 import { AuthorizationStatus } from '../../../const';
 import { Selector } from '../../../store/selectors';
+import { IUser } from '../../../interfaces';
 
-function User() {
+const User: React.FC = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => Selector.getUser(state));
-  const authorizationStatus = useSelector((state) => Selector.getAuthorizationStatus(state));
 
-  const logout = () => dispatch(ActionServer.logout());
+  const user: IUser = useSelector((state) => Selector.getUser(state));
+  const authorizationStatus: string = useSelector((state) => Selector.getAuthorizationStatus(state));
+
+  const logout = (): void => dispatch(ActionServer.logout());
 
   return (
     (authorizationStatus === AuthorizationStatus.AUTH)
-      ? <UserAuthorized user={user} logout={logout} authorizationStatus={authorizationStatus}/>
-      : <UserNotAuthorized/>
+      ? <UserAuthorized user={user} logout={logout} />
+      : <UserNotAuthorized />
   );
-}
+};
 
 export { User };

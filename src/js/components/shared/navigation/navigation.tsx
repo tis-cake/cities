@@ -2,7 +2,7 @@ import React from 'react';
 
 import { User } from '../user/user';
 
-function Navigation() {
+const Navigation: React.FC = () => {
   return (
     <nav className="header__nav">
       <ul className="header__nav-list">
@@ -10,6 +10,6 @@ function Navigation() {
       </ul>
     </nav>
   );
-}
+};
 
 export { Navigation };

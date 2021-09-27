@@ -1,15 +1,21 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
 
 import { BookmarkButtonIcon } from './bookmark-button-icon/bookmark-button-icon';
 
 import { ActionServer } from '../../../server/actions';
-import { propTypesID } from '../../../types';
+import { TID } from '../../../types';
+
+interface IBookmarkButtonProps {
+  id: TID,
+  isFavorite: boolean,
+  blockClassName: string,
+  extraHandlerFavoriteClick(): void,
+}
 
 const { BookmarkButtonIconNormal, BookmarkButtonIconBig } = BookmarkButtonIcon;
 
-function BookmarkButtonWrapper(props) {
+const BookmarkButtonWrapper: React.FC<IBookmarkButtonProps> = (props) => {
   const {
     id,
     isFavorite,
@@ -20,15 +26,15 @@ function BookmarkButtonWrapper(props) {
 
   const dispatch = useDispatch();
 
-  const bookmarkButtonActiveClass = isFavorite
+  const bookmarkButtonActiveClass: string = isFavorite
     ? `${blockClassName}__bookmark-button--active`
     : '';
 
-  const bookmarkButtonActiveValue = isFavorite
+  const bookmarkButtonActiveValue: string = isFavorite
     ? 'To bookmarks'
     : 'In bookmarks';
 
-  const postFavorite = (ID, status) => {
+  const postFavorite = (ID: TID, status: boolean): void => {
     dispatch(ActionServer.postFavorite(ID, status));
 
     if (extraHandlerFavoriteClick) {
@@ -47,33 +53,24 @@ function BookmarkButtonWrapper(props) {
       <span className="visually-hidden">{bookmarkButtonActiveValue}</span>
     </button>
   );
-}
+};
 
-function BookmarkButtonNormal(props) {
+const BookmarkButtonNormal: React.FC<IBookmarkButtonProps> = (props) => {
   return (
     <BookmarkButtonWrapper {...props}>
-      <BookmarkButtonIconNormal {...props}/>
+      <BookmarkButtonIconNormal {...props} />
     </BookmarkButtonWrapper>
   );
-}
+};
 
-function BookmarkButtonBig(props) {
+const BookmarkButtonBig: React.FC<IBookmarkButtonProps> = (props) => {
   return (
     <BookmarkButtonWrapper {...props}>
-      <BookmarkButtonIconBig {...props}/>
+      <BookmarkButtonIconBig {...props} />
     </BookmarkButtonWrapper>
   );
-}
+};
 
 const BookmarkButton = { BookmarkButtonNormal, BookmarkButtonBig };
-
-BookmarkButtonWrapper.propTypes = {
-  blockClassName: PropTypes.string.isRequired,
-  isFavorite: PropTypes.bool.isRequired,
-  id: propTypesID,
-
-  children: PropTypes.element,
-  extraHandlerFavoriteClick: PropTypes.func,
-};
 
 export { BookmarkButton };
