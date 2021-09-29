@@ -15,7 +15,7 @@ const User: React.FC = () => {
   const user: IUser = useSelector((state) => Selector.getUser(state));
   const authorizationStatus: string = useSelector((state) => Selector.getAuthorizationStatus(state));
 
-  const logout = (): void => dispatch(ActionServer.logout());
+  const logout = () => dispatch(ActionServer.logout());
 
   return (
     (authorizationStatus === AuthorizationStatus.AUTH)

@@ -1,11 +1,11 @@
 import React, { useState, useRef } from 'react';
 
 import { SortType, SortTypeValue, KeyCode } from '../../../const';
-import { ISetSortType } from '../../../interfaces';
+import { TSetSortType } from '../../../types';
 
 interface ISortProps {
   sortType: string,
-  setSortType: ISetSortType,
+  setSortType: TSetSortType,
 }
 
 const Sort: React.FC<ISortProps> = ({ sortType, setSortType }) => {
@@ -16,18 +16,18 @@ const Sort: React.FC<ISortProps> = ({ sortType, setSortType }) => {
     ? 'places__options--opened'
     : '';
 
-  const handleOptionClick = (sortTypeCurrent) => {
+  const handleOptionClick = (sortTypeCurrent: string): void => {
     setSortType(sortTypeCurrent);
     closeSelect();
   };
 
-  const handleEscKeyPress = (evt) => {
+  const handleEscKeyPress = (evt: KeyboardEvent): void => {
     if (evt.keyCode === KeyCode.ESC) {
       closeSelect();
     }
   };
 
-  const handleSelectOutsideClick = (evt) => {
+  const handleSelectOutsideClick = (evt: MouseEvent): void => {
     if (evt.target !== selectRef.current) {
       closeSelect();
     }
@@ -40,7 +40,7 @@ const Sort: React.FC<ISortProps> = ({ sortType, setSortType }) => {
     document.removeEventListener('click', handleSelectOutsideClick);
   }
 
-  function openSelect(evt) {
+  function openSelect(evt: React.MouseEvent<HTMLButtonElement>) {
     evt.stopPropagation();
 
     if (select) {

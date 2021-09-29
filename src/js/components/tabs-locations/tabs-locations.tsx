@@ -2,14 +2,14 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { AppRoute, Cities } from '../../const';
-import { ISetCityName } from '../../interfaces';
+import { TSetCityName } from '../../types';
 
 interface ITabsLocationsProps {
   cityCurrent: string,
-  setCityName: ISetCityName,
+  setCityName: TSetCityName,
 }
 
-function handleLocationLinkClick(city: string, cityCurrent: string, setCityName: ISetCityName): void {
+function handleLocationLinkClick(city: string, cityCurrent: string, setCityName: TSetCityName): void {
   if (city !== cityCurrent) {
     setCityName(city);
   }

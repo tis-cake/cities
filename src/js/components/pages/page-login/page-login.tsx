@@ -7,7 +7,7 @@ import { withFormNotify } from '../../../hocs/with-form-notify/with-form-notify'
 
 const FormLoginWrapped = withFormNotify(FormLogin);
 
-function PageLogin() {
+const PageLogin = () => {
   return (
     <div className="page page--gray page--login">
       <Header />
@@ -16,20 +16,19 @@ function PageLogin() {
         <div className="page__login-container container">
           <section className="login">
             <h1 className="login__title">Sign in</h1>
-
             <FormLoginWrapped />
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
+              <div className="locations__item-link">
                 <span>Amsterdam</span>
-              </a>
+              </div>
             </div>
           </section>
         </div>
       </main>
     </div>
   );
-}
+};
 
 export { PageLogin };

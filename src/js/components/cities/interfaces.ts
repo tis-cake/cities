@@ -1,10 +1,11 @@
-import { ISetSortType, IOffer } from '../../interfaces';
+import { IOffer } from '../../interfaces';
+import { TSetSortType } from '../../types';
 
 interface ICitiesComponentsProps {
   offers: IOffer[],
   cityName: string,
   sortType: string,
-  setSortType: ISetSortType,
+  setSortType: TSetSortType,
 }
 
 interface ICitiesEmptyProps {

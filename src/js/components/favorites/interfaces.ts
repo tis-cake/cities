@@ -1,16 +1,17 @@
-import { ISetCityName, IOffer } from '../../interfaces';
+import { IOffer } from '../../interfaces';
+import { TSetCityName } from '../../types';
 
 interface IFavoritesComponentsProps {
   favorites: IOffer[],
   cityName: string,
-  setCityName: ISetCityName,
+  setCityName: TSetCityName,
 }
 
 interface IFavoritesItemProps {
   offers: IOffer[],
   city: string,
   cityCurrent: string,
-  setCityName: ISetCityName,
+  setCityName: TSetCityName,
 }
 
 export {

@@ -4,26 +4,29 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Header } from '../../shared/header/header';
 import { Footer } from '../../shared/footer/footer';
 import { Favorites } from '../../favorites/favorites';
+import { PageLoading } from '../page-loading/page-loading';
 
 import { Selector } from '../../../store/selectors';
 import { ActionServer } from '../../../server/actions';
 import { ActionCreator } from '../../../store/actions';
-import { PageLoading } from '../page-loading/page-loading';
+import { IOffer } from '../../../interfaces';
+import { TSetCityName } from '../../../types';
 
-function PageFavorites() {
+const PageFavorites: React.FC = () => {
   const dispatch = useDispatch();
-  const isDataLoaded = useSelector((state) => Selector.getFavoritesDataLoadedStatus(state));
-  const cityName = useSelector((state) => Selector.getCityName(state));
-  const favorites = useSelector((state) => Selector.getFavorites(state));
-  const favoritesCount = favorites.length;
 
-  const mainElEmptyClass = (favoritesCount === 0)
+  const isDataLoaded: boolean = useSelector((state) => Selector.getFavoritesDataLoadedStatus(state));
+  const cityName: string = useSelector((state) => Selector.getCityName(state));
+  const favorites: IOffer[] = useSelector((state) => Selector.getFavorites(state));
+  const favoritesCount: number = favorites.length;
+
+  const mainElEmptyClass: string = (favoritesCount === 0)
     ? 'page__main--favorites-empty'
     : '';
 
-  const fetchFavorites = (ID) => dispatch(ActionServer.fetchFavorites(ID));
+  const fetchFavorites = () => dispatch(ActionServer.fetchFavorites());
 
-  const setCityName = (city) => {
+  const setCityName: TSetCityName = (city) => {
     dispatch(ActionCreator.setCityName(city));
     dispatch(ActionCreator.setFilteredOffers());
   };
@@ -55,6 +58,6 @@ function PageFavorites() {
       <Footer />
     </div>
   );
-}
+};
 
 export { PageFavorites };

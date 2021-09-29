@@ -24,5 +24,6 @@
 .form__notify-text {
   margin: 0;
   text-align: center;
+  font-weight: normal;
 }
 

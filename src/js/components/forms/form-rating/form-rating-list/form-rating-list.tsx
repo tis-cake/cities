@@ -1,9 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { FormRatingItem } from '../form-rating-item/form-rating-item';
 
-const ratingTitles = [
+import { IFormRatingListProps } from '../interfaces';
+
+const ratingTitles: string[] = [
   'perfect',
   'good',
   'not bad',
@@ -11,13 +12,13 @@ const ratingTitles = [
   'terribly',
 ];
 
-function FormRatingList(props) {
+const FormRatingList: React.FC<IFormRatingListProps> = (props) => {
   const { blockClassName } = props;
 
   return (
-    <div className={`${blockClassName}__rating-form form__rating`} data-testid="form-rating-list">
+    <div className={`${blockClassName}__rating-form form__rating`}>
       {ratingTitles.map((title, index, arr) => {
-        const indexReverse = arr.length - index;
+        const indexReverse: number = arr.length - index;
 
         return (
           <FormRatingItem
@@ -30,10 +31,6 @@ function FormRatingList(props) {
       })}
     </div>
   );
-}
-
-FormRatingList.propTypes = {
-  blockClassName: PropTypes.string.isRequired,
 };
 
 export { FormRatingList };

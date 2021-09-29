@@ -11,17 +11,21 @@ import { AppRoute } from '../../../const';
 import { Selector } from '../../../store/selectors';
 import { ActionServer } from '../../../server/actions';
 
-function PageDetailOffer() {
+interface IParamTypes {
+  id: string;
+}
+
+const PageDetailOffer: React.FC = () => {
   const [offerData, setOfferData] = useState(null);
   const history = useHistory();
-  const { id } = useParams();
+  const { id } = useParams<IParamTypes>();
 
-  const cityName = useSelector((state) => Selector.getCityName(state));
+  const cityName: string = useSelector((state) => Selector.getCityName(state));
 
-  const getDetailOffer = () => {
+  const getDetailOffer = (): void => {
     ActionServer.fetchDetailOffer(id)
       .then(({ offer, nearby }) => setOfferData({ offer, nearby }))
-      .catch((err) => history.push(AppRoute.NOT_FOUND));
+      .catch(() => history.push(AppRoute.NOT_FOUND));
   };
 
   useEffect(() => {
@@ -52,11 +56,11 @@ function PageDetailOffer() {
         />
 
         <div className="container">
-          <Nearby offers={offerData.nearby}/>
+          <Nearby offers={offerData.nearby} />
         </div>
       </main>
     </div>
   );
-}
+};
 
 export { PageDetailOffer };

@@ -7,24 +7,27 @@ import { TabsLocations } from '../../tabs-locations/tabs-locations';
 
 import { Selector } from '../../../store/selectors';
 import { ActionCreator } from '../../../store/actions';
+import { IOffer } from '../../../interfaces';
+import { TSetCityName, TSetSortType } from '../../../types';
 
-function PageMain() {
+const PageMain: React.FC = () => {
   const dispatch = useDispatch();
-  const cityName = useSelector((state) => Selector.getCityName(state));
-  const sortType = useSelector((state) => Selector.getSortType(state));
-  const filteredOffers = useSelector((state) => Selector.getFilteredOffers(state));
-  const offersCount = filteredOffers.length;
 
-  const mainElEmptyClass = (offersCount === 0)
+  const cityName: string = useSelector((state) => Selector.getCityName(state));
+  const sortType: string = useSelector((state) => Selector.getSortType(state));
+  const filteredOffers: IOffer[] = useSelector((state) => Selector.getFilteredOffers(state));
+  const offersCount: number = filteredOffers.length;
+
+  const mainElEmptyClass: string = (offersCount === 0)
     ? 'page__main--index-empty'
     : '';
 
-  const setCityName = (city) => {
+  const setCityName: TSetCityName = (city) => {
     dispatch(ActionCreator.setCityName(city));
     dispatch(ActionCreator.setFilteredOffers());
   };
 
-  const setSortType = (type) => {
+  const setSortType: TSetSortType = (type) => {
     dispatch(ActionCreator.setSortType(type));
     dispatch(ActionCreator.setFilteredOffers());
   };
@@ -51,6 +54,6 @@ function PageMain() {
       </main>
     </div>
   );
-}
+};
 
 export { PageMain };

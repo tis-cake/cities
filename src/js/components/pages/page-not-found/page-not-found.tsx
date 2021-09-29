@@ -8,7 +8,7 @@ import { AppRoute } from '../../../const';
 
 import './page-not-found.css';
 
-function PageNotFound() {
+const PageNotFound: React.FC = () => {
   return (
     <div className="page page--not-found">
       <Header />
@@ -27,6 +27,6 @@ function PageNotFound() {
       <Footer />
     </div>
   );
-}
+};
 
 export { PageNotFound };
