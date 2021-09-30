@@ -1,4 +1,5 @@
 import { IOffer } from '../../interfaces';
+import { TActiveOffer } from '../../types';
 
 interface IPlaceCardItemComponentsProps {
   placeData: IOffer,
@@ -10,12 +11,12 @@ interface IPlaceCardListComponentsProps {
 
 interface IPlaceCardСitiesProps {
   placeData: IOffer,
-  setActiveOffer(placeData: IOffer | {}): void,
+  setActiveOffer(placeData: TActiveOffer): void,
 }
 
 interface IPlaceCardListСitiesProps {
   offers: IOffer[],
-  setActiveOffer(placeData: IOffer | {}): void,
+  setActiveOffer(placeData: TActiveOffer): void,
 }
 
 export {

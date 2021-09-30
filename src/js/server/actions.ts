@@ -7,12 +7,15 @@ import {
   adaptReviewsToClient,
   adaptOffersToClient,
   adaptOfferToClient,
-  adaptUserToClient
+  adaptUserToClient,
 } from './adapter';
 
-const TOKEN = 'token';
+import { IUserPost, IReviewPost } from '../interfaces';
+import { TID } from '../types';
 
-const fetchDetailOffer = (id) => (
+const TOKEN: string = 'token';
+
+const fetchDetailOffer = (id: string) => (
   Promise.all([
     serverAPI.get(`${APIRoute.OFFERS}/${id}`),
     serverAPI.get(`${APIRoute.OFFERS}/${id}/nearby`),
@@ -31,14 +34,14 @@ const fetchOffers = () => (dispatch, _getState, api) => (
     .catch((err) => handleError(err))
 );
 
-const fetchReviews = (id) => (dispatch, _getState, api) => (
+const fetchReviews = (id: string) => (dispatch, _getState, api) => (
   api.get(`${APIRoute.REVIEWS}/${id}`)
     .then(({ data }) => adaptReviewsToClient(data))
     .then((reviews) => dispatch(ActionCreator.setReviews(reviews)))
     .catch((err) => handleError(err))
 );
 
-const postReview = (id, comment) => (dispatch, _getState, api) => {
+const postReview = (id: string, comment: IReviewPost) => (dispatch, _getState, api) => {
   dispatch(ActionCreator.setReviewSendedStatus(false));
   dispatch(ActionCreator.setReviewSendingStatus(true));
 
@@ -64,7 +67,7 @@ const fetchFavorites = () => (dispatch, _getState, api) => (
     .catch((err) => handleError(err))
 );
 
-const postFavorite = (id, status) => (dispatch, _getState, api) => (
+const postFavorite = (id: TID, status: boolean) => (dispatch, _getState, api) => (
   api.post(`${APIRoute.FAVORITES}/${id}/${Number(status)}`)
     .then(() => api.get(APIRoute.FAVORITES))
     .then(({ data }) => adaptOffersToClient(data))
@@ -81,7 +84,7 @@ const checkAuthorization = () => (dispatch, _getState, api) => (
     .catch(() => {})
 );
 
-const login = ({ login: email, password }) => (dispatch, _getState, api) => (
+const login = ({ login: email, password }: IUserPost) => (dispatch, _getState, api) => (
   api.post(APIRoute.LOGIN, { email, password })
     .then(({ data }) => {
       localStorage.setItem(TOKEN, data.token);

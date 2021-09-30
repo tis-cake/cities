@@ -8,7 +8,6 @@ import { Selector } from '../../store/selectors';
 import { ActionServer } from '../../server/actions';
 import { AuthorizationStatus } from '../../const';
 import { IReview, IReviewPost } from '../../interfaces';
-import { TID } from '../../types';
 import { IReviewsProps } from './interfaces';
 
 import { withFormNotify } from '../../hocs/with-form-notify/with-form-notify';
@@ -22,8 +21,8 @@ const Reviews: React.FC<IReviewsProps> = ({ id }) => {
   const reviews: IReview[] = useSelector((state) => Selector.getReviews(state));
   const reviewsCount: number = reviews.length;
 
-  const fetchReviews = (ID: TID) => dispatch(ActionServer.fetchReviews(ID));
-  const postReview = (ID: TID, review: IReviewPost) => dispatch(ActionServer.postReview(ID, review));
+  const fetchReviews = (ID: string) => dispatch(ActionServer.fetchReviews(ID));
+  const postReview = (ID: string, review: IReviewPost) => dispatch(ActionServer.postReview(ID, review));
 
   useEffect(() => {
     fetchReviews(id);

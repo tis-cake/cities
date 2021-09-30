@@ -1,8 +1,7 @@
 import { IReview } from '../../interfaces';
-import { TID } from '../../types';
 
 interface IReviewsProps {
-  id: TID,
+  id: string,
 }
 
 interface IReviewsItemProps {

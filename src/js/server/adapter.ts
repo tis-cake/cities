@@ -1,3 +1,10 @@
+import { IOffer, IReview, IUser } from '../interfaces';
+
+// type IMapObjID<T> = {
+//   [key: TID]: T,
+// };
+
+// const mapObjID = <T>(items: T[]): IMapObjID<T> => {
 const mapObjID = (items) => {
   const result = {};
 
@@ -8,7 +15,7 @@ const mapObjID = (items) => {
   return result;
 };
 
-const adaptOfferToClient = (offer) => ({
+const adaptOfferToClient = (offer): IOffer => ({
   bedrooms: offer.bedrooms,
   city: {
     location: {
@@ -43,9 +50,9 @@ const adaptOfferToClient = (offer) => ({
   type: offer.type,
 });
 
-const adaptOffersToClient = (offers) => offers.map(adaptOfferToClient);
+const adaptOffersToClient = (offers): IOffer[] => offers.map(adaptOfferToClient);
 
-const adaptReviewToClient = (review) => ({
+const adaptReviewToClient = (review): IReview => ({
   comment: review.comment,
   date: new Date(review.date),
   id: review.id,
@@ -58,9 +65,9 @@ const adaptReviewToClient = (review) => ({
   },
 });
 
-const adaptReviewsToClient = (reviews) => reviews.map(adaptReviewToClient);
+const adaptReviewsToClient = (reviews): IReview[] => reviews.map(adaptReviewToClient);
 
-const adaptUserToClient = (user) => ({
+const adaptUserToClient = (user): IUser => ({
   id: user.id,
   email: user.email,
   name: user.name,
@@ -73,5 +80,5 @@ export {
   adaptOffersToClient,
   adaptOfferToClient,
   adaptReviewsToClient,
-  adaptUserToClient
+  adaptUserToClient,
 };

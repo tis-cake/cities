@@ -10,7 +10,7 @@ interface IBookmarkButtonProps {
   id: TID,
   isFavorite: boolean,
   blockClassName: string,
-  extraHandlerFavoriteClick(): void,
+  extraHandlerFavoriteClick?(): void,
 }
 
 const { BookmarkButtonIconNormal, BookmarkButtonIconBig } = BookmarkButtonIcon;
