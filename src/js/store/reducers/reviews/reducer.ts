@@ -1,13 +1,13 @@
 import { ActionType } from '../../actions';
+import { TReviewsReducer } from './types';
 
-const initialState = {
+const initialState: TReviewsReducer = {
   reviews: [],
-
   isDataSended: false,
   isDataSending: false,
 };
 
-const reviews = (state = initialState, action) => {
+const reviews = (state = initialState, action): TReviewsReducer => {
   switch (action.type) {
     case ActionType.SET_REVIEWS: {
       return {

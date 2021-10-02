@@ -1,24 +1,29 @@
 import { ActionType } from '../../actions';
 import { SortType, DEFAULT_CITY } from '../../../const';
+
+import { TMainReducer } from './types';
+import { IOffer } from '../../../interfaces';
+import { TOffersByCitiesID } from '../../../types';
+
 import {
   prepareInitialDataStructure,
   getFilteredOffersByFavorite,
   getFilteredOffersByID,
-  getSortedOffersID
+  getSortedOffersID,
 } from '../../../utils/store';
 
-const initialState = {
+const initialState: TMainReducer = {
   cityName: DEFAULT_CITY,
   sortType: SortType.DEFAULT,
 
-  offers: {},
-  offersOnCitiesID: {},
-  filteredOffers: [],
-
   isDataLoaded: false,
+
+  offers: {},
+  offersByCitiesID: {},
+  filteredOffers: [],
 };
 
-const main = (state = initialState, action) => {
+const main = (state = initialState, action): TMainReducer => {
   switch (action.type) {
     case ActionType.SET_CITY_NAME: {
       return {
@@ -29,20 +34,20 @@ const main = (state = initialState, action) => {
     }
 
     case ActionType.SET_SORT_TYPE: {
-      const defaultIDs = state.offersOnCitiesID[state.cityName][SortType.DEFAULT];
-      const currentIDs = state.offersOnCitiesID[state.cityName][action.payload];
+      const defaultIDs: number[] = state.offersByCitiesID[state.cityName][SortType.DEFAULT];
+      const currentIDs: [] | number[] = state.offersByCitiesID[state.cityName][action.payload];
 
       if (defaultIDs.length !== 0 && currentIDs.length === 0) {
-        const sortedOffersID = getSortedOffersID(state.filteredOffers, action.payload);
+        const sortedOffersID: number[] = getSortedOffersID(state.filteredOffers, action.payload);
 
         return {
           ...state,
           sortType: action.payload,
 
-          offersOnCitiesID: {
-            ...state.offersOnCitiesID,
+          offersByCitiesID: {
+            ...state.offersByCitiesID,
             [state.cityName]: {
-              ...state.offersOnCitiesID[state.cityName],
+              ...state.offersByCitiesID[state.cityName],
               [action.payload]: sortedOffersID,
             },
           },
@@ -58,7 +63,7 @@ const main = (state = initialState, action) => {
     case ActionType.SET_FILTERED_OFFERS: {
       return {
         ...state,
-        filteredOffers: getFilteredOffersByID(state.offers, state.offersOnCitiesID[state.cityName][state.sortType]),
+        filteredOffers: getFilteredOffersByID(state.offers, state.offersByCitiesID[state.cityName][state.sortType]),
       };
     }
 
@@ -71,15 +76,15 @@ const main = (state = initialState, action) => {
 
     case ActionType.SET_INIT_OFFERS: {
       const { payload } = action;
-      const { offersOnCitiesID } = prepareInitialDataStructure(payload);
 
-      const filteredOffers = getFilteredOffersByID(payload, offersOnCitiesID[state.cityName][state.sortType]);
+      const offersByCitiesID: TOffersByCitiesID = prepareInitialDataStructure(payload);
+      const filteredOffers: IOffer[] = getFilteredOffersByID(payload, offersByCitiesID[state.cityName][state.sortType]);
 
       return {
         ...state,
         offers: payload,
-        offersOnCitiesID: offersOnCitiesID,
-        filteredOffers: filteredOffers,
+        offersByCitiesID,
+        filteredOffers,
         isDataLoaded: true,
       };
     }

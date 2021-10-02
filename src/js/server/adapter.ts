@@ -1,3 +1,4 @@
+import { TOffersByID } from '../types';
 import { IOffer, IReview, IUser } from '../interfaces';
 
 // type IMapObjID<T> = {
@@ -5,11 +6,11 @@ import { IOffer, IReview, IUser } from '../interfaces';
 // };
 
 // const mapObjID = <T>(items: T[]): IMapObjID<T> => {
-const mapObjID = (items) => {
+const mapOffersByID = (offers: IOffer[]): TOffersByID => {
   const result = {};
 
-  for (const item of items) {
-    result[item.id] = item;
+  for (const offer of offers) {
+    result[offer.id] = offer;
   }
 
   return result;
@@ -76,7 +77,7 @@ const adaptUserToClient = (user): IUser => ({
 });
 
 export {
-  mapObjID,
+  mapOffersByID,
   adaptOffersToClient,
   adaptOfferToClient,
   adaptReviewsToClient,

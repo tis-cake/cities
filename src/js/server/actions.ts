@@ -3,7 +3,7 @@ import { ActionCreator } from '../store/actions';
 import { handleError } from '../utils/error/error';
 import { AppRoute, APIRoute, AuthorizationStatus } from '../const';
 import {
-  mapObjID,
+  mapOffersByID,
   adaptReviewsToClient,
   adaptOffersToClient,
   adaptOfferToClient,
@@ -29,7 +29,7 @@ const fetchDetailOffer = (id: string) => (
 const fetchOffers = () => (dispatch, _getState, api) => (
   api.get(APIRoute.OFFERS)
     .then(({ data }) => adaptOffersToClient(data))
-    .then((offers) => mapObjID(offers))
+    .then((offers) => mapOffersByID(offers))
     .then((offers) => dispatch(ActionCreator.setInitOffers(offers)))
     .catch((err) => handleError(err))
 );

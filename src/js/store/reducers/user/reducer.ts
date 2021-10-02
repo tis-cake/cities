@@ -1,12 +1,13 @@
 import { ActionType } from '../../actions';
 import { AuthorizationStatus } from '../../../const';
+import { TUserReducer } from './types';
 
-const initialState = {
+const initialState: TUserReducer = {
   user: {},
   authorizationStatus: AuthorizationStatus.NO_AUTH,
 };
 
-const user = (state = initialState, action) => {
+const user = (state = initialState, action): TUserReducer => {
   switch (action.type) {
     case ActionType.REQUIRED_AUTHORIZATION: {
       return {

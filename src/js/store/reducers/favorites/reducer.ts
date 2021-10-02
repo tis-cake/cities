@@ -1,12 +1,12 @@
 import { ActionType } from '../../actions';
+import { TFavoritesReducer } from './types';
 
-const initialState = {
+const initialState: TFavoritesReducer = {
   favorites: [],
-
   isDataLoaded: false,
 };
 
-const favorites = (state = initialState, action) => {
+const favorites = (state = initialState, action): TFavoritesReducer => {
   switch (action.type) {
     case ActionType.SET_FAVORITES: {
       return {
