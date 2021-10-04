@@ -1,3 +1,5 @@
+import { ICitiesLocation } from './interfaces';
+
 const AppRoute = {
   ROOT: '/',
   LOGIN: '/login',
@@ -20,9 +22,7 @@ const AuthorizationStatus = {
   NO_AUTH: 'NO_AUTH',
 };
 
-const HttpCode = {
-  UNAUTHORIZED: 401,
-};
+const HttpCode = { UNAUTHORIZED: 401 };
 
 const SortType = {
   DEFAULT: 'DEFAULT',
@@ -49,11 +49,11 @@ const Cities = {
   DUSSELDORF: 'Dusseldorf',
 };
 
-const DEFAULT_CITY = Cities.PARIS;
+const DEFAULT_CITY: string = Cities.PARIS;
 
-const DEFAULT_ZOOM = 12;
+const DEFAULT_ZOOM: number = 12;
 
-const CitiesLocation = {
+const CitiesLocation: ICitiesLocation = {
   [Cities.PARIS]: {
     latitude: 48.856663,
     longitude: 2.351556,
@@ -86,9 +86,7 @@ const CitiesLocation = {
   },
 };
 
-const KeyCode = {
-  ESC: 27,
-};
+const KeyCode = { ESC: 27 };
 
 const NotifyMessage = {
   DEFAULT: 'Заполните, пожалуйста, все поля!',
@@ -107,5 +105,5 @@ export {
   KeyCode,
   NotifyMessage,
 
-  DEFAULT_CITY
+  DEFAULT_CITY,
 };

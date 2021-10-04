@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 import leaflet from 'leaflet';
 
-const tileLayerURL = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
-const tileLayerOptions = {
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-};
+import { TActiveOffer } from '../types';
+import { ILocation } from '../interfaces';
+
+type TLeafletMap = leaflet.Map;
+
+const tileLayerURL: string = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+const tileLayerOptionAttribution: string = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
+const tileLayerOptions = { attribution: tileLayerOptionAttribution };
 
 const defaultCustomIcon = leaflet.icon({
   iconUrl: './img/pin.svg',
@@ -19,10 +23,10 @@ const currentCustomIcon = leaflet.icon({
 });
 
 const createMarkersStore = () => {
-  let markers = [];
+  let markers: leaflet.Marker[] = [];
 
   return {
-    setMarkers(payload) {
+    setMarkers(payload: leaflet.Marker[]) {
       markers = [...payload];
     },
     getMarkers() {
@@ -33,31 +37,33 @@ const createMarkersStore = () => {
 
 const prevMarkersStore = createMarkersStore();
 
-const updateLeafletView = (leafletInstance, locationCityCurrent) => {
+const updateLeafletView = (leafletInstance: TLeafletMap, locationCityCurrent: ILocation): void => {
   leafletInstance.setView(
     new leaflet.LatLng(
       locationCityCurrent.latitude,
       locationCityCurrent.longitude,
-    ), locationCityCurrent.zoom);
+    ), locationCityCurrent.zoom,
+  );
 };
 
-const updateLeafletMarkers = (leafletInstance, locationPoints, activeOffer = false) => {
+const updateLeafletMarkers = (leafletInstance: TLeafletMap, locationPoints: ILocation[], activeOffer: TActiveOffer = {}): void => {
   const markersPrev = prevMarkersStore.getMarkers();
   const markersNext = getLeafletMarkers(locationPoints, activeOffer);
 
-  clearLeafletMarkers(leafletInstance, markersPrev);
-  setLeafletMarkers(leafletInstance, markersNext);
+  delLeafletMarkers(leafletInstance, markersPrev);
+  addLeafletMarkers(leafletInstance, markersNext);
 
   prevMarkersStore.setMarkers(markersNext);
 };
 
-const getLeafletMarkers = (points, activeOffer = false) => {
+const getLeafletMarkers = (points: ILocation[], activeOffer: TActiveOffer): leaflet.Marker[] => {
   const result = points.map((point) => leaflet.marker(
     {
       lat: point.latitude,
       lng: point.longitude,
     },
     {
+      // @ts-ignore
       icon: (point === activeOffer.location)
         ? currentCustomIcon
         : defaultCustomIcon,
@@ -67,7 +73,7 @@ const getLeafletMarkers = (points, activeOffer = false) => {
   return result;
 };
 
-const clearLeafletMarkers = (leafletInstance, markers) => {
+const delLeafletMarkers = (leafletInstance: TLeafletMap, markers: leaflet.Marker[]): void => {
   if (markers.length === 0) {
     return;
   }
@@ -75,11 +81,11 @@ const clearLeafletMarkers = (leafletInstance, markers) => {
   markers.forEach((marker) => leafletInstance.removeLayer(marker));
 };
 
-const setLeafletMarkers = (leafletInstance, markers) => {
+const addLeafletMarkers = (leafletInstance: TLeafletMap, markers: leaflet.Marker[]): void => {
   leaflet.featureGroup(markers).addTo(leafletInstance);
 };
 
-const useMap = (mapRef, locationCityCurrent) => {
+const useMap = (mapRef: React.MutableRefObject<HTMLDivElement>, locationCityCurrent: ILocation): TLeafletMap => {
   const [map, setMap] = useState(null);
 
   useEffect(() => {
@@ -91,7 +97,6 @@ const useMap = (mapRef, locationCityCurrent) => {
         },
         zoom: locationCityCurrent.zoom,
         zoomControl: false,
-        marker: true,
       });
 
       leaflet
@@ -102,11 +107,12 @@ const useMap = (mapRef, locationCityCurrent) => {
     }
   }, []);
 
-  return { map };
+  return map;
 };
 
 export {
+  TLeafletMap,
   updateLeafletView,
   updateLeafletMarkers,
-  useMap
+  useMap,
 };

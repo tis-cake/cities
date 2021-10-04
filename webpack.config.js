@@ -61,7 +61,7 @@ const jsLoaders = (...loaderExtra) => ({
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
-  entry: './js/index.jsx',
+  entry: './js/index.tsx',
   output: {
     filename: getFilename('js'),
     path: path.resolve(__dirname, 'build'),

@@ -35,8 +35,9 @@
     }],
     "no-use-before-define": "off",
     "react/prop-types": "off",
-    "@typescript-eslint/no-use-before-define": ["error"],
-    "@typescript-eslint/no-throw-literal": "warn"
+    "react/jsx-one-expression-per-line": "off",
+    "@typescript-eslint/no-throw-literal": "warn",
+    "@typescript-eslint/no-use-before-define": "warn"
   },
   "parserOptions": {
     "project": "./tsconfig.json",

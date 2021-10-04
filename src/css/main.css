@@ -810,6 +810,30 @@ img {
   padding-left: 5px;
 }
 
+
+.places__sorting-caption {
+  font-size: 12px;
+  line-height: 1.167;
+  font-weight: 700;
+}
+
+.places__sorting-type,
+.places__option-btn {
+  box-sizing: border-box;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+
+.places__sorting-type {
+  position: relative;
+  display: inline-block;
+  padding-right: 12px;
+  font-size: 12px;
+  line-height: 1.167;
+  cursor: pointer;
+}
+
 .places__sorting-arrow {
   position: absolute;
   top: 55%;
@@ -840,7 +864,9 @@ img {
   display: block;
 }
 
-.places__option {
+.places__option {}
+
+.places__option-btn {
   min-width: 170px;
   padding: 14px 16px 10px;
   font-size: 14px;
@@ -849,31 +875,17 @@ img {
   transition: background 0.3s;
   outline: 0;
   cursor: pointer;
+  text-align: left;
 }
 
-.places__option--active,
-.places__option:focus,
-.places__option:hover {
+.places__option-btn--active,
+.places__option-btn:focus,
+.places__option-btn:hover {
   background-color: #f2f2f2;
 }
 
-.places__option:selected {
+.places__option-btn:selected {
   background-color: #f2f2f2;
-}
-
-.places__sorting-caption {
-  font-size: 12px;
-  line-height: 1.167;
-  font-weight: 700;
-}
-
-.places__sorting-type {
-  position: relative;
-  display: inline-block;
-  padding-right: 12px;
-  font-size: 12px;
-  line-height: 1.167;
-  cursor: pointer;
 }
 
 .place-card {

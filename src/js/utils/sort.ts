@@ -1,6 +1,13 @@
 import { SortType } from '../const';
+import { IOffer } from '../interfaces';
 
-const sortOffers = (offers, sortBy) => {
+// function sortDateNewToOld<T>(elements: T[]): T[] {
+const sortDateNewToOld = <T>(elements: T[]): T[] => {
+  // @ts-ignore
+  return elements.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+};
+
+const sortOffers = (offers: IOffer[], sortBy: string) => {
   const slicedOffers = offers.slice();
 
   switch (sortBy) {
@@ -20,9 +27,9 @@ const sortOffers = (offers, sortBy) => {
       return slicedOffers.sort((a, b) => b.rating - a.rating);
     }
 
-    case SortType.DATE_NEW_TO_OLD: {
-      return slicedOffers.sort((a, b) => new Date(b.date) - new Date(a.date));
-    }
+    // case SortType.DATE_NEW_TO_OLD: {
+    //   return sortDateNewToOld(slicedOffers);
+    // }
 
     default: {
       return slicedOffers;
@@ -30,6 +37,4 @@ const sortOffers = (offers, sortBy) => {
   }
 };
 
-const sortDateNewToOld = (elements) => elements.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
-
-export { sortOffers, sortDateNewToOld };
+export { sortDateNewToOld, sortOffers };
