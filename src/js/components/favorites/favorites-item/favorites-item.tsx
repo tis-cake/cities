@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import { PlaceCardList } from '../../place-card/place-card-list/place-card-list';
 
 import { AppRoute } from '../../../const';
-import { ISetCityName } from '../../../interfaces';
+import { TSetCityName } from '../../../types';
 import { IFavoritesItemProps } from '../interfaces';
 
 const { PlaceCardListFavorites } = PlaceCardList;
 
-const handleLocationLinkClick = (city: string, cityCurrent: string, setCityName: ISetCityName): void => {
+const handleLocationLinkClick = (city: string, cityCurrent: string, setCityName: TSetCityName): void => {
   if (city !== cityCurrent) {
     setCityName(city);
   }

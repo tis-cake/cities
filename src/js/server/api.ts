@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BACKEND_URL: string = 'https://7.react.pages.academy/six-cities';
+const BACKEND_URL: string = 'https://8.react.pages.academy/six-cities';
 const REQUEST_TIMEOUT: number = 5000;
 
 const token: string = localStorage.getItem('token') ?? '';

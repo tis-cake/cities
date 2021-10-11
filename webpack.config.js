@@ -65,6 +65,7 @@ module.exports = {
   output: {
     filename: getFilename('js'),
     path: path.resolve(__dirname, 'build'),
+    publicPath : '/',
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'build'),
@@ -72,6 +73,7 @@ module.exports = {
     port: 8082,
     open: true,
     writeToDisk: isProd,
+    historyApiFallback: true,
   },
   plugins: [
     new HTMLWebpackPlugin({
@@ -86,10 +88,10 @@ module.exports = {
           from: path.resolve(__dirname, 'src/img'),
           to: path.resolve(__dirname, 'build/img'),
         },
-        {
-          from: path.resolve(__dirname, 'src/fonts'),
-          to: path.resolve(__dirname, 'build/fonts'),
-        },
+        // {
+        //   from: path.resolve(__dirname, 'src/fonts'),
+        //   to: path.resolve(__dirname, 'build/fonts'),
+        // },
       ],
     }),
     new NotifierWebpackPlugin(),

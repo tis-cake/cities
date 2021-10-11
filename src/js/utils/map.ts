@@ -11,13 +11,13 @@ const tileLayerOptionAttribution: string = '&copy; <a href="https://www.openstre
 const tileLayerOptions = { attribution: tileLayerOptionAttribution };
 
 const defaultCustomIcon = leaflet.icon({
-  iconUrl: './img/pin.svg',
+  iconUrl: '/img/pin.svg',
   iconSize: [27, 39],
   iconAnchor: [13, 39],
 });
 
 const currentCustomIcon = leaflet.icon({
-  iconUrl: './img/pin-active.svg',
+  iconUrl: '/img/pin-active.svg',
   iconSize: [27, 39],
   iconAnchor: [13, 39],
 });

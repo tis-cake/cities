@@ -12,6 +12,7 @@ import { IUser } from '../../../interfaces';
 const User: React.FC = () => {
   const dispatch = useDispatch();
 
+  // @ts-ignore
   const user: IUser = useSelector((state) => Selector.getUser(state));
   const authorizationStatus: string = useSelector((state) => Selector.getAuthorizationStatus(state));
 
