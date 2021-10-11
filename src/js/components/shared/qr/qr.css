@@ -1,0 +1,83 @@
+.qr {
+  box-sizing: border-box;
+
+  z-index: 401;
+  position: fixed;
+  left: 50%;
+  transform: translateX(calc(-50% - 1144px / 2));
+  bottom: 30px;
+
+  width: auto;
+  height: auto;
+  padding: 10px 10px 10px 10px;
+
+  background-color: #4481c3;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.qr__link:hover,
+.qr__link:focus {
+  outline: none;
+}
+
+.qr__link:hover .qr__img,
+.qr__link:focus .qr__img {
+  border-radius: 0;
+}
+
+.qr__link:hover .qr__img-desc::before,
+.qr__link:focus .qr__img-desc::before {
+  opacity: 0;
+}
+
+.qr__img-wrap {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 0;
+}
+
+.qr__img,
+.qr__img-desc,
+.qr__img-desc--arrow::before {
+  transition: 0.3s;
+}
+
+.qr__img {
+  overflow: hidden;
+  flex-shrink: 0;
+
+  object-fit: cover;
+  border-radius: 10px;
+
+  width: 70px;
+  height: 70px;
+}
+
+.qr__img-desc {
+  position: relative;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.qr__img-desc--arrow::before {
+  position: absolute;
+  content: '';
+  top: -4px;
+  left: -16px;
+  transform: scale(-1, 1);
+  width: 14px;
+  height: 14px;
+
+  background-image: url('/img/arrow.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+@media screen and (max-width: 1248px) {
+  .qr {
+    display: none;
+  }
+}
